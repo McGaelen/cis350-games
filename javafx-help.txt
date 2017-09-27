@@ -1,0 +1,3 @@
+- the files that store the way the UI looks are .fxml files. sample.fxml has a demo of using javafx.  you can open sample.fxml in the scene builder.
+- anytime you access labels, textfields, etc, in your code, they must have @FXML in front of the declaration. Examples are in Controller.java
+- Main.java just launches the app, no need to edit this
