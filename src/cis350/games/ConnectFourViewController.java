@@ -1,11 +1,11 @@
 package cis350.games;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.layout.GridPane;
-import java.io.IOException;
+import javafx.fxml.FXML;
 
-public class ConnectFourViewController extends GridPane {
+public class ConnectFourViewController {
 
-
+    @FXML
+    private void goBack() {
+        Main.stage.setScene(Main.mainScene);
+    }
 }

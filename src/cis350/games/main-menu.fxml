@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cis350.games.MainMenuViewController">
+   <children>
+      <ToolBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="39.0" prefWidth="600.0">
+        <items>
+          <Button fx:id="button1" mnemonicParsing="false" onAction="#setText" text="set label text" />
+            <Label fx:id="label1" text="Label" />
+        </items>
+      </ToolBar>
+      <TextField fx:id="textfield1" />
+      <Button mnemonicParsing="false" onAction="#goToView" text="go to different view">
+         <FlowPane.margin>
+            <Insets left="50.0" />
+         </FlowPane.margin>
+      </Button>
+   </children>
+</FlowPane>
+
