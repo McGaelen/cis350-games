@@ -2,18 +2,23 @@ package cis350.games;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    /* Static references to each scene in the app. These are available globally */
+    static Stage stage; // Don't overwrite this reference
+    static Scene mainScene;
+    static Scene connectFourScene;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        mainScene = new Scene(FXMLLoader.load(getClass().getResource("main-menu.fxml")));
+        primaryStage.setTitle("CIS 350 Games");
+        primaryStage.setScene(mainScene);
         primaryStage.show();
+        stage = primaryStage;
     }
 
 
