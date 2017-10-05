@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar layoutY="2.0" prefHeight="14.0" prefWidth="600.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="27.0" prefHeight="63.0" prefWidth="569.0" text="Welcome to Game Suite 1.0">
+         <font>
+            <Font name="System Bold" size="32.0" />
+         </font>
+      </Label>
+      <Button layoutX="139.0" layoutY="90.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="323.0" text="Checkers">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="139.0" layoutY="163.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="323.0" text="Chess">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="139.0" layoutY="236.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="323.0" text="Connect Four">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="139.0" layoutY="309.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="323.0" text="Achievements">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
