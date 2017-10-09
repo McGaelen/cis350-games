@@ -23,24 +23,12 @@ public class ConnectFourBoard {
         return board;
     }
 
-    public void setBoard(ArrayList<ArrayList<Integer>> board) {
-        this.board = board;
-    }
-
     public Integer getRows() {
         return rows;
     }
 
-    public void setRows(Integer rows) {
-        this.rows = rows;
-    }
-
     public Integer getCols() {
         return cols;
-    }
-
-    public void setCols(Integer cols) {
-        this.cols = cols;
     }
 
     public ConnectFourBoard(int rows, int cols) {
@@ -48,10 +36,10 @@ public class ConnectFourBoard {
         this.cols = cols;
         this.board = new ArrayList<ArrayList<Integer>>(this.rows);
 
-        for (int j = 0; j < this.cols; j++) {
-            this.board.set(j, new ArrayList<Integer>(this.cols));
-            for (Integer i : this.board.get(j)) {
-                i = 0;
+        for (int j = 0; j < this.rows; j++) {
+            this.board.add(j, new ArrayList<Integer>(this.cols));
+            for (int i = 0; i < this.cols; i++) {
+                this.board.get(j).add(0);
             }
         }
     }
@@ -60,7 +48,7 @@ public class ConnectFourBoard {
         col -= 1;
 
         if (col < 0 || col >= this.cols) {
-            throw new Exception("Invalid column number.");
+            throw new IllegalArgumentException("Invalid column number.");
         } else if (this.board.get(0).get(col) != 0) {
             throw new Exception("Column is full.");
         } else {
@@ -80,7 +68,11 @@ public class ConnectFourBoard {
         return true;
     }
 
-    public ArrayList<Integer> getRow(int row) {
+    public ArrayList<Integer> getRow(int row) throws IllegalArgumentException {
+        row -= 1;
+        if (row < 0 || row > this.rows-1) {
+            throw new IllegalArgumentException("Invalid row number");
+        }
         return this.board.get(row);
     }
 
@@ -106,5 +98,17 @@ public class ConnectFourBoard {
         return s.toString();
     }
 
+//    public static void main(String[] args) {
+//        ConnectFourBoard board = new ConnectFourBoard(2, 1);
+//        System.out.println(board);
+//        try {
+//            board.placeChip(1,1);
+//            board.placeChip(1,1);
+//        } catch (Exception e) {
+//            //no op;
+//        }
+//        System.out.println(board);
+//        System.out.println("Is the board full?  " + board.checkFull());
+//    }
 
 }
