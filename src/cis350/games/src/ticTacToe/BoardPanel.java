@@ -57,7 +57,7 @@ public class BoardPanel extends JPanel implements MouseListener{
 
 			// check if win
 			if(game.isWinner()) {
-				JOptionPane.showMessageDialog(null, 
+				JOptionPane.showMessageDialog(this, 
 						currentPlayer + " wins!");
 				game = new TicTacToe();
 				currentPlayer = "X";
@@ -66,7 +66,7 @@ public class BoardPanel extends JPanel implements MouseListener{
 
 			//check if tie
 			else if(game.isTie()) {
-				JOptionPane.showMessageDialog(null, 
+				JOptionPane.showMessageDialog(this, 
 						"It's a tie!");
 				game = new TicTacToe();
 				currentPlayer = "X";
@@ -86,7 +86,7 @@ public class BoardPanel extends JPanel implements MouseListener{
 
 		// invalid move display error
 		catch (IllegalArgumentException e) {
-			JOptionPane.showMessageDialog(null, 
+			JOptionPane.showMessageDialog(this, 
 					"This space has already been taken.");
 		}
 	}
