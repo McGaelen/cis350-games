@@ -7,12 +7,14 @@
     It also manages placing chips, checking if it's full and printing it out.
 */
 
-
 package cis350.games;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ConnectFourBoard {
+public class ConnectFourBoard implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private ArrayList<ArrayList<Integer>> board;
     private Integer rows;
@@ -69,7 +71,6 @@ public class ConnectFourBoard {
     }
 
     public ArrayList<Integer> getRow(int row) throws IllegalArgumentException {
-        row -= 1;
         if (row < 0 || row > this.rows-1) {
             throw new IllegalArgumentException("Invalid row number");
         }
@@ -110,5 +111,4 @@ public class ConnectFourBoard {
 //        System.out.println(board);
 //        System.out.println("Is the board full?  " + board.checkFull());
 //    }
-
 }

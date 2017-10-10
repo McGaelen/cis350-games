@@ -55,7 +55,7 @@ public class ConnectFourBoardTest {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        assertEquals(new Integer(1), b.getRow(10).get(0));
+        assertEquals(new Integer(1), b.getRow(9).get(0));
     }
 
     @Test
@@ -92,13 +92,13 @@ public class ConnectFourBoardTest {
         expected.add(1);
         b.placeChip(1, 1);
         b.placeChip(2, 1);
-        assertEquals(expected, b.getRow(2));
+        assertEquals(expected, b.getRow(1));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testGetRowBelowOne() {
         ConnectFourBoard b = new ConnectFourBoard(2,2);
-        b.getRow(0);
+        b.getRow(-1);
     }
 
     @Test
