@@ -20,6 +20,18 @@ public class ConnectFourBoard implements Serializable {
     private Integer rows;
     private Integer cols;
 
+    public ConnectFourBoard(int rows, int cols) {
+        this.rows = rows;
+        this.cols = cols;
+        this.board = new ArrayList<ArrayList<Integer>>(this.rows);
+
+        for (int j = 0; j < this.rows; j++) {
+            this.board.add(j, new ArrayList<Integer>(this.cols));
+            for (int i = 0; i < this.cols; i++) {
+                this.board.get(j).add(0);
+            }
+        }
+    }
 
     public ArrayList<ArrayList<Integer>> getBoard() {
         return board;
@@ -33,18 +45,6 @@ public class ConnectFourBoard implements Serializable {
         return cols;
     }
 
-    public ConnectFourBoard(int rows, int cols) {
-        this.rows = rows;
-        this.cols = cols;
-        this.board = new ArrayList<ArrayList<Integer>>(this.rows);
-
-        for (int j = 0; j < this.rows; j++) {
-            this.board.add(j, new ArrayList<Integer>(this.cols));
-            for (int i = 0; i < this.cols; i++) {
-                this.board.get(j).add(0);
-            }
-        }
-    }
 
     public void placeChip(int col, int player) throws Exception {
         col -= 1;

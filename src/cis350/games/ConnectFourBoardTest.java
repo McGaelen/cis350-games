@@ -1,9 +1,7 @@
 package cis350.games;
 
-import org.junit.*;
-
+import org.junit.Test;
 import java.util.ArrayList;
-
 import static junit.framework.Assert.*;
 
 public class ConnectFourBoardTest {

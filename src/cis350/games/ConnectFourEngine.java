@@ -33,7 +33,7 @@ public class ConnectFourEngine implements Serializable {
         this.rows = rows;
         this.cols = cols;
         this.board = new ConnectFourBoard(this.rows, this.cols);
-        this.connectsNeededForWin = 4; // this needs to be only 1 or 2...
+        this.connectsNeededForWin = 4;
         this.turn = startingTurn;
         this.winner = 0;
         this.winCase = "";
