@@ -1,25 +1,34 @@
-/*
-    CIS 350 Connect 4 - Game Board
-    Gaelen McIntee
-    10/4/2017
-
-    This class holds a 2d array of Integers that represent the game board.
-    It also manages placing chips, checking if it's full and printing it out.
-*/
-
 package cis350.games;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * This class holds a 2d array of Integers that represent the game board.
+ * It also manages placing chips, checking if it's full and printing it out.
+ */
 public class ConnectFourBoard implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    /**
+     * A representation of the connect four game board.
+     */
     private ArrayList<ArrayList<Integer>> board;
+    /**
+     * The number of rows in the game board.
+     */
     private Integer rows;
+    /**
+     * The number of columns in the game board.
+     */
     private Integer cols;
 
+    /**
+     * Creates a new game board with the specified number of
+     * rows and columns.
+     * @param rows the number of rows in the game board.
+     * @param cols the number of columns in the game board.
+     */
     public ConnectFourBoard(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
@@ -46,7 +55,7 @@ public class ConnectFourBoard implements Serializable {
     }
 
 
-    public void placeChip(int col, int player) throws Exception {
+    public void placeChipForPlayer(int col, int player) throws Exception {
         col -= 1;
 
         if (col < 0 || col >= this.cols) {
@@ -92,6 +101,8 @@ public class ConnectFourBoard implements Serializable {
                     case 2:
                         s.append(c).append("  ");
                         break;
+                    default:
+                        break;
                 }
             }
             s.append("\n");
@@ -99,12 +110,27 @@ public class ConnectFourBoard implements Serializable {
         return s.toString();
     }
 
-//    public static void main(String[] args) {
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj != null && this.getClass() == obj.getClass()) {
+            final ConnectFourBoard that = (ConnectFourBoard) obj;
+            return this.board.equals(that.board);
+        }
+        return false;
+    }
+
+//        public static void main(String[] args) {
 //        ConnectFourBoard board = new ConnectFourBoard(2, 1);
+//        ConnectFourBoard board2 = new ConnectFourBoard(2, 1);
+//        System.out.println(board.equals(board2));
 //        System.out.println(board);
 //        try {
-//            board.placeChip(1,1);
-//            board.placeChip(1,1);
+//            board.placeChipForPlayer(1,1);
+//            board.placeChipForPlayer(1,1);
 //        } catch (Exception e) {
 //            //no op;
 //        }

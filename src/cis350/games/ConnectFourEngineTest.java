@@ -1,11 +1,8 @@
 package cis350.games;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static junit.framework.Assert.*;
-
-import java.nio.file.Files;
 
 public class ConnectFourEngineTest {
 
@@ -27,19 +24,8 @@ public class ConnectFourEngineTest {
     }
 
     @Test
-    public void testGetBoard() {
-        ConnectFourBoard b = new ConnectFourBoard(10, 9);
-        assertEquals(b.getBoard(), game.getBoard().getBoard());
-    }
-
-    @Test
     public void testGetTurn() {
         assertEquals( (Integer)1, game.getTurn());
-    }
-
-    @Test
-    public void testGetConnectsNeededForWin() {
-        assertEquals( (Integer)4, game.getConnectsNeededForWin());
     }
 
     @Test
@@ -47,8 +33,8 @@ public class ConnectFourEngineTest {
         ConnectFourEngine turntest = new ConnectFourEngine(5, 5, 1);
         turntest.placeChip(1);
         ConnectFourBoard expected = new ConnectFourBoard(5, 5);
-        expected.placeChip(1, 1);
-        assertEquals(expected.getBoard(), turntest.getBoard().getBoard());
+        expected.placeChipForPlayer(1, 1);
+        assertEquals(expected.toString(), turntest.toString());
     }
 
     @Test(expected = Exception.class)
@@ -79,7 +65,7 @@ public class ConnectFourEngineTest {
         game.checkWin();
         game.reset();
         ConnectFourBoard expectedboard = new ConnectFourBoard(10, 9);
-        assertEquals( expectedboard.getBoard(), game.getBoard().getBoard());
+        assertEquals( expectedboard.toString(), game.toString());
         assertEquals( (Integer)1, game.getTurn());
         assertEquals( (Integer)0, game.getWinner());
         assertEquals("", game.getWinCase());
