@@ -11,11 +11,15 @@ public class Main extends Application {
     static Stage stage; // Don't overwrite this reference
     static Scene mainScene;
     static Scene connectFourScene;
+    static Scene checkersLaunchScene;
+    static Scene chessLaunchScene;
+    static Scene ticTacToeLaunchScene;
+    static Scene achievementsLaunchScene;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        mainScene = new Scene(FXMLLoader.load(getClass().getResource("main-menu.fxml")));
-        primaryStage.setTitle("CIS 350 Games");
+        mainScene = new Scene(FXMLLoader.load(getClass().getResource("MainMenu.fxml")));
+        primaryStage.setTitle("Gamesuite1.0");
         primaryStage.setScene(mainScene);
         primaryStage.show();
         stage = primaryStage;

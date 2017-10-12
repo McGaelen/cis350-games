@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cis350.games.MainMenuViewController">
    <children>
       <MenuBar layoutY="2.0" prefHeight="14.0" prefWidth="600.0">
         <menus>
@@ -33,22 +34,27 @@
             <Font name="System Bold" size="32.0" />
          </font>
       </Label>
-      <Button layoutX="139.0" layoutY="90.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="323.0" text="Checkers">
+      <Button fx:id="checkersButton" layoutX="139.0" layoutY="90.0" mnemonicParsing="false" onAction="#checkersButtonClick" prefHeight="63.0" prefWidth="323.0" text="Checkers">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="139.0" layoutY="163.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="323.0" text="Chess">
+      <Button layoutX="139.0" layoutY="163.0" mnemonicParsing="false" onAction="#chessButtonClick" prefHeight="63.0" prefWidth="323.0" text="Chess">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="139.0" layoutY="236.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="323.0" text="Connect Four">
+      <Button layoutX="139.0" layoutY="236.0" mnemonicParsing="false" onAction="#connectFourBtnClick" prefHeight="63.0" prefWidth="323.0" text="Connect Four">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="139.0" layoutY="309.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="323.0" text="Achievements">
+      <Button layoutX="139.0" layoutY="309.0" mnemonicParsing="false" onAction="#ticTacToeButtonClick" prefHeight="63.0" prefWidth="323.0" text="Tic Tac Toe">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="139.0" layoutY="383.0" mnemonicParsing="false" onAction="#ticTacToeButtonClick" prefHeight="63.0" prefWidth="323.0" text="Achievements">
          <font>
             <Font size="20.0" />
          </font>
