@@ -17,6 +17,8 @@ public class MainMenuViewController {
     private TextField textfield1;
     @FXML
     private Label label1;
+    @FXML
+    private Button launchConnectFour;
 
     /* clicking the button will trigger this method, which sets the text
     * of label1 to the text currently entered in textfield1 */

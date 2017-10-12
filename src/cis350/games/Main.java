@@ -14,7 +14,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        mainScene = new Scene(FXMLLoader.load(getClass().getResource("main-menu.fxml")));
+        mainScene = new Scene(FXMLLoader.load(getClass().getResource("MainMenu.fxml")));
         primaryStage.setTitle("CIS 350 Games");
         primaryStage.setScene(mainScene);
         primaryStage.show();
