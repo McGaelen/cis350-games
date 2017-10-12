@@ -5,16 +5,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public final class Main extends Application {
 
     /* Static references to each scene in the app. These are available globally */
     static Stage stage; // Don't overwrite this reference
     static Scene mainScene;
     static Scene connectFourScene;
+    static Scene checkersLaunchScene;
+    static Scene chessLaunchScene;
+    static Scene ticTacToeLaunchScene;
+    static Scene achievementsLaunchScene;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        mainScene = new Scene(FXMLLoader.load(getClass().getResource("main-menu.fxml")));
+
+    public void start(final Stage primaryStage) throws Exception {
+        mainScene = new Scene(
+                FXMLLoader.load(getClass().getResource("MainMenu.fxml"))
+        );
         primaryStage.setTitle("CIS 350 Games");
         primaryStage.setScene(mainScene);
         primaryStage.show();
@@ -22,7 +29,7 @@ public class Main extends Application {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         launch(args);
     }
 }

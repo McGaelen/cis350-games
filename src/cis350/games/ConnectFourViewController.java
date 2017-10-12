@@ -53,4 +53,9 @@ public class ConnectFourViewController {
     public void goBack() {
         // set stage back to mainscene
     }
+
+    @FXML
+    public void connectFourStart() {
+
+    }
 }
