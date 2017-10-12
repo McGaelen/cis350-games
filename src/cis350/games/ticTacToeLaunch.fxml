@@ -39,7 +39,7 @@
       </Label>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="79.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="file:/C:/Users/philips/Documents/GitHub/cis350-games/src/cis350/games/ticTacToe-X.jpg" />
+            <Image url="@resources/ticTacToe-X.jpg" />
          </image>
       </ImageView>
       <Button layoutX="274.0" layoutY="330.0" mnemonicParsing="false" onAction="#ticTacToeStart" text="Start">
@@ -50,9 +50,9 @@
       <TextField layoutX="389.0" layoutY="287.0" prefWidth="150.0" promptText="Player 2" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="383.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="file:/C:/Users/philips/Documents/GitHub/cis350-games/src/cis350/games/ticTacToe-O.png" />
+            <Image url="@resources/ticTacToe-O.png" />
          </image>
       </ImageView>
-      <Button layoutX="27.0" layoutY="31.0" mnemonicParsing="false" text="Back" />
+      <Button layoutX="27.0" layoutY="31.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
    </children>
 </AnchorPane>

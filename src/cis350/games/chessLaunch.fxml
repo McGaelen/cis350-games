@@ -39,12 +39,12 @@
       </Label>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="93.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="file:/C:/Users/philips/Documents/GitHub/cis350-games/src/cis350/games/whiteChessKing.png" />
+            <Image url="@resources/whiteChessKing.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="343.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="file:/C:/Users/philips/Documents/GitHub/cis350-games/src/cis350/games/blackChessKing.png" />
+            <Image url="@resources/blackChessKing.png" />
          </image>
       </ImageView>
       <TextField layoutX="81.0" layoutY="273.0" prefHeight="39.0" prefWidth="174.0" promptText="Player 1" />

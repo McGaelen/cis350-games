@@ -111,15 +111,6 @@ public class MainMenuViewController {
     
     @FXML
     private void achievementsButtonClick(){
-    	if (Main.achievementsLaunchScene == null) {
-            try {
-                Main.achievementsLaunchScene = new Scene(FXMLLoader.load(getClass().getResource("achievementsLaunch.fxml")));
-                Main.stage.setScene(Main.achievementsLaunchScene);
-            } catch (IOException e) {
-                System.out.println("Couldn't load achievementsLaunch.fxml");
-            }
-        } else {
-            Main.stage.setScene(Main.achievementsLaunchScene);
-        }
+    	//achievements screen;
     }
 }
