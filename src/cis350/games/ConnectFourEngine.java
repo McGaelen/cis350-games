@@ -221,8 +221,8 @@ public final class ConnectFourEngine implements Serializable {
      * @param col the column in which to drop the player's chip.
      * @throws Exception If the column doesn't exist in the board.
      */
-    public void placeChip(final Integer col) throws Exception {
-        board.placeChipForPlayer(col, this.turn);
+    public Integer placeChip(final Integer col) throws Exception {
+        return board.placeChipForPlayer(col, this.turn);
     }
 
     /**

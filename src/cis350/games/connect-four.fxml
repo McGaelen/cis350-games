@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="connectFourRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cis350.games.ConnectFourViewController">
+<AnchorPane fx:id="connectFourRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cis350.games.ConnectFourViewController">
     <children>
-        <ToolBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="39.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0">
+        <ToolBar fx:id="toolBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="39.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0">
             <items>
-                <Button fx:id="newGameButton" mnemonicParsing="false" onAction="#saveGame" text="New Game" />
+                <Button fx:id="newGameButton" mnemonicParsing="false" onAction="#newGame" text="New Game" />
                 <Button fx:id="loadGameButton" mnemonicParsing="false" onAction="#loadGame" text="Load Game" />
                 <Button fx:id="saveGameButton" mnemonicParsing="false" onAction="#saveGame" text="Save Game" />
                 <Pane HBox.hgrow="ALWAYS" />
@@ -22,14 +23,10 @@
                 <Insets top="20.0" />
             </padding>
          <children>
-            <GridPane fx:id="boardGrid" layoutX="14.0" layoutY="14.0" prefHeight="290.0" prefWidth="567.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+            <GridPane fx:id="boardGrid" hgap="20" layoutX="14.0" layoutY="14.0" vgap="10" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
 
             </GridPane>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="62.0" layoutY="440.0" onMouseReleased="#clicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@resources/black-checker-piece-clip-art.png" />
-               </image>
-            </ImageView>
+            <Label fx:id="feedbackLabel" layoutX="14.0" text="Label" />
          </children>
         </Pane>
 

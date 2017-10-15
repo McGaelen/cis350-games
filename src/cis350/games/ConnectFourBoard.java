@@ -55,7 +55,7 @@ public class ConnectFourBoard implements Serializable {
     }
 
 
-    public void placeChipForPlayer(int col, int player) throws Exception {
+    public Integer placeChipForPlayer(int col, int player) throws Exception {
         col -= 1;
 
         if (col < 0 || col >= this.cols) {
@@ -66,10 +66,11 @@ public class ConnectFourBoard implements Serializable {
             for (int i = 0; i < this.board.size(); i++) {
                 if (i == (this.rows-1) || this.board.get(i+1).get(col) != 0) {
                     this.board.get(i).set(col, player);
-                    break;
+                    return i;
                 }
             }
         }
+        return null;
     }
 
     public boolean checkFull() {
