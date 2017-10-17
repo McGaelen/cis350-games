@@ -2,44 +2,107 @@ package cis350.games;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.control.ToolBar;
+import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * This class controls the UI for Connect Four. An instance of this class
+ * is automatically created by JavaFX.
+ */
 public class ConnectFourViewController {
 
+    /**
+     * A reference to the game logic.
+     */
     private ConnectFourEngine game;
-    private ArrayList<ArrayList<Pane>> paneGrid; // will be used to hold the circles in the grid
+    /**
+     * Holds a reference to every colored circle in the game board.
+     */
+    private ArrayList<ArrayList<Pane>> paneGrid;
+    /**
+     * Holds a reference to every button in the bottom row of the game board.
+     */
     private ArrayList<Button> buttonRow;
 //    private String feedback;  // for release 2
+    /**
+     * The current height of the window.
+     */
     private double windowWidth;
+    /**
+     * The current width of the window.
+     */
     private double windowHeight;
 
+    /**
+     * Reference to the root pane of the UI.
+     */
     @FXML private AnchorPane connectFourRoot;
+    /**
+     * Reference to the GridPane in the UI that holds all the colored circles.
+     */
     @FXML private GridPane boardGrid;
+    /**
+     * Reference to the toolbar in the UI.
+     */
     @FXML private ToolBar toolBar;
 //    @FXML private Label feedbackLabel; // for release 2
 
-    private final double PADDING_AMT = 14;
-    private final double BOARD_CELL_SIZE = 50;
+    /**
+     * Specifies the amount of padding around certain UI elements.
+     */
+    private final double paddingAmt = 14;
+    /**
+     * The size of each cell in the game board.
+     */
+    private final double boardCellSize = 50;
+    /**
+     * The number of rows to put in the game engine.
+     */
+    private final Integer numRows = 6;
+    /**
+     * The number of columns to put in the game engine.
+     */
+    private final Integer numCols = 6;
+    /**
+     * Height of the buttons in the button row.
+     */
+    private final double placeChipButtonHeight = 35;
 
-
+    /**
+     * Creates a new instance of this controller.
+     * Called automatically by JavaFX.
+     */
     public ConnectFourViewController() {
-        this.game = new ConnectFourEngine(6, 6, 1);
+        this.game = new ConnectFourEngine(numRows, numCols, 1);
         this.paneGrid = new ArrayList<>();
         this.buttonRow = new ArrayList<>();
     }
 
-    @FXML
-    public void initialize() {
+    /**
+     * Completes setup of the UI after the FXML file has finished loading
+     * and an instance of this controller has been created.
+     *
+     * Adds all the colored circles to the boardGrid and the buttons to
+     * place chips in the board.
+     *
+     * Called automatically by JavaFX.
+     */
+    @FXML public void initialize() {
         this.boardGrid.getChildren().clear();
         this.paneGrid.clear();
         this.buttonRow.clear();
@@ -51,23 +114,29 @@ public class ConnectFourViewController {
                 if (row < this.game.getRows()) {
                     Circle c;
                     if (this.game.getCellOwner(row, col) == 1) {
-                        c = new Circle(25, Paint.valueOf("#DE0003"));
+                        c = new Circle(
+                                boardCellSize / 2, Paint.valueOf("#DE0003")
+                        );
                     } else if (this.game.getCellOwner(row, col) == 2) {
-                        c = new Circle(25, Paint.valueOf("#3034F0"));
+                        c = new Circle(
+                                boardCellSize / 2, Paint.valueOf("#3034F0")
+                        );
                     } else {
-                        c = new Circle(25, Paint.valueOf("#BAC1C4"));
+                        c = new Circle(
+                                boardCellSize / 2, Paint.valueOf("#BAC1C4")
+                        );
                     }
-                    c.setCenterX(25);
-                    c.setCenterY(25);
+                    c.setCenterX(boardCellSize / 2);
+                    c.setCenterY(boardCellSize / 2);
                     Pane p = new Pane(c);
-                    p.setPrefSize(50, 50);
-                    p.setMaxSize(50, 50);
+                    p.setPrefSize(boardCellSize, boardCellSize);
+                    p.setMaxSize(boardCellSize, boardCellSize);
                     this.boardGrid.add(p, col, row);
                     this.paneGrid.get(row).add(p);
                 } else {
                     Button b = new Button();
-                    b.setMaxSize(50, 50);
-                    b.setPrefSize(50, 35);
+                    b.setMaxSize(boardCellSize, boardCellSize);
+                    b.setPrefSize(boardCellSize, placeChipButtonHeight);
                     b.setText("↑");
                     b.setFont(new Font(12));
                     b.setId("placeChip-" + col);
@@ -80,33 +149,63 @@ public class ConnectFourViewController {
         this.resizeElements();
     }
 
+    /**
+     * Resizes all the elements in the UI to fit the game board.
+     * Calculates the screen's width and height and sets windowWidth and
+     * windowHeight to those values.
+     *
+     * Called automatically by initialize().
+     */
     private void resizeElements() {
-        this.windowWidth = PADDING_AMT + (this.boardGrid.getHgap() + BOARD_CELL_SIZE) * this.game.getCols();
-        this.windowHeight = this.toolBar.getHeight() + PADDING_AMT + (this.boardGrid.getVgap() + BOARD_CELL_SIZE) * (this.game.getRows() + 1) + PADDING_AMT;
-//        this.feedbackLabel.setLayoutY(this.windowHeight - (this.toolBar.getHeight() + PADDING_AMT + BOARD_CELL_SIZE));
+        this.windowWidth = paddingAmt
+                + (this.boardGrid.getHgap() + boardCellSize)
+                * this.game.getCols();
+        this.windowHeight = this.toolBar.getHeight()
+                + paddingAmt + (this.boardGrid.getVgap() + boardCellSize)
+                * (this.game.getRows() + 1) + paddingAmt;
+//        this.feedbackLabel.setLayoutY(this.windowHeight
+//                - (this.toolBar.getHeight() + paddingAmt + boardCellSize)
+//        );
 
         this.toolBar.setPrefWidth(this.windowWidth);
         this.toolBar.resize(this.windowWidth, this.toolBar.getHeight());
         this.connectFourRoot.setPrefWidth(this.windowWidth);
-        this.connectFourRoot.setPrefHeight(this.windowHeight + this.toolBar.getHeight() + PADDING_AMT);
-        this.connectFourRoot.resize(this.connectFourRoot.getPrefWidth(), this.connectFourRoot.getPrefHeight());
+        this.connectFourRoot.setPrefHeight(
+                this.windowHeight + this.toolBar.getHeight() + paddingAmt
+        );
+        this.connectFourRoot.resize(
+                this.connectFourRoot.getPrefWidth(),
+                this.connectFourRoot.getPrefHeight()
+        );
     }
 
-    public void placeChip(ActionEvent event) {
-        Button source = (Button)event.getSource();
+    /**
+     * Places a chip in a column corresponding to the location of the button
+     * that was pushed.
+     *
+     * The number in the id of the button corresponds to which column should
+     * get a chip placed in it.
+     *
+     * A check is performed for a winner every time this function is called,
+     * and a dialog box will appear displaying the winner, if there is one.
+     *
+     * @param event The button that was pushed to place a chip.
+     */
+    private void placeChip(final ActionEvent event) {
+        Button source = (Button) event.getSource();
         String id = source.getId();
-        int col = new Integer( id.substring(id.indexOf('-') + 1) );
+        int col = Integer.parseInt(id.substring(id.indexOf('-') + 1));
 
         try {
             int row = this.game.placeChip(col + 1);
             Circle c;
             if (this.game.getTurn() == 1) {
-                c = new Circle(25, Paint.valueOf("#DE0003"));
+                c = new Circle(boardCellSize / 2, Paint.valueOf("#DE0003"));
             } else {
-                c = new Circle(25, Paint.valueOf("#3034F0"));
+                c = new Circle(boardCellSize / 2, Paint.valueOf("#3034F0"));
             }
-            c.setCenterY(25);
-            c.setCenterX(25);
+            c.setCenterY(boardCellSize / 2);
+            c.setCenterX(boardCellSize / 2);
             this.paneGrid.get(row).get(col).getChildren().setAll(c);
             this.game.advanceTurn();
         } catch (Exception e) {
@@ -116,11 +215,15 @@ public class ConnectFourViewController {
         if (this.game.checkWin()) {
             Alert a = new Alert(AlertType.INFORMATION);
             a.setTitle("Winner");
-            a.setContentText("Player " + this.game.getWinner() + " won with a " + this.game.getWinCase() + "!\nWould you like to play again?\n\n");
+            a.setContentText(
+                    "Player " + this.game.getWinner()
+                    + " won with a " + this.game.getWinCase()
+                    + "!\nWould you like to play again?\n\n"
+            );
             ButtonType no =  new ButtonType("No", ButtonBar.ButtonData.NO);
             a.getDialogPane().getButtonTypes().add(no);
 
-            a.showAndWait().ifPresent( (result) -> {
+            a.showAndWait().ifPresent((result) -> {
                 if (result == ButtonType.OK) {
                     this.newGame();
                 } else {
@@ -130,20 +233,32 @@ public class ConnectFourViewController {
         }
     }
 
-    public void buttonsEnabled(final boolean enabled) {
+    /**
+     * Enables or disables all buttons in the button row.
+     * @param enabled true to enable all the buttons, false to disable them.
+     */
+    private void buttonsEnabled(final boolean enabled) {
         for (Button b : this.buttonRow) {
             b.setDisable(!enabled);
         }
     }
 
-    @FXML
-    public void newGame() {
+    /**
+     * Starts a new game by resetting the engine and
+     * manually calling initialize().
+     */
+    @FXML public void newGame() {
         this.game.reset();
         this.initialize();
     }
 
-    @FXML
-    public void loadGame() {
+    /**
+     * Manages loading a game from a file.
+     *
+     * A file chooser dialog will appear, and if the file is valid,
+     * the game will be set to the deserialized ConnectFourEngine object.
+     */
+    @FXML public void loadGame() {
         FileChooser dialog = new FileChooser();
         File gameFile;
 
@@ -156,17 +271,27 @@ public class ConnectFourViewController {
         try {
             this.game = ConnectFourEngine.load(gameFile);
         } catch (ClassNotFoundException c) {
-            new Alert(AlertType.ERROR, "The file was not a valid Connect Four file.").showAndWait();
+            new Alert(AlertType.ERROR,
+                    "The file was not a valid Connect Four file."
+            ).showAndWait();
         } catch (IOException e) {
-            new Alert(AlertType.ERROR, "Error loading Connect Four game file.").showAndWait();
+            new Alert(AlertType.ERROR,
+                    "Error loading Connect Four game file."
+            ).showAndWait();
         }
 
         this.initialize();
         this.resizeElements();
     }
 
-    @FXML
-    public void saveGame() {
+    /**
+     * Manages saving a game to a file.
+     *
+     * A file chooser will be shown for the user to choose a location
+     * to save their game, and the current game engine object will be
+     * serialized to a file at the given location.
+     */
+    @FXML public void saveGame() {
         FileChooser dialog = new FileChooser();
         File gameFile;
 
@@ -176,12 +301,17 @@ public class ConnectFourViewController {
         try {
             this.game.save(gameFile);
         } catch (IOException e) {
-            new Alert(AlertType.ERROR, "Error saving Connect Four game file.").showAndWait();
+            new Alert(AlertType.ERROR,
+                    "Error saving Connect Four game file."
+            ).showAndWait();
         }
     }
 
-    @FXML
-    public void goBack() {
+    /**
+     * Sets the main menu as the currently displaying scene,
+     * in order to go "back".
+     */
+    @FXML public void goBack() {
         Main.stage.setScene(Main.mainScene);
     }
 }

@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.io.File;
+import java.util.Objects;
 
 /**
  * Contains all the game logic for Connect Four. It also manages
@@ -85,8 +86,10 @@ public final class ConnectFourEngine implements Serializable {
     }
 
     /**
-     *
-     * @return
+     * Gets the owner of the cell at (row, col).
+     * @param row the row of the queried cell.
+     * @param col the column of the queried cell.
+     * @return the number of the player that owns the cell.
      */
     public Integer getCellOwner(final Integer row, final Integer col) {
         return board.getRow(row).get(col);
@@ -221,6 +224,7 @@ public final class ConnectFourEngine implements Serializable {
      * Places a chip assigned to whoever's turn it is currently.
      * @param col the column in which to drop the player's chip.
      * @throws Exception If the column doesn't exist in the board.
+     * @return the row that the chip fell into.
      */
     public Integer placeChip(final Integer col) throws Exception {
         return board.placeChipForPlayer(col, this.turn);
@@ -249,7 +253,7 @@ public final class ConnectFourEngine implements Serializable {
 
     /**
      * Statically loads a serialized ConnectFourEngine from a file.
-     * @param filename the path to the serialized file.
+     * @param filename the reference to the serialized file.
      * @return A new instance of a ConnectFourEngine with the data
      * obtained from the file.
      * @throws IOException When the path specified in
@@ -280,10 +284,19 @@ public final class ConnectFourEngine implements Serializable {
         output.close();
     }
 
+    /**
+     * Returns a string representation of the game engine.
+     * @return the string representation of the engine.
+     */
     public String toString() {
         return this.board.toString();
     }
 
+    /**
+     * Determines if this and another ConnectFourEngine object are equal.
+     * @param obj the object to compare to
+     * @return true if the objects are equal, false if not.
+     */
     @Override
     public boolean equals(final Object obj) {
         if (this == obj) {
@@ -303,5 +316,21 @@ public final class ConnectFourEngine implements Serializable {
             }
         }
         return false;
+    }
+
+    /**
+     * Generates a hash code for this object.
+     * @return the hash code.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                this.rows,
+                this.cols,
+                this.board,
+                this.turn,
+                this.winner,
+                this.winCase
+        );
     }
 }

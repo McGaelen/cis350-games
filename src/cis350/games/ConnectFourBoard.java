@@ -2,12 +2,13 @@ package cis350.games;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * This class holds a 2d array of Integers that represent the game board.
  * It also manages placing chips, checking if it's full and printing it out.
  */
-public class ConnectFourBoard implements Serializable {
+public final class ConnectFourBoard implements Serializable {
 
     private static final long serialVersionUID = 1L;
     /**
@@ -26,12 +27,12 @@ public class ConnectFourBoard implements Serializable {
     /**
      * Creates a new game board with the specified number of
      * rows and columns.
-     * @param rows the number of rows in the game board.
-     * @param cols the number of columns in the game board.
+     * @param boardRows the number of rows in the game board.
+     * @param boardCols the number of columns in the game board.
      */
-    public ConnectFourBoard(int rows, int cols) {
-        this.rows = rows;
-        this.cols = cols;
+    public ConnectFourBoard(final int boardRows, final int boardCols) {
+        this.rows = boardRows;
+        this.cols = boardCols;
         this.board = new ArrayList<ArrayList<Integer>>(this.rows);
 
         for (int j = 0; j < this.rows; j++) {
@@ -42,20 +43,42 @@ public class ConnectFourBoard implements Serializable {
         }
     }
 
+    /**
+     * Gets the ArrayList representation of the game board.
+     * @return The ArrayList.
+     */
     public ArrayList<ArrayList<Integer>> getBoard() {
         return board;
     }
 
+    /**
+     * Gets the number of rows in the game board.
+     * @return the number of rows.
+     */
     public Integer getRows() {
         return rows;
     }
 
+    /** Gets the number of columns in the game board.
+     * @return the number of columns.
+     */
     public Integer getCols() {
         return cols;
     }
 
-
-    public Integer placeChipForPlayer(int col, int player) throws Exception {
+    /**
+     * Places a chip in the specified column for the specified player.
+     *
+     * The chip will "fall down" to the lowest spot without a chip in it.
+     * After placing the chip, the number of the row that the chip fell into
+     * is returned.
+     * @param col the column to place the chip in.
+     * @param player the player to assign to the placed chip.
+     * @return the number of the row that the chip fell into.
+     * @throws Exception If an invalid column number is given.
+     */
+    public Integer placeChipForPlayer(
+            int col, final int player) throws Exception {
         col -= 1;
 
         if (col < 0 || col >= this.cols) {
@@ -64,7 +87,8 @@ public class ConnectFourBoard implements Serializable {
             throw new Exception("Column is full.");
         } else {
             for (int i = 0; i < this.board.size(); i++) {
-                if (i == (this.rows-1) || this.board.get(i+1).get(col) != 0) {
+                if (i == (this.rows - 1)
+                    || this.board.get(i + 1).get(col) != 0) {
                     this.board.get(i).set(col, player);
                     return i;
                 }
@@ -73,20 +97,38 @@ public class ConnectFourBoard implements Serializable {
         return null;
     }
 
+    /**
+     * Checks if the board is full by checking the top spot in
+     * each column.
+     * @return false if the board isn't full, true if it is full.
+     */
     public boolean checkFull() {
         for (Integer val : this.board.get(0)) {
-            if (val == 0) { return false; }
+            if (val == 0) {
+                return false;
+            }
         }
         return true;
     }
 
-    public ArrayList<Integer> getRow(int row) throws IllegalArgumentException {
-        if (row < 0 || row > this.rows-1) {
+    /**
+     * Gets the row at the specified index.
+     * @param row the index of the row to return.
+     * @return an ArrayList of the row queried.
+     * @throws IllegalArgumentException if the row number does not exist.
+     */
+    public ArrayList<Integer> getRow(
+            final int row) throws IllegalArgumentException {
+        if (row < 0 || row > this.rows - 1) {
             throw new IllegalArgumentException("Invalid row number");
         }
         return this.board.get(row);
     }
 
+    /**
+     * Provides a string representation of the game board.
+     * @return the string representation.
+     */
     public String toString() {
         StringBuilder s = new StringBuilder("\n");
 
@@ -111,6 +153,11 @@ public class ConnectFourBoard implements Serializable {
         return s.toString();
     }
 
+    /**
+     * Compares if this and another ConnectFourBoard are equal.
+     * @param obj the object to compare this instance to.
+     * @return true if equal, false if not.
+     */
     @Override
     public boolean equals(final Object obj) {
         if (this == obj) {
@@ -119,23 +166,26 @@ public class ConnectFourBoard implements Serializable {
 
         if (obj != null && this.getClass() == obj.getClass()) {
             final ConnectFourBoard that = (ConnectFourBoard) obj;
-            return this.board.equals(that.board);
+
+            if (this.board.equals(that.board)
+                && this.rows.equals(that.rows)
+                && this.cols.equals(that.cols)) {
+                return true;
+            }
         }
         return false;
     }
 
-//        public static void main(String[] args) {
-//        ConnectFourBoard board = new ConnectFourBoard(2, 1);
-//        ConnectFourBoard board2 = new ConnectFourBoard(2, 1);
-//        System.out.println(board.equals(board2));
-//        System.out.println(board);
-//        try {
-//            board.placeChipForPlayer(1,1);
-//            board.placeChipForPlayer(1,1);
-//        } catch (Exception e) {
-//            //no op;
-//        }
-//        System.out.println(board);
-//        System.out.println("Is the board full?  " + board.checkFull());
-//    }
+    /**
+     * Generates a hash code for this object.
+     * @return the hash code.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                this.board,
+                this.rows,
+                this.cols
+        );
+    }
 }
