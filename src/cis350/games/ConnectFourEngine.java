@@ -167,7 +167,7 @@ public final class ConnectFourEngine implements Serializable {
                 /* Vertical Case: Same as the horizontal case, but
                  * iterates downward from the current cell. */
                 for (int i = r; i < (r + this.connectsNeededForWin); i++) {
-                    if (i == rows || !board.getRow(i).get(c).equals(cell)) {
+                    if (i == rows || !(board.getRow(i).get(c).equals(cell))) {
                         break;
                     }
 
@@ -288,6 +288,7 @@ public final class ConnectFourEngine implements Serializable {
      * Returns a string representation of the game engine.
      * @return the string representation of the engine.
      */
+    @Override
     public String toString() {
         return this.board.toString();
     }

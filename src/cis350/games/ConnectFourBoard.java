@@ -94,7 +94,7 @@ public final class ConnectFourBoard implements Serializable {
                 }
             }
         }
-        return null;
+        return -1;
     }
 
     /**

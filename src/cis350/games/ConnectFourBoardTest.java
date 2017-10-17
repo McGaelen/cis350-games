@@ -1,10 +1,18 @@
 package cis350.games;
 
+import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;
 import static junit.framework.Assert.*;
 
 public class ConnectFourBoardTest {
+
+    private ConnectFourBoard board;
+
+    @Before
+    public void setUp() {
+        board = new ConnectFourBoard(10,10);
+    }
 
     @Test
     public void testGetBoard() {
@@ -106,5 +114,33 @@ public class ConnectFourBoardTest {
         b.placeChipForPlayer(2, 2 );
         String expected = "\n-  -  \n1  2  \n";
         assertEquals(expected, b.toString());
+    }
+
+    @Test
+    public void testEqualsSameObj() {
+        assertEquals(true, board.equals(board));
+    }
+
+    @Test
+    public void testEqualsNull() {
+        assertEquals(false, board.equals(null));
+    }
+
+    @Test
+    public void testEqualsUnlikeObjects() {
+        assertEquals(false, board.equals(new Integer(1)));
+    }
+
+    @Test
+    public void testEqualsTrue() {
+        ConnectFourBoard other = new ConnectFourBoard(10, 10);
+        assertEquals(true, board.equals(other));
+    }
+
+    @Test
+    public void testHashCode() {
+        ConnectFourBoard other = new ConnectFourBoard(10,10);
+        assertTrue(board.equals(other) && other.equals(board));
+        assertTrue(board.hashCode() == other.hashCode());
     }
 }
