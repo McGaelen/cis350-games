@@ -6,6 +6,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
+import java.io.File;
 
 /**
  * Contains all the game logic for Connect Four. It also manages
@@ -84,12 +85,12 @@ public final class ConnectFourEngine implements Serializable {
     }
 
     /**
-     * Gets the managed ConnectFourBoard instance.
-     * @return the managed ConnectFourBoard
+     *
+     * @return
      */
-//    public ConnectFourBoard getBoard() {
-//        return board;
-//    }
+    public Integer getCellOwner(final Integer row, final Integer col) {
+        return board.getRow(row).get(col);
+    }
 
     /**
      * Gets the player that will take the next turn.
@@ -256,7 +257,7 @@ public final class ConnectFourEngine implements Serializable {
      * @throws ClassNotFoundException When the class loaded from the file
      * isn't a ConnectFourEngine.
      */
-    public static ConnectFourEngine load(final String filename)
+    public static ConnectFourEngine load(final File filename)
             throws IOException, ClassNotFoundException {
         ObjectInputStream input = new ObjectInputStream(
                 new FileInputStream(filename)
@@ -271,7 +272,7 @@ public final class ConnectFourEngine implements Serializable {
      * @param filename the path to save the file to.
      * @throws IOException When the output file could not be opened.
      */
-    public void save(final String filename) throws IOException {
+    public void save(final File filename) throws IOException {
         ObjectOutputStream output = new ObjectOutputStream(
                 new FileOutputStream(filename)
         );
@@ -303,58 +304,4 @@ public final class ConnectFourEngine implements Serializable {
         }
         return false;
     }
-
-//        public static void main (String[] args) throws Exception {
-//        ConnectFourEngine game = new ConnectFourEngine(10, 10, 1);
-//        ConnectFourEngine game2 = new ConnectFourEngine(11,10,1);
-//        System.out.println(game.equals(game2));
-//        // Up and to the right case
-//        game.placeChipForPlayer(1);
-//        game.advanceTurn();
-//        game.placeChipForPlayer(2);
-//        game.placeChipForPlayer(3);
-//        game.placeChipForPlayer(4);
-//        game.advanceTurn();
-//        game.placeChipForPlayer(2);
-//        game.advanceTurn();
-//        game.placeChipForPlayer(3);
-//        game.placeChipForPlayer(4);
-//        game.advanceTurn();
-//        game.placeChipForPlayer(3);
-//        game.advanceTurn();
-//        game.placeChipForPlayer(4);
-//        game.advanceTurn();
-//        game.placeChipForPlayer(4);
-//
-//        System.out.println(game.getBoard());
-//        System.out.println("is there a win?  " + game.checkWin());
-//        System.out.println("who won?  player " + game.getWinner());
-//        System.out.println(game.getWinCase());
-//
-//        game.reset();
-//        System.out.println(game.getBoard() + "game reset!");
-//        System.out.println("is there a win?  " + game.checkWin());
-//        System.out.println("who won?  player " + game.getWinner());
-//        System.out.println(game.getWinCase());
-//
-//        // –––––––––– Loading and Saving ––––––––––––––
-//        ConnectFourEngine game2 = new ConnectFourEngine(5, 5, 1);
-//        game2.placeChipForPlayer(2);
-//        game2.placeChipForPlayer(1);
-//        game2.placeChipForPlayer(3);
-//        game2.advanceTurn();
-//        game2.save("out.c4");
-//        System.out.println("game2 saved!");
-//        System.out.println(game.getBoard());
-//        System.out.println("rows  " + game.getRows());
-//        System.out.println("cols  " + game.getCols());
-//        System.out.println("turn  " + game.getTurn());
-//
-//        game = ConnectFourEngine.load("out.c4");
-//        System.out.println(game.getBoard());
-//        System.out.println("rows  " + game.getRows());
-//        System.out.println("cols  " + game.getCols());
-//        System.out.println("turn  " + game.getTurn());
-//        System.out.println("new game loaded!");
-//    }
 }
