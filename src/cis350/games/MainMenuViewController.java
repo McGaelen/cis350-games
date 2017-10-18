@@ -8,6 +8,8 @@ import javafx.scene.control.*;
 
 import java.io.IOException;
 
+import javax.swing.JFrame;
+
 public class MainMenuViewController {
 
     /* To get access to buttons, labels, etc, in your code, declare it with the same name as
@@ -97,16 +99,21 @@ public class MainMenuViewController {
     
     @FXML 
     private void ticTacToeButtonClick(){
-    	if (Main.ticTacToeLaunchScene == null) {
-            try {
-                Main.ticTacToeLaunchScene = new Scene(FXMLLoader.load(getClass().getResource("ticTacToeLaunch.fxml")));
-                Main.stage.setScene(Main.ticTacToeLaunchScene);
-            } catch (IOException e) {
-                System.out.println("Couldn't load ticTacToeLaunch.fxml");
-            }
-        } else {
-            Main.stage.setScene(Main.ticTacToeLaunchScene);
-        }
+//    	if (Main.ticTacToeLaunchScene == null) {
+//            try {
+//                Main.ticTacToeLaunchScene = new Scene(FXMLLoader.load(getClass().getResource("ticTacToeLaunch.fxml")));
+//                Main.stage.setScene(Main.ticTacToeLaunchScene);
+//            } catch (IOException e) {
+//                System.out.println("Couldn't load ticTacToeLaunch.fxml");
+//            }
+//        } else {
+//            Main.stage.setScene(Main.ticTacToeLaunchScene);
+//        }
+    		TicTacToeGUI gui = new TicTacToeGUI();
+    		gui.setTitle("Tic Tac Toe Test");
+    		gui.pack();
+    		gui.setResizable(false);
+    		gui.setVisible(true);
     }
     
     @FXML

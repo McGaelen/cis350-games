@@ -85,7 +85,7 @@ public class TicTacToeGUI extends JFrame implements ActionListener{
 					+ "sure you want to quit?"), "Message", 
 					JOptionPane.YES_NO_OPTION);
 			if (value == JOptionPane.YES_OPTION) {
-				System.exit(1);
+				this.dispose();
 			}
 		}
 	}
