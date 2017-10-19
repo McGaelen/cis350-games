@@ -11,6 +11,13 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/***********************************************************************
+ * Class to dislpay the Tic Tac Toe game board. Contains a 2D array of
+ * CellPanels which displays the Tic Tac Toe game.
+ * 
+ * @author Edric Lin
+ * @version 10/18/17
+ **********************************************************************/
 public class TicTacToeBoardPanel extends JPanel implements MouseListener{
 
 	/** game engine for 1024 game */
@@ -19,15 +26,20 @@ public class TicTacToeBoardPanel extends JPanel implements MouseListener{
 	/** 2d array to display game board */
 	private TicTacToeCellPanel[][] cells;
 
+	/** the current player's turn */
 	private String currentPlayer;
 
+	/*******************************************************************
+	 * Constructor the Tic Tac Toe board. The player "X" moves first, 
+	 * and a 3x3 board is created.
+	 ******************************************************************/
 	public TicTacToeBoardPanel() {
 
 		// create new tic tac toe game
 		game = new TicTacToe();
 
 		// set current player to X
-		currentPlayer = "X";
+		currentPlayer = "X"; 
 
 		// create new cells based on board size
 		cells = new TicTacToeCellPanel[3][3];
@@ -44,9 +56,18 @@ public class TicTacToeBoardPanel extends JPanel implements MouseListener{
 		}
 	}
 
+	/*******************************************************************
+	 * Responds to a click on a cell, which is the player attempting to
+	 * make a move. Makes the move if it is valid, and checks to see
+	 * if win or tie conditions have been met. Updates the GUI board
+	 * after every move.
+	 * 
+	 * @param arg0 the mouse event that fired
+	 ******************************************************************/
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 
+		// get the row and column of the cell that was clicked
 		int row = ((TicTacToeCellPanel) arg0.getComponent()).getRow();
 		int col = ((TicTacToeCellPanel) arg0.getComponent()).getCol();
 
@@ -91,6 +112,9 @@ public class TicTacToeBoardPanel extends JPanel implements MouseListener{
 		}
 	}
 
+	/*******************************************************************
+	 * Updates the GUI board to mirror that of the game engine.
+	 ******************************************************************/
 	public void updateBoard() {
 
 		// get actual game board
@@ -104,18 +128,39 @@ public class TicTacToeBoardPanel extends JPanel implements MouseListener{
 		}
 	}
 
+	/*******************************************************************
+	 * Return the current TicTacToe object.
+	 * 
+	 * @return game
+	 ******************************************************************/
 	public TicTacToe getGame() {
 		return game;
 	}
 
+	/*******************************************************************
+	 * Set the current TicTacToe object.
+	 * 
+	 * @param game the TicTacToe object to set the current TicTacToe
+	 * object to
+	 ******************************************************************/
 	public void setGame(TicTacToe game) {
 		this.game = game;
 	}
 
+	/*******************************************************************
+	 * Return the current player.
+	 * 
+	 * @return currentPlayer.
+	 ******************************************************************/
 	public String getCurrentPlayer() {
 		return currentPlayer;
 	}
 
+	/*******************************************************************
+	 * Set the current player.
+	 * 
+	 * @param currentPlayer the player to set the current player to
+	 ******************************************************************/
 	public void setCurrentPlayer(String currentPlayer) {
 		this.currentPlayer = currentPlayer;
 	}

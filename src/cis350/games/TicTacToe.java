@@ -1,14 +1,32 @@
 package cis350.games;
 
+/***********************************************************************
+ * Class to create Tic Tac Toe game engine. TicTacToe contains a
+ * 2D array of Strings for players "X" and "O" to move. Three moves in 
+ * a row horizontally, vertically, or diagonally results in a win.
+ * 
+ * @author Edric Lin
+ * @version 10/18/17
+ **********************************************************************/
+
 public class TicTacToe {
 
+	/** game board for tic tac toe */
 	private String[][] board;
 
 
+	/*******************************************************************
+	 * Constructor for Tic Tac Toe game. Starts a new Tic Tac Toe game
+	 * by calling the startGame() function.
+	 ******************************************************************/
 	public TicTacToe() {
 		startGame();
 	}
 
+	/*******************************************************************
+	 * Starts a new game by creating a new 3x3 empty board. Each board
+	 * cell starts off as " ", meaning that it is empty.
+	 ******************************************************************/
 	public void startGame() {
 		
 		// create 3x3 board
@@ -22,6 +40,15 @@ public class TicTacToe {
 		}
 	}
 
+	/*******************************************************************
+	 * Checks that a certain move is valid. Moves are invalid if they 
+	 * are outside the 3x3 board, or if the location already contains
+	 * a move.
+	 * 
+	 * @param row the row of the move location
+	 * @param column the column of the move location
+	 * @return true if valid move and false if invalid move
+	 ******************************************************************/
 	public boolean isValidMove(int row, int column) {
 
 		// move is not within board
@@ -37,6 +64,15 @@ public class TicTacToe {
 		return true;
 	}
 
+	/*******************************************************************
+	 * Places the specified player at a specified move location.
+	 * Checks that the move is valid before making the move.
+	 * 
+	 * @param row the row of the move location
+	 * @param column the column of the move location
+	 * @param player the player marker ("X" or "O")
+	 * @throws {@link IllegalArgumentException} if move is invalid
+	 ******************************************************************/
 	public void move(int row, int column, String player) {
 
 		// throw error if invalid move
@@ -49,11 +85,18 @@ public class TicTacToe {
 		board[row][column] = player;
 	}
 
+	/*******************************************************************
+	 * Checks if any win conditions have been met. Player wins if
+	 * there are three consecutive player markers horizontally,
+	 * vertically, or diagonally.
+	 * 
+	 * @return true if win condition has been met and false if win
+	 * condition has not been met
+	 ******************************************************************/
 	public boolean isWinner() {
 
 		// eight winning lines
 		// each win line contains three coordinates
-
 		int[][][] winLines = {
 
 				// horizontal win
@@ -102,6 +145,14 @@ public class TicTacToe {
 		return false;
 	}
 	
+	/*******************************************************************
+	 * Checks if any win conditions have been met. Player wins if
+	 * there are three consecutive player markers horizontally,
+	 * vertically, or diagonally.
+	 * 
+	 * @return true if win condition has been met and false if win
+	 * condition has not been met
+	 ******************************************************************/
 	public boolean isTie() {
 
 		// iterate through board
@@ -119,13 +170,21 @@ public class TicTacToe {
 		return true;
 	}
 
+	/*******************************************************************
+	 * Return the current Tic Tac Toe board.
+	 * 
+	 * @return board
+	 ******************************************************************/
 	public String[][] getBoard() {
 		return board;
 	}
 
+	/*******************************************************************
+	 * Set the current Tic Tac Toe board. Used for testing purposes.
+	 * 
+	 * @param board the board to set the Tic Tac Toe board to
+	 ******************************************************************/
 	public void setBoard(String[][] board) {
 		this.board = board;
 	}
-	
-	
 }

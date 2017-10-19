@@ -4,6 +4,15 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/***********************************************************************
+ * Class to test TicTacToe. Runs through the constructor and methods
+ * to make sure they are functioning properly. Makes sure that errors
+ * are correctly being thrown.
+ * 
+ * @author Edric Lin
+ * @version 10/18/17
+ **********************************************************************/
+
 public class TicTacToeTest {
 
 	@Test
@@ -35,6 +44,7 @@ public class TicTacToeTest {
 	}
 
 	// test isValidMove with out of bounds moves
+	@Test
 	public void testIsValidMove1() {
 		TicTacToe game = new TicTacToe();
 		assertFalse(game.isValidMove(-100, 0));
@@ -42,6 +52,7 @@ public class TicTacToeTest {
 	}
 
 	// test isValidMove with all valid moves
+	@Test
 	public void testIsValidMove2() {
 		TicTacToe game = new TicTacToe();
 
@@ -116,7 +127,7 @@ public class TicTacToeTest {
 		}
 	}
 
-	// test isWinner with all win states
+	// test isWinner with all win states using "X"
 	@Test
 	public void testIsWinner2() {
 
@@ -146,6 +157,43 @@ public class TicTacToeTest {
 			// play each mark (3 marks for a win)
 			for (int j = 0; j < 3; j++) {
 				game.move(winLines[i][j][0], winLines[i][j][1], "X");
+			}
+			
+			// check win
+			assertTrue(game.isWinner());
+		}
+	}
+	
+	// test isWinner with all win states using "O"
+	@Test
+	public void testIsWinner3() {
+
+		int[][][] winLines = {
+
+				// horizontal win
+				{ {0, 0}, {0, 1}, {0, 2} },
+				{ {1, 0}, {1, 1}, {1, 2} },
+				{ {2, 0}, {2, 1}, {2, 2} },
+
+				// vertical win
+				{ {0, 0}, {1, 0}, {2, 0} },
+				{ {0, 1}, {1, 1}, {2, 1} },
+				{ {0, 2}, {1, 2}, {2, 2} },
+
+				// diagonal win
+				{ {0, 0}, {1, 1}, {2, 2} },
+				{ {2, 0}, {1, 1}, {0, 2} },
+		};
+
+		// go through each win line (8 total)
+		for (int i = 0; i < 8; i++) {
+			
+			// start new game after each win line
+			TicTacToe game = new TicTacToe();
+			
+			// play each mark (3 marks for a win)
+			for (int j = 0; j < 3; j++) {
+				game.move(winLines[i][j][0], winLines[i][j][1], "O");
 			}
 			
 			// check win

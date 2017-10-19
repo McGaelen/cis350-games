@@ -11,6 +11,14 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
+/***********************************************************************
+ * Class to create the Tic Tac Toe GUI. Adds the game board and a
+ * file menu to start a new game and quit.
+ * 
+ * @author Edric Lin
+ * @version 10/18/17
+ **********************************************************************/
+
 public class TicTacToeGUI extends JFrame implements ActionListener{
 
 	private TicTacToeBoardPanel board;
@@ -27,6 +35,9 @@ public class TicTacToeGUI extends JFrame implements ActionListener{
 	/** menu item to quit game */
 	private JMenuItem quitItem;
 
+	/*******************************************************************
+     * Main method to start GUI
+     ******************************************************************/ 
 	public static void main(String[] args) {
 		TicTacToeGUI gui = new TicTacToeGUI();
 		gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,8 +47,13 @@ public class TicTacToeGUI extends JFrame implements ActionListener{
 		gui.setVisible(true);
 	}
 
+	/*******************************************************************
+	 * Constructor the TicTacToeGUI. Installs the file menu and game
+	 * board.
+	 ******************************************************************/
 	public TicTacToeGUI() {
 
+		// set layout
 		setLayout(new GridLayout());
 
 		board = new TicTacToeBoardPanel();
@@ -64,6 +80,11 @@ public class TicTacToeGUI extends JFrame implements ActionListener{
 		quitItem.addActionListener(this);
 	}
 
+	/*******************************************************************
+	 * Responds to file menu actions. 
+	 * 
+	 * @param e the event that was fired
+	 ******************************************************************/
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -75,7 +96,7 @@ public class TicTacToeGUI extends JFrame implements ActionListener{
 			if (value == JOptionPane.YES_OPTION) {
 				board.getGame().startGame();
 				board.setCurrentPlayer("X");
-				board.updateBoard();
+				board.updateBoard(); 
 			}
 		}
 
