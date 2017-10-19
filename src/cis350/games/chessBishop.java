@@ -7,22 +7,36 @@ import cis350.games.chessGame;
 import cis350.games.chessBoard.Color;
 
 
-// Subclass of a Piece specific to a Bishop. This handles all movements the bishop is capable
-// of making.
+/***********************************************************************
+ * Subclass of a Piece specific to a Bishop. This handles all 
+ * movements the bishop is capable of making.
+ * 
+ * @author Austin Maley
+ * @version 10/18/17
+ **********************************************************************/
  
 public class chessBishop extends chessPiece {
 	
-	
-	// Bishop constructor initializes name of piece to Bishop. Every other parameter is
-	// initialized by superclass.
-	 
+	/*******************************************************************
+	 * Bishop constructor initializes name of piece to Bishop. 
+	 * Every other parameter is initialized by superclass.
+	 * 
+	 * @param initX x location of the bishop
+	 * @param initY y location of the bishop
+	 * @param color color of the bishop
+	 * @param board current game board
+	 ******************************************************************/
 	public chessBishop(int initX, int initY, Color color, chessStandardBoard board) {
 		super(initX, initY, color, board);
 		this.nameOfPiece = "bishop";
 	}
 	
-	
-	// Bishop specific implementation of abstract method
+	/*******************************************************************
+	 * Bishop specific implementation of abstract method. Checks if 
+	 * bishop move is valid.
+	 * 
+	 * @return true if valid move and false if invalid move
+	 ******************************************************************/
 	@Override
 	boolean isValidSpecialMove(int newX, int newY) {
 		int xDisplacement = newX - xLocation;
@@ -42,8 +56,6 @@ public class chessBishop extends chessPiece {
 		}
 		return false;
 	}
-	
-	//Helper method for Bishop specific move check (Diagonals)
 	
 	public static boolean isValidBishopMove(int xDisplacement, int yDisplacement) {
 		if((Math.abs(xDisplacement) == Math.abs(yDisplacement)) && xDisplacement != 0)

@@ -109,11 +109,11 @@ public class MainMenuViewController {
 //        } else {
 //            Main.stage.setScene(Main.ticTacToeLaunchScene);
 //        }
-    		TicTacToeGUI gui = new TicTacToeGUI();
-    		gui.setTitle("Tic Tac Toe Test");
-    		gui.pack();
-    		gui.setResizable(false);
-    		gui.setVisible(true);
+    	TicTacToeGUI gui = new TicTacToeGUI();
+		gui.setTitle("Tic Tac Toe Test");
+		gui.pack();
+		gui.setResizable(false);
+		gui.setVisible(true);
     }
     
     @FXML
