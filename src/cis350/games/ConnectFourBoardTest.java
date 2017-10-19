@@ -106,6 +106,11 @@ public class ConnectFourBoardTest {
         ConnectFourBoard b = new ConnectFourBoard(2,2);
         b.getRow(-1);
     }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetRowTooHigh() {
+    		board.getRow(100);
+    }
 
     @Test
     public void testToString() throws Exception {
@@ -114,6 +119,12 @@ public class ConnectFourBoardTest {
         b.placeChipForPlayer(2, 2 );
         String expected = "\n-  -  \n1  2  \n";
         assertEquals(expected, b.toString());
+    }
+    
+    @Test
+    public void testToStringDefaultStatement() {
+    		board.getBoard().get(1).add(55);
+    		assertFalse(board.toString().contains("55"));
     }
 
     @Test
@@ -128,13 +139,32 @@ public class ConnectFourBoardTest {
 
     @Test
     public void testEqualsUnlikeObjects() {
-        assertEquals(false, board.equals(new Integer(1)));
+        assertEquals(false, board.equals((Integer)1));
     }
 
     @Test
     public void testEqualsTrue() {
         ConnectFourBoard other = new ConnectFourBoard(10, 10);
         assertEquals(true, board.equals(other));
+    }
+    
+    @Test
+    public void testEqualsUnlikeRows() {
+    		ConnectFourBoard other = new ConnectFourBoard(9,10);
+    		assertFalse(board.equals(other));
+    }
+    
+    @Test
+    public void testEqualsUnlikeCols() {
+    		ConnectFourBoard other = new ConnectFourBoard(10,9);
+    		assertFalse(board.equals(other));
+    }
+    
+    @Test
+    public void testEqualsUnlikeBoards() {
+    		ConnectFourBoard other = new ConnectFourBoard(10,10);
+    		other.getBoard().get(1).add(1);
+    		assertFalse(board.equals(other));
     }
 
     @Test

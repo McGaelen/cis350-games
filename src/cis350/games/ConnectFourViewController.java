@@ -19,6 +19,7 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * This class controls the UI for Connect Four. An instance of this class
@@ -195,6 +196,7 @@ public class ConnectFourViewController {
         Button source = (Button) event.getSource();
         String id = source.getId();
         int col = Integer.parseInt(id.substring(id.indexOf('-') + 1));
+        System.out.println("Player " + this.game.getTurn() + " chose column " + col);
 
         try {
             int row = this.game.placeChip(col + 1);
@@ -259,6 +261,7 @@ public class ConnectFourViewController {
      * the game will be set to the deserialized ConnectFourEngine object.
      */
     @FXML public void loadGame() {
+        System.out.println("Load game attempted at " + new Date());
         FileChooser dialog = new FileChooser();
         File gameFile;
 
@@ -292,12 +295,16 @@ public class ConnectFourViewController {
      * serialized to a file at the given location.
      */
     @FXML public void saveGame() {
+        System.out.println("Save game attempted at " + new Date());
         FileChooser dialog = new FileChooser();
         File gameFile;
 
         dialog.setTitle("Save Connect Four Game");
         gameFile = dialog.showSaveDialog(Main.stage);
 
+        if (gameFile == null) {
+            return;
+        }
         try {
             this.game.save(gameFile);
         } catch (IOException e) {
