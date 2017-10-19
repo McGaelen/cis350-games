@@ -314,7 +314,7 @@ public class ChessViewController {
 		int response = JOptionPane.showConfirmDialog(null, player + " , would you like to restart?", "Restart", JOptionPane.YES_NO_OPTION);
 		if(response == JOptionPane.YES_OPTION){
 			gameOver = true;
-			window.setVisible(false);
+			//window.setVisible(false);
 			startNewGame();
 		}
     }
