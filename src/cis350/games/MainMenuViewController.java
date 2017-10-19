@@ -71,6 +71,9 @@ public class MainMenuViewController {
     
     @FXML
     private void checkersButtonClick(){
+    	checkersGame.getGamePlayers();
+    	checkersGame.startNewGame();
+    	/**
     	if (Main.checkersLaunchScene == null) {
             try {
                 Main.checkersLaunchScene = new Scene(FXMLLoader.load(getClass().getResource("CheckerLaunch.fxml")));
@@ -81,10 +84,15 @@ public class MainMenuViewController {
         } else {
             Main.stage.setScene(Main.checkersLaunchScene);
         }
+    	**/
     }
     
     @FXML 
     private void chessButtonClick(){
+    	
+    	chessGame.getGamePlayers();
+    	chessGame.startNewGame();
+    	/**
     	if (Main.chessLaunchScene == null) {
             try {
                 Main.chessLaunchScene = new Scene(FXMLLoader.load(getClass().getResource("chessLaunch.fxml")));
@@ -92,9 +100,11 @@ public class MainMenuViewController {
             } catch (IOException e) {
                 System.out.println("Couldn't load chessLaunch.fxml");
             }
-        } else {
+        } 
+        else {
             Main.stage.setScene(Main.chessLaunchScene);
         }
+        **/
     }
     
     @FXML 
