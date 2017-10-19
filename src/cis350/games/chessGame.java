@@ -63,7 +63,7 @@ public class chessGame {
 
 	// Helper method to instantiate players of the current game.
 	
-	private static void getGamePlayers() {
+	static void getGamePlayers() {
 		String whiteName = JOptionPane.showInputDialog("Please input White player name");
 		if(whiteName == "" || whiteName == null)
 			whiteName = "Player 1";
