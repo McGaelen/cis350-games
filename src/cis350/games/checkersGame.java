@@ -26,7 +26,10 @@ import cis350.games.checkersGameDisplay;
 
 
 // Game class to setup a complete checkers Game. Will move to Controllers once implemented properly.
-  
+
+/**
+ *
+ */
 public class checkersGame {
 	
 	static checkersPlayer whitePlayer;
@@ -51,6 +54,9 @@ public class checkersGame {
 
 	// Method to initialize gameBoard, populate it with pieces according to gameType 
 
+    /**
+     *
+     */
 	public void gameInit() {
 		gameBoard = new checkersStandardBoard(8,8);
 		gameBoard.populateBoardWithPieces();
@@ -61,7 +67,10 @@ public class checkersGame {
 	}
 
 	// Helper method to instantiate players of the current game.
-	
+
+    /**
+     *
+     */
 	static void getGamePlayers() {
 		String whiteName = JOptionPane.showInputDialog("Please input White player name");
 		if(whiteName == "" || whiteName == null)
@@ -75,7 +84,10 @@ public class checkersGame {
 	
 	
 	//  Method to start off a game thread and start running a game loop.
-	 
+
+    /**
+     *
+     */
 	public void gameStart(){
 		Thread gameThread = new Thread(){
 			@Override
@@ -90,7 +102,10 @@ public class checkersGame {
 	
 	//  Helper method to run the main game loop. If the game is over the game loop breaks
 	//  and the gamePanel stops getting repainted (updated).
-	 
+
+    /**
+     *
+     */
 	private void gameLoop(){
 		while(true){
 			if(gameOver)
@@ -102,7 +117,10 @@ public class checkersGame {
 	
 	// Method to setup initial display of the Board. Sets up the gamePanel and sidePanel in the
 	// game's main frame.
-	
+
+    /**
+     *
+     */
 	public void setupDisplay(){
 		window = new JFrame("Checkers");
         gamePanel = initializeGamePanel(gameBoard); 
@@ -120,7 +138,12 @@ public class checkersGame {
 	
 	
 	//  Helper method to initialize a JPanel for the game.
-	  
+
+    /**
+     *
+     * @param gameBoard
+     * @return
+     */
 	private JPanel initializeGamePanel(checkersStandardBoard gameBoard) {
         checkersGameDisplay gameDisplay = new checkersGameDisplay(gameBoard, squareSize);
         gameDisplay.setPreferredSize(new Dimension(640,640));
@@ -131,6 +154,10 @@ public class checkersGame {
 	
 	// Helper method to initialize a side JPanel for the game. 
 
+    /**
+     *
+     * @return
+     */
 	private JPanel initializeSidePanel(){
 		JPanel sideDisplay = new JPanel();
 		restartButton = new JButton("Restart Game");
@@ -153,7 +180,10 @@ public class checkersGame {
 	
 	
 	// Helper method to setup the button listeners for Restart and Forfeit buttons.
-	 
+
+    /**
+     *
+     */
 	private void setupButtonListeners() {
 		restartButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -167,11 +197,18 @@ public class checkersGame {
 		});
 	}
 
-
+    /**
+     *
+     */
 	public void mouseActions(){
 		gamePanel.addMouseListener(new MouseAdapter(){
 			int xPrev;
 			int yPrev;
+
+            /**
+             *
+             * @param me
+             */
 			public void mousePressed(MouseEvent me){
 				int xOrigin = me.getX();
 				int yOrigin = me.getY();
@@ -182,7 +219,11 @@ public class checkersGame {
 				yPrev = yOrigin;
 				movingPiece = gameBoard.squaresList[xOrigin][yOrigin].occupyingPiece;
 			}
-			
+
+            /**
+             *
+             * @param me
+             */
 			public void mouseReleased(MouseEvent me) {
 			    int xDestination = me.getX();
 				int yDestination = me.getY();
@@ -246,7 +287,10 @@ public class checkersGame {
 			
 		});
 	}
-	
+
+    /**
+     *
+     */
 	private void checkWhiteWin() {
 		checkersPiece cPiece = null;
 		int count = 0;
@@ -269,7 +313,10 @@ public class checkersGame {
 			return;
 		}		
 	}
-	
+
+    /**
+     *
+     */
 	private void checkBlackWin() {
 		checkersPiece cPiece = null;
 		int count = 0;
@@ -293,6 +340,9 @@ public class checkersGame {
 		}		
 	}
 
+    /**
+     *
+     */
 	private void restartGame(){
 		String player;
 		if(gameTurn.equals(cis350.games.checkersBoard.Color.white))
@@ -306,8 +356,10 @@ public class checkersGame {
 			startNewGame();
 		}
 	}
-	
 
+    /**
+     *
+     */
 	private void forfeitGame() {
 		checkersPlayer currentPlayer;
 		checkersPlayer otherPlayer;
@@ -329,13 +381,18 @@ public class checkersGame {
 		}
 	}
 
-
+    /**
+     *
+     * @param args
+     */
 	public static void main(String args[]){
 		getGamePlayers();
 		startNewGame();
 	}
 
-
+    /**
+     *
+     */
 	public static void startNewGame() {
 		checkersGame newGame = new checkersGame();
 		newGame.gameInit();
@@ -345,6 +402,11 @@ public class checkersGame {
 		
 	}
 
+    /**
+     *
+     * @param message
+     * @param title
+     */
 	public static void messageBox(String message, String title)
     {
         JOptionPane.showMessageDialog(null, message, title, JOptionPane.WARNING_MESSAGE);

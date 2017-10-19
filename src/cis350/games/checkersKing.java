@@ -4,16 +4,29 @@ import cis350.games.checkersPiece;
 import cis350.games.checkersStandardBoard;
 import cis350.games.checkersBoard.Color;
 
-
+/**
+ *
+ */
 public class checkersKing extends checkersPiece {
 
-
+    /**
+     *
+     * @param initX
+     * @param initY
+     * @param color
+     * @param board
+     */
 	public checkersKing(int initX, int initY, Color color, checkersStandardBoard board) {
 		super(initX, initY, color, board);
 		this.nameOfPiece = "king";
 	}
-	
 
+    /**
+     *
+     * @param newX
+     * @param newY
+     * @return
+     */
 	@Override
 	boolean isValidSpecialMove(int newX, int newY) {
 		int xDisplacement = newX - xLocation;
@@ -44,7 +57,12 @@ public class checkersKing extends checkersPiece {
 		return false;
 	}
 
-
+    /**
+     *
+     * @param xDisplacement
+     * @param yDisplacement
+     * @return
+     */
 	private boolean isValidKingMove(int xDisplacement, int yDisplacement) {
 			if(Math.abs(xDisplacement) == 2 && Math.abs(yDisplacement) == 2)
 				return true;

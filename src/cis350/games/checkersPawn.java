@@ -6,16 +6,29 @@ import cis350.games.checkersSquare;
 import cis350.games.checkersStandardBoard;
 import cis350.games.checkersBoard.Color;
 
-
+/**
+ *
+ */
 public class checkersPawn extends checkersPiece {
 
-
+    /**
+     *
+     * @param initX
+     * @param initY
+     * @param color
+     * @param board
+     */
 	public checkersPawn(int initX, int initY, Color color, checkersStandardBoard board) {
 		super(initX, initY, color, board);
 		this.nameOfPiece = "pawn";
 	}
 
-
+    /**
+     *
+     * @param newX
+     * @param newY
+     * @return
+     */
 	@Override
 	boolean isValidSpecialMove(int newX, int newY) {
 		int xDisplacement = newX - xLocation;
@@ -48,7 +61,12 @@ public class checkersPawn extends checkersPiece {
 		return false;
 	}
 
-
+    /**
+     *
+     * @param xDisplacement
+     * @param yDisplacement
+     * @return
+     */
 	private boolean isValidPawnMove(int xDisplacement, int yDisplacement) {		
 		if(color.equals(Color.white)){
 			if(Math.abs(xDisplacement) == 2 && yDisplacement == 2)

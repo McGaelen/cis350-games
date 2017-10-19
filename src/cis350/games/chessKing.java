@@ -4,16 +4,29 @@ import cis350.games.chessPiece;
 import cis350.games.chessStandardBoard;
 import cis350.games.chessBoard.Color;
 
+/*8
 
+ */
 public class chessKing extends chessPiece {
 
-
+    /**
+     *
+     * @param initX
+     * @param initY
+     * @param color
+     * @param board
+     */
 	public chessKing(int initX, int initY, Color color, chessStandardBoard board) {
 		super(initX, initY, color, board);
 		this.nameOfPiece = "king";
 	}
-	
 
+    /**
+     *
+     * @param newX
+     * @param newY
+     * @return
+     */
 	@Override
 	boolean isValidSpecialMove(int newX, int newY) {
 		int xDisplacement = newX - xLocation;
@@ -25,7 +38,12 @@ public class chessKing extends chessPiece {
 			return false;
 	}
 
-
+    /**
+     *
+     * @param xDisplacement
+     * @param yDisplacement
+     * @return
+     */
 	private boolean isValidKingMove(int xDisplacement, int yDisplacement) {
 		// Diagonal
 		if(Math.abs(xDisplacement) == 1 && Math.abs(yDisplacement) == 1)

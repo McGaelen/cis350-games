@@ -24,12 +24,20 @@ public class checkersGameDisplay extends JPanel {
 	
 	// Constructor to initialize a game display
 
+    /**
+     *
+     * @param gameBoard
+     * @param squareSize
+     */
 	public checkersGameDisplay(checkersStandardBoard gameBoard, int squareSize){
 		board = gameBoard;
 		this.squareSize = squareSize;	
 	}
-	
 
+    /**
+     *
+     * @param graphic
+     */
 	@Override
 	public void paintComponent(Graphics graphic){
 		for(int i = 0; i < board.numXSquares; i++){

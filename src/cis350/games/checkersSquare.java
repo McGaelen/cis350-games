@@ -29,7 +29,11 @@ public class checkersSquare {
 		this.color = color;
 		this.occupyingPiece = null;
 	}
-	
+
+    /**
+     *
+     * @param square
+     */
 	public void remove(checkersSquare square) {
 		square.isOccupied = false;
 		square.occupyingPiece = null;

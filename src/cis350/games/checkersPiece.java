@@ -9,7 +9,9 @@ import javax.imageio.ImageIO;
 
 import cis350.games.checkersBoard.Color;
 
-
+/**
+ *
+ */
 public abstract class checkersPiece {
 	
 
@@ -23,11 +25,22 @@ public abstract class checkersPiece {
 	public int xLocation;
 	// yLocation of piece on board.
 	public int yLocation;
-	
 
+    /**
+     *
+     * @param newX
+     * @param newY
+     * @return
+     */
 	abstract boolean isValidSpecialMove(int newX, int newY);
 
-
+    /**
+     *
+     * @param initX
+     * @param initY
+     * @param color
+     * @param board
+     */
 	public checkersPiece(int initX, int initY, Color color, checkersStandardBoard board) {
 		this.color = color;
 		board.squaresList[initX][initY].isOccupied = true;
@@ -37,7 +50,12 @@ public abstract class checkersPiece {
 		this.yLocation = initY;
 	}
 
-
+    /**
+     *
+     * @param newX
+     * @param newY
+     * @return
+     */
 	public boolean canMove(int newX, int newY){
 		if(!currentBoard.inBoardBounds(newX, newY))
 			return false;
@@ -49,8 +67,13 @@ public abstract class checkersPiece {
 			return false;
 		return true;
 	}
-	
 
+    /**
+     *
+     * @param newX
+     * @param newY
+     * @return
+     */
 	private boolean isEnemyPieceAtDestination(int newX, int newY){
 		checkersSquare squareToCheck = currentBoard.squaresList[newX][newY];
 		if(squareToCheck.isOccupied){
@@ -58,13 +81,21 @@ public abstract class checkersPiece {
 		}
 		return true;
 	}
-	
 
+    /**
+     *
+     * @param newX
+     * @param newY
+     */
 	public void executeCaptureOrMove(int newX, int newY){
 		movePiece(this, newX, newY);
 	}
-	
 
+    /**
+     *
+     * @param kingToCheck
+     * @return
+     */
 	public boolean isKingInCheck(checkersKing kingToCheck) {
 		int kingXLocation = kingToCheck.xLocation;
 		int kingYLocation = kingToCheck.yLocation;
@@ -85,8 +116,13 @@ public abstract class checkersPiece {
 		return false;
 		
 	}
-	
 
+    /**
+     *
+     * @param newPieceX
+     * @param newPieceY
+     * @return
+     */
 	private boolean isKingInDanger(int newPieceX, int newPieceY) {
 		int oldPieceX = this.xLocation;
 		int oldPieceY = this.yLocation;
@@ -136,8 +172,13 @@ public abstract class checkersPiece {
 		}
 		return false;
 	}
-	
-	
+
+    /**
+     *
+     * @param pieceToMove
+     * @param newPieceX
+     * @param newPieceY
+     */
 	private void movePiece(checkersPiece pieceToMove, int newPieceX, int newPieceY){
 		checkersSquare currentSquare = currentBoard.squaresList[pieceToMove.xLocation][pieceToMove.yLocation];
 		checkersSquare targetSquare = currentBoard.squaresList[newPieceX][newPieceY];
@@ -149,14 +190,26 @@ public abstract class checkersPiece {
 		pieceToMove.yLocation = newPieceY;
 	}
 
-
+    /**
+     *
+     * @param colorToCheck
+     * @param occupyingPiece
+     * @return
+     */
 	private boolean isEnemyPiece(Color colorToCheck, checkersPiece occupyingPiece) {
 		if(colorToCheck.equals(occupyingPiece.color))
 			return false;
 		else
 			return true;
 	}
-	
+
+    /**
+     *
+     * @param graphic
+     * @param squareSize
+     * @param x
+     * @param y
+     */
 	public void drawPiece(Graphics graphic, int squareSize, int x, int y){
 		if(this.color.equals(Color.black)){
 			String name = this.nameOfPiece.concat(".png");
@@ -172,6 +225,14 @@ public abstract class checkersPiece {
 		}
 	}
 
+    /**
+     *
+     * @param graphic
+     * @param squareSize
+     * @param imageName
+     * @param x
+     * @param y
+     */
 	private void drawPieceHelper(Graphics graphic, int squareSize, String imageName, int x, int y) {
 		File imageFile = new File(imageName);
 		BufferedImage image = null;
@@ -186,7 +247,12 @@ public abstract class checkersPiece {
 		int widthPadding = (squareSize - imageWidth)/2;
 		graphic.drawImage(image, (squareSize*x) + widthPadding, ((7-y)*squareSize) + heightPadding, imageWidth, imageHeight, null);
 	}
-	
+
+    /**
+     *
+     * @param kingToCheck
+     * @return
+     */
 	public boolean isKingCheckmate(checkersKing kingToCheck){
 		if(!isKingInCheck(kingToCheck))
 			return false;
@@ -206,7 +272,12 @@ public abstract class checkersPiece {
 		return true;
 	}
 
-
+    /**
+     *
+     * @param allyPiece
+     * @param kingToCheck
+     * @return
+     */
 	private boolean checkmateHelper(checkersPiece allyPiece, checkersKing kingToCheck) {
 		int oldPieceX = allyPiece.xLocation;
 		int oldPieceY = allyPiece.yLocation;
@@ -241,14 +312,23 @@ public abstract class checkersPiece {
 		return true;
 	}
 
-
+    /**
+     *
+     * @param xDest
+     * @param yDest
+     */
 	public void whitePromote(int xDest, int yDest) {
 		checkersKing newWhiteKing = new checkersKing(xDest, yDest, Color.white, currentBoard);
 		currentBoard.squaresList[xDest][yDest].isOccupied = true;
 		currentBoard.squaresList[xDest][yDest].occupyingPiece = newWhiteKing;
 		
 	}
-	
+
+    /**
+     *
+     * @param xDest
+     * @param yDest
+     */
 	public void blackPromote(int xDest, int yDest) {
 		checkersKing newBlackKing = new checkersKing(xDest, yDest, Color.black, currentBoard);
 		currentBoard.squaresList[xDest][yDest].isOccupied = true;

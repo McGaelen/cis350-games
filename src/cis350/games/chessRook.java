@@ -9,7 +9,6 @@ import cis350.games.chessBoard.Color;
 /**
  * Subclass of a Piece specific to a Rook. This handles all movements the rook is capable
  * of making.
- 
  */
 public class chessRook extends chessPiece {
 
