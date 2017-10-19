@@ -85,13 +85,12 @@ public final class ConnectFourBoard implements Serializable {
             throw new IllegalArgumentException("Invalid column number.");
         } else if (this.board.get(0).get(col) != 0) {
             throw new Exception("Column is full.");
-        } else {
-            for (int i = 0; i < this.board.size(); i++) {
-                if (i == (this.rows - 1)
-                    || this.board.get(i + 1).get(col) != 0) {
-                    this.board.get(i).set(col, player);
-                    return i;
-                }
+        }
+        for (int i = 0; i < this.board.size(); i++) {
+            if (i == (this.rows - 1)
+                || this.board.get(i + 1).get(col) != 0) {
+                this.board.get(i).set(col, player);
+                return i;
             }
         }
         return -1;
@@ -167,9 +166,9 @@ public final class ConnectFourBoard implements Serializable {
         if (obj != null && this.getClass() == obj.getClass()) {
             final ConnectFourBoard that = (ConnectFourBoard) obj;
 
-            if (this.board.equals(that.board)
-                && this.rows.equals(that.rows)
-                && this.cols.equals(that.cols)) {
+            if (this.rows.equals(that.rows)
+                && this.cols.equals(that.cols)
+                && this.board.equals(that.board)) {
                 return true;
             }
         }

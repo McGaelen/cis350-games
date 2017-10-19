@@ -18,21 +18,21 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
-import cis350.games.chessKing;
-import cis350.games.chessPiece;
-import cis350.games.chessStandardBoard;
-//import cis350.games.chessBoard;
-import cis350.games.chessGameDisplay;
+import cis350.games.checkersKing;
+import cis350.games.checkersPiece;
+import cis350.games.checkersStandardBoard;
+//import cis350.games.checkersBoard;
+import cis350.games.checkersGameDisplay;
 
 
-// Game class to setup a complete Chess Game. Will move to Controllers once implemented properly.
+// Game class to setup a complete checkers Game. Will move to Controllers once implemented properly.
   
-public class chessGame {
+public class checkersGame {
 	
-	static chessPlayer whitePlayer;
-	static chessPlayer blackPlayer;
-	cis350.games.chessBoard.Color gameTurn;
-	chessStandardBoard gameBoard;
+	static checkersPlayer whitePlayer;
+	static checkersPlayer blackPlayer;
+	cis350.games.checkersBoard.Color gameTurn;
+	checkersStandardBoard gameBoard;
 	boolean gameOver;
 	static boolean gameType;
 	int squareSize;
@@ -44,18 +44,17 @@ public class chessGame {
 	JLabel whiteScore;
 	JLabel blackScore;
 	JButton forfeitButton;
-	JButton undoButton;
 	JButton restartButton;
-	chessPiece movingPiece;
-	Stack<chessMoveCommand> commandStack;
+	checkersPiece movingPiece;
+	Stack<checkersMoveCommand> commandStack;
 	
 
 	// Method to initialize gameBoard, populate it with pieces according to gameType 
 
-	public void gameInit(boolean gameType) {
-		gameBoard = new chessStandardBoard(8,8);
-		gameBoard.populateBoardWithPieces(gameType);
-		gameTurn = cis350.games.chessBoard.Color.white;
+	public void gameInit() {
+		gameBoard = new checkersStandardBoard(8,8);
+		gameBoard.populateBoardWithPieces();
+		gameTurn = cis350.games.checkersBoard.Color.white;
 		gameOver = false;
 		squareSize = 80;
 		commandStack = new Stack();
@@ -70,19 +69,8 @@ public class chessGame {
 		String blackName = JOptionPane.showInputDialog("Please input Black player name");
 		if(blackName == "" || blackName == null)
 			blackName = "Player 2";
-		whitePlayer = new chessPlayer(whiteName, cis350.games.chessBoard.Color.white);
-		blackPlayer = new chessPlayer(blackName, cis350.games.chessBoard.Color.black);
-	}
-	
-	//Helper method to get the type of game. 
-	
-	private static boolean getGameType() {
-		//int response = JOptionPane.showConfirmDialog(null, "Do you want to play a Special Game?", "Game Type", JOptionPane.YES_NO_OPTION);
-		//if(response == JOptionPane.YES_OPTION)
-		//	gameType = true;
-		//else
-			gameType = false;
-		return gameType;
+		whitePlayer = new checkersPlayer(whiteName, cis350.games.checkersBoard.Color.white);
+		blackPlayer = new checkersPlayer(blackName, cis350.games.checkersBoard.Color.black);
 	}
 	
 	
@@ -116,7 +104,7 @@ public class chessGame {
 	// game's main frame.
 	
 	public void setupDisplay(){
-		window = new JFrame("Chess");
+		window = new JFrame("Checkers");
         gamePanel = initializeGamePanel(gameBoard); 
         Container contentPanel = window.getContentPane();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.LINE_AXIS));
@@ -133,8 +121,8 @@ public class chessGame {
 	
 	//  Helper method to initialize a JPanel for the game.
 	  
-	private JPanel initializeGamePanel(chessStandardBoard gameBoard) {
-        chessGameDisplay gameDisplay = new chessGameDisplay(gameBoard, squareSize);
+	private JPanel initializeGamePanel(checkersStandardBoard gameBoard) {
+        checkersGameDisplay gameDisplay = new checkersGameDisplay(gameBoard, squareSize);
         gameDisplay.setPreferredSize(new Dimension(640,640));
         gameDisplay.setLayout(new BorderLayout());
         return gameDisplay;
@@ -145,7 +133,6 @@ public class chessGame {
 
 	private JPanel initializeSidePanel(){
 		JPanel sideDisplay = new JPanel();
-		undoButton = new JButton("Undo Move");
 		restartButton = new JButton("Restart Game");
 		forfeitButton = new JButton("Forfeit Game");
 		setupButtonListeners();
@@ -157,7 +144,6 @@ public class chessGame {
 		sideDisplay.setLayout(new BoxLayout(sideDisplay, BoxLayout.PAGE_AXIS));
 		sideDisplay.add(whiteLabel);
 		sideDisplay.add(blackLabel);
-		sideDisplay.add(undoButton);
 		sideDisplay.add(forfeitButton);
 		sideDisplay.add(restartButton);
 		sideDisplay.add(whiteScore);
@@ -166,14 +152,9 @@ public class chessGame {
 	}
 	
 	
-	// Helper method to setup the button listeners for Undo, Restart and Forfeit buttons.
+	// Helper method to setup the button listeners for Restart and Forfeit buttons.
 	 
 	private void setupButtonListeners() {
-		undoButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				undoMove();
-			}
-		});
 		restartButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				restartGame();
@@ -189,13 +170,16 @@ public class chessGame {
 
 	public void mouseActions(){
 		gamePanel.addMouseListener(new MouseAdapter(){
-			
+			int xPrev;
+			int yPrev;
 			public void mousePressed(MouseEvent me){
 				int xOrigin = me.getX();
 				int yOrigin = me.getY();
 				xOrigin = xOrigin/squareSize;
 				yOrigin = yOrigin/squareSize;
 				yOrigin = 7 - yOrigin;
+				xPrev = xOrigin;
+				yPrev = yOrigin;
 				movingPiece = gameBoard.squaresList[xOrigin][yOrigin].occupyingPiece;
 			}
 			
@@ -206,23 +190,51 @@ public class chessGame {
 				yDestination = yDestination/squareSize;
 				yDestination = 7 - yDestination;
 				if(movingPiece.color == gameTurn && movingPiece.canMove(xDestination, yDestination)){
-					chessPiece enemyPiece = null;
-					if(gameBoard.squaresList[xDestination][yDestination].isOccupied)
-						enemyPiece = gameBoard.squaresList[xDestination][yDestination].occupyingPiece;
-					chessMoveCommand newCommand = new chessMoveCommand(movingPiece, enemyPiece, xDestination, yDestination);
+					checkersPiece enemyPiece = null;
+					//White Pawn Piece Moves
+					if(yDestination > yPrev){
+						if(xDestination > xPrev){
+							gameBoard.squaresList[xDestination-1][yDestination-1].occupyingPiece = null;
+							gameBoard.squaresList[xDestination-1][yDestination-1].isOccupied = false;
+						}
+						if(xDestination < xPrev){
+							gameBoard.squaresList[xDestination+1][yDestination-1].occupyingPiece = null;
+							gameBoard.squaresList[xDestination+1][yDestination-1].isOccupied = false;
+						}
+					}
+					//Black Pawn Piece Moves
+					if(yDestination < yPrev){
+						if(xDestination > xPrev){
+							gameBoard.squaresList[xDestination-1][yDestination+1].occupyingPiece = null;
+							gameBoard.squaresList[xDestination-1][yDestination+1].isOccupied = false;
+						}
+						if(xDestination < xPrev){
+							gameBoard.squaresList[xDestination+1][yDestination+1].occupyingPiece = null;
+							gameBoard.squaresList[xDestination+1][yDestination+1].isOccupied = false;
+						}
+					}
+					checkersMoveCommand newCommand = new checkersMoveCommand(movingPiece, enemyPiece, xDestination, yDestination);
 					commandStack.add(newCommand);
 					newCommand.execute();
-					if(movingPiece.color.equals(cis350.games.chessBoard.Color.white)){
+					
+					if(yDestination == 7) {
+						movingPiece.whitePromote(xDestination, yDestination);
+					}
+					if(yDestination == 0) {
+						movingPiece.blackPromote(xDestination, yDestination);
+					}
+					
+					if(movingPiece.color.equals(cis350.games.checkersBoard.Color.white)){
 						gameTurn = gameTurn.opposite();
 						blackLabel.setForeground(Color.BLUE);
-						whiteLabel.setForeground(Color.BLACK);
-						checkKingStatus(gameBoard.blackKingTracker);
+						whiteLabel.setForeground(Color.BLACK);		
+						checkWhiteWin();
 					 }
 					 else{
 						 gameTurn = gameTurn.opposite();
 						 whiteLabel.setForeground(Color.BLUE);
 						 blackLabel.setForeground(Color.BLACK);
-						 checkKingStatus(gameBoard.whiteKingTracker);
+						 checkBlackWin();
 					 }
 					 
 				}
@@ -230,53 +242,60 @@ public class chessGame {
 					messageBox("This is an Illegal Move!", "Illegal move message");
 				}	
 			}
+
+			
 		});
 	}
-
 	
-	protected void checkKingStatus(chessKing kingToCheck) {
-		chessPlayer currentPlayer;
-		chessPlayer otherPlayer;
-		if(kingToCheck.color == cis350.games.chessBoard.Color.white){
-			currentPlayer = whitePlayer;
-			otherPlayer = blackPlayer;
-		}
-		else{
-			currentPlayer = blackPlayer;
-			otherPlayer = whitePlayer;
-		}
-		if(kingToCheck.isKingInCheck(kingToCheck)) {
-			if(kingToCheck.isKingCheckmate(kingToCheck)) {
-				messageBox(currentPlayer.playerName + " ,Your King is in Checkmate\nYou Lost\nPlease Click Restart to Play again", "GAME OVER!!");
-				gameOver = true;
-				otherPlayer.playerScore++;
-				whiteScore.setText(whitePlayer.playerName + " Score : " + whitePlayer.playerScore);
-				blackScore.setText(blackPlayer.playerName + " Score : " + blackPlayer.playerScore);
-				return;
+	private void checkWhiteWin() {
+		checkersPiece cPiece = null;
+		int count = 0;
+		for(int i = 0; i < 8; i++) {
+			for(int j = 0; j < 8; j++) {
+				if(gameBoard.squaresList[i][j].isOccupied) {
+					cPiece = gameBoard.squaresList[i][j].occupyingPiece;
+					if((cPiece.color == cis350.games.checkersBoard.Color.black)) {
+						count = count + 1;
+					}
+				}
 			}
-			messageBox(currentPlayer.playerName + " ,Your King is in Check", "King in Check!!");
 		}
+		if(count == 0) {
+			messageBox(blackPlayer.playerName + " ,You have no more pieces\nYou Lost\nPlease Click Restart to Play again", "GAME OVER!!");
+			gameOver = true;
+			whitePlayer.playerScore++;
+			whiteScore.setText(whitePlayer.playerName + " Score : " + whitePlayer.playerScore);
+			blackScore.setText(blackPlayer.playerName + " Score : " + blackPlayer.playerScore);
+			return;
+		}		
 	}
 	
-	private void undoMove(){
-		if(!commandStack.isEmpty()){
-			chessMoveCommand move = commandStack.pop();
-			move.undo();
-			if(gameTurn == cis350.games.chessBoard.Color.white){
-				blackLabel.setForeground(Color.BLUE);
-				whiteLabel.setForeground(Color.BLACK);
+	private void checkBlackWin() {
+		checkersPiece cPiece = null;
+		int count = 0;
+		for(int i = 0; i < 8; i++) {
+			for(int j = 0; j < 8; j++) {
+				if(gameBoard.squaresList[i][j].isOccupied) {
+					cPiece = gameBoard.squaresList[i][j].occupyingPiece;
+					if((cPiece.color == cis350.games.checkersBoard.Color.white)) {
+						count = count + 1;
+					}
+				}
 			}
-			else{
-				whiteLabel.setForeground(Color.BLUE);
-			 	blackLabel.setForeground(Color.BLACK);
-			}
-			gameTurn = gameTurn.opposite();
 		}
+		if(count == 0) {
+			messageBox(whitePlayer.playerName + " ,You have no more pieces\nYou Lost\nPlease Click Restart to Play again", "GAME OVER!!");
+			gameOver = true;
+			blackPlayer.playerScore++;
+			whiteScore.setText(whitePlayer.playerName + " Score : " + whitePlayer.playerScore);
+			blackScore.setText(blackPlayer.playerName + " Score : " + blackPlayer.playerScore);
+			return;
+		}		
 	}
 
 	private void restartGame(){
 		String player;
-		if(gameTurn.equals(cis350.games.chessBoard.Color.white))
+		if(gameTurn.equals(cis350.games.checkersBoard.Color.white))
 			player = blackPlayer.playerName;
 		else
 			player = whitePlayer.playerName;
@@ -290,9 +309,9 @@ public class chessGame {
 	
 
 	private void forfeitGame() {
-		chessPlayer currentPlayer;
-		chessPlayer otherPlayer;
-		if(gameTurn == cis350.games.chessBoard.Color.white){
+		checkersPlayer currentPlayer;
+		checkersPlayer otherPlayer;
+		if(gameTurn == cis350.games.checkersBoard.Color.white){
 			currentPlayer = whitePlayer;
 			otherPlayer = blackPlayer;
 		}
@@ -318,8 +337,8 @@ public class chessGame {
 
 
 	public static void startNewGame() {
-		chessGame newGame = new chessGame();
-		newGame.gameInit(getGameType());
+		checkersGame newGame = new checkersGame();
+		newGame.gameInit();
 		newGame.setupDisplay();
 		newGame.gameStart();
 		newGame.mouseActions();
@@ -332,4 +351,5 @@ public class chessGame {
     }
 	
 }
+
 
