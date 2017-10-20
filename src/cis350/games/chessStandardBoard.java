@@ -68,128 +68,128 @@ public class chessStandardBoard extends chessBoard {
     }
   }
 
-	/**
-	 * Method to populate our chess board with standard pieces.
-	 * @param special Is the game type different
-	 */
-	public void populateBoardWithPieces(boolean special) {
-		setupKnights();
-		setupBishops();
-		setupPawns();
-		setupRooks();
-		setupQueens();
-		setupKings();
-	}
+    /**
+     * Method to populate our chess board with standard pieces.
+     * @param special Is the game type different
+     */
+    public void populateBoardWithPieces(boolean special) {
+        setupKnights();
+        setupBishops();
+        setupPawns();
+        setupRooks();
+        setupQueens();
+        setupKings();
+    }
 
-	/**
-	 * Setup 8 black and 8 white pawns in their initial positions.
-	 */
-	public void setupPawns(){
-		for(int i = 0; i < 8; i++){
-			chessPawn newWhitePawn = new chessPawn(i, 1, Color.white, this);
-			chessPawn newBlackPawn = new chessPawn(i, 6, Color.black, this);
-			this.squaresList[i][1].isOccupied = true;
-			this.squaresList[i][6].isOccupied = true;
-			this.squaresList[i][1].occupyingPiece = newWhitePawn;
-			this.squaresList[i][6].occupyingPiece = newBlackPawn;
+    /**
+     * Setup 8 black and 8 white pawns in their initial positions.
+     */
+    public void setupPawns(){
+        for(int i = 0; i < 8; i++){
+            chessPawn newWhitePawn = new chessPawn(i, 1, Color.white, this);
+            chessPawn newBlackPawn = new chessPawn(i, 6, Color.black, this);
+            this.squaresList[i][1].isOccupied = true;
+            this.squaresList[i][6].isOccupied = true;
+            this.squaresList[i][1].occupyingPiece = newWhitePawn;
+            this.squaresList[i][6].occupyingPiece = newBlackPawn;
 
-		}
-	}
+        }
+    }
 
-	/**
-	 * Setup 2 black rooks and 2 white rooks in their initial positions.
-	 */
-	public void setupRooks(){
-		chessRook whiteRookOne = new chessRook(0, 0, Color.white, this);
-		chessRook whiteRookTwo = new chessRook(7, 0, Color.white, this);
-		chessRook blackRookOne = new chessRook(0, 7, Color.black, this);
-		chessRook blackRookTwo = new chessRook(7, 7, Color.black, this);
-		this.squaresList[0][0].isOccupied = true;
-		this.squaresList[7][0].isOccupied = true;
-		this.squaresList[0][0].occupyingPiece = whiteRookOne;
-		this.squaresList[7][0].occupyingPiece = whiteRookTwo;
-		this.squaresList[0][7].isOccupied = true;
-		this.squaresList[7][7].isOccupied = true;
-		this.squaresList[0][7].occupyingPiece = blackRookOne;
-		this.squaresList[7][7].occupyingPiece = blackRookTwo;
+    /**
+     * Setup 2 black rooks and 2 white rooks in their initial positions.
+     */
+    public void setupRooks(){
+        chessRook whiteRookOne = new chessRook(0, 0, Color.white, this);
+        chessRook whiteRookTwo = new chessRook(7, 0, Color.white, this);
+        chessRook blackRookOne = new chessRook(0, 7, Color.black, this);
+        chessRook blackRookTwo = new chessRook(7, 7, Color.black, this);
+        this.squaresList[0][0].isOccupied = true;
+        this.squaresList[7][0].isOccupied = true;
+        this.squaresList[0][0].occupyingPiece = whiteRookOne;
+        this.squaresList[7][0].occupyingPiece = whiteRookTwo;
+        this.squaresList[0][7].isOccupied = true;
+        this.squaresList[7][7].isOccupied = true;
+        this.squaresList[0][7].occupyingPiece = blackRookOne;
+        this.squaresList[7][7].occupyingPiece = blackRookTwo;
 
-	}
+    }
 
-	/**
-	 * Setup 2 black Bishops and 2 white Bishops in their initial positions.
-	 */
-	public void setupBishops(){
-		chessBishop whiteBishopOne = new chessBishop(2, 0, Color.white, this);
-		chessBishop whiteBishopTwo = new chessBishop(5, 0, Color.white, this);
-		chessBishop blackBishopOne = new chessBishop(2, 7, Color.black, this);
-		chessBishop blackBishopTwo = new chessBishop(5, 7, Color.black, this);
-		this.squaresList[2][0].isOccupied = true;
-		this.squaresList[5][0].isOccupied = true;
-		this.squaresList[2][0].occupyingPiece = whiteBishopOne;
-		this.squaresList[5][0].occupyingPiece = whiteBishopTwo;
-		this.squaresList[2][7].isOccupied = true;
-		this.squaresList[5][7].isOccupied = true;
-		this.squaresList[2][7].occupyingPiece = blackBishopOne;
-		this.squaresList[5][7].occupyingPiece = blackBishopTwo;
-	}
+    /**
+     * Setup 2 black Bishops and 2 white Bishops in their initial positions.
+     */
+    public void setupBishops(){
+        chessBishop whiteBishopOne = new chessBishop(2, 0, Color.white, this);
+        chessBishop whiteBishopTwo = new chessBishop(5, 0, Color.white, this);
+        chessBishop blackBishopOne = new chessBishop(2, 7, Color.black, this);
+        chessBishop blackBishopTwo = new chessBishop(5, 7, Color.black, this);
+        this.squaresList[2][0].isOccupied = true;
+        this.squaresList[5][0].isOccupied = true;
+        this.squaresList[2][0].occupyingPiece = whiteBishopOne;
+        this.squaresList[5][0].occupyingPiece = whiteBishopTwo;
+        this.squaresList[2][7].isOccupied = true;
+        this.squaresList[5][7].isOccupied = true;
+        this.squaresList[2][7].occupyingPiece = blackBishopOne;
+        this.squaresList[5][7].occupyingPiece = blackBishopTwo;
+    }
 
-	/**
-	 * Setup 2 black Knights and 2 white Knights in their initial positions.
-	 */
-	public void setupKnights(){
-		chessKnight whiteKnightOne = new chessKnight(1, 0, Color.white, this);
-		chessKnight whiteKnightTwo = new chessKnight(6, 0, Color.white, this);
-		chessKnight blackKnightOne = new chessKnight(1, 7, Color.black, this);
-		chessKnight blackKnightTwo = new chessKnight(6, 7, Color.black, this);
-		this.squaresList[1][0].isOccupied = true;
-		this.squaresList[6][0].isOccupied = true;
-		this.squaresList[1][0].occupyingPiece = whiteKnightOne;
-		this.squaresList[6][0].occupyingPiece = whiteKnightTwo;
-		this.squaresList[1][7].isOccupied = true;
-		this.squaresList[6][7].isOccupied = true;
-		this.squaresList[1][7].occupyingPiece = blackKnightOne;
-		this.squaresList[6][7].occupyingPiece = blackKnightTwo;
-	}
+    /**
+     * Setup 2 black Knights and 2 white Knights in their initial positions.
+     */
+    public void setupKnights(){
+        chessKnight whiteKnightOne = new chessKnight(1, 0, Color.white, this);
+        chessKnight whiteKnightTwo = new chessKnight(6, 0, Color.white, this);
+        chessKnight blackKnightOne = new chessKnight(1, 7, Color.black, this);
+        chessKnight blackKnightTwo = new chessKnight(6, 7, Color.black, this);
+        this.squaresList[1][0].isOccupied = true;
+        this.squaresList[6][0].isOccupied = true;
+        this.squaresList[1][0].occupyingPiece = whiteKnightOne;
+        this.squaresList[6][0].occupyingPiece = whiteKnightTwo;
+        this.squaresList[1][7].isOccupied = true;
+        this.squaresList[6][7].isOccupied = true;
+        this.squaresList[1][7].occupyingPiece = blackKnightOne;
+        this.squaresList[6][7].occupyingPiece = blackKnightTwo;
+    }
 
-	/**
-	 * Setup 2 queens white and black in their initial positions.
-	 */	
-	public void setupQueens(){
-		chessQueen whiteQueen = new chessQueen(3, 0, Color.white, this);
-		chessQueen blackQueen = new chessQueen(3, 7, Color.black, this);
-		this.squaresList[3][0].isOccupied = true;
-		this.squaresList[3][7].isOccupied = true;
-		this.squaresList[3][0].occupyingPiece = whiteQueen;
-		this.squaresList[3][7].occupyingPiece = blackQueen;
-	}
+    /**
+     * Setup 2 queens white and black in their initial positions.
+     */
+    public void setupQueens(){
+        chessQueen whiteQueen = new chessQueen(3, 0, Color.white, this);
+        chessQueen blackQueen = new chessQueen(3, 7, Color.black, this);
+        this.squaresList[3][0].isOccupied = true;
+        this.squaresList[3][7].isOccupied = true;
+        this.squaresList[3][0].occupyingPiece = whiteQueen;
+        this.squaresList[3][7].occupyingPiece = blackQueen;
+    }
 
-	/**
-	 * Setup 2 queens white and black in their initial positions.
-	 */
-	public void setupKings(){
-		chessKing whiteKing = new chessKing(4, 0, Color.white, this);
-		chessKing blackKing = new chessKing(4, 7, Color.black, this);
-		this.squaresList[4][0].isOccupied = true;
-		this.squaresList[4][7].isOccupied = true;
-		this.squaresList[4][0].occupyingPiece = whiteKing;
-		this.squaresList[4][7].occupyingPiece = blackKing;
-		whiteKingTracker = whiteKing;
-		blackKingTracker = blackKing;
-	}
+    /**
+     * Setup 2 queens white and black in their initial positions.
+     */
+    public void setupKings(){
+        chessKing whiteKing = new chessKing(4, 0, Color.white, this);
+        chessKing blackKing = new chessKing(4, 7, Color.black, this);
+        this.squaresList[4][0].isOccupied = true;
+        this.squaresList[4][7].isOccupied = true;
+        this.squaresList[4][0].occupyingPiece = whiteKing;
+        this.squaresList[4][7].occupyingPiece = blackKing;
+        whiteKingTracker = whiteKing;
+        blackKingTracker = blackKing;
+    }
 
-	/**
-	 * Helper method to check if locations passed in are mapped on our generated board.
-	 * @see cis350.games.Board#inBoardBounds(int, int)
-	 * @param newX
-	 * @param newY
-	 * @return boolean true if move is in board bounds
-	 */
-	public boolean inBoardBounds(int newX, int newY){
-		if(newX < numXSquares && newY < numYSquares && newX > -1 && newY > -1){
-			return true;
-		}
-		else
-			return false;
-	}
+    /**
+     * Helper method to check if locations passed in are mapped on our generated board.
+     * @see cis350.games.Board#inBoardBounds(int, int)
+     * @param newX
+     * @param newY
+     * @return boolean true if move is in board bounds
+     */
+    public boolean inBoardBounds(int newX, int newY){
+        if(newX < numXSquares && newY < numYSquares && newX > -1 && newY > -1){
+            return true;
+        }
+        else
+            return false;
+    }
 
 }

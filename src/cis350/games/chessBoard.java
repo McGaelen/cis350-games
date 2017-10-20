@@ -8,23 +8,23 @@ import cis350.games.chessBoard.Color;
  **********************************************************************/
 public abstract class chessBoard {
 
-	
+
     /**
      * number of squares on the x-axis
      */
-	public int numXSquares;
-	/**
+    public int numXSquares;
+    /**
      * number of squares on the y-axis
      */
-	public int numYSquares;
-	/**
+    public int numYSquares;
+    /**
      * number of squares in total on the board
      */
-	public int totalSquares;
-	/**
+    public int totalSquares;
+    /**
      * square list
      */
-	public chessSquare squaresList[][];
+    public chessSquare squaresList[][];
 
     /**
      * Abstract method to check the boundaries of our chess board.
@@ -32,19 +32,19 @@ public abstract class chessBoard {
      * @param yLocation y-coordinate
      * @return true if the location is inside the board
      */
-	abstract boolean inBoardBounds(int xLocation, int yLocation);
-	
+    abstract boolean inBoardBounds(int xLocation, int yLocation);
+
     /**
      * Enum for Color values of black or white pieces and squares
      */
-	public enum Color{
-		white, black;
-		
-		public Color opposite(){
-			if(this == white)
-				return black;
-			else
-				return white;
-		}
-	}
+    public enum Color{
+        white, black;
+
+        public Color opposite(){
+            if(this == white)
+                return black;
+            else
+                return white;
+        }
+    }
 }

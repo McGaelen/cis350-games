@@ -17,10 +17,10 @@ public class chessKing extends chessPiece {
      * @param color If the color of the king
      * @param board is the current board
      */
-	public chessKing(int initX, int initY, Color color, chessStandardBoard board) {
-		super(initX, initY, color, board);
-		this.nameOfPiece = "king";
-	}
+    public chessKing(int initX, int initY, Color color, chessStandardBoard board) {
+        super(initX, initY, color, board);
+        this.nameOfPiece = "king";
+    }
 
     /**
      * Checks if the move is valid
@@ -28,16 +28,16 @@ public class chessKing extends chessPiece {
      * @param newY the new y-coordinate
      * @return true if the move is valid
      */
-	@Override
-	boolean isValidSpecialMove(int newX, int newY) {
-		int xDisplacement = newX - xLocation;
-		int yDisplacement = newY - yLocation;
-		// No need to check for obstacles since it's a single step move.
-		if(isValidKingMove(xDisplacement, yDisplacement))
-			return true;
-		else
-			return false;
-	}
+    @Override
+    boolean isValidSpecialMove(int newX, int newY) {
+        int xDisplacement = newX - xLocation;
+        int yDisplacement = newY - yLocation;
+        // No need to check for obstacles since it's a single step move.
+        if(isValidKingMove(xDisplacement, yDisplacement))
+            return true;
+        else
+            return false;
+    }
 
     /**
      * Checks if the move is a valid King move
@@ -45,19 +45,19 @@ public class chessKing extends chessPiece {
      * @param yDisplacement change in y
      * @return true if the move is a valid king move
      */
-	private boolean isValidKingMove(int xDisplacement, int yDisplacement) {
-		// Diagonal
-		if(Math.abs(xDisplacement) == 1 && Math.abs(yDisplacement) == 1)
-			return true;
-		// Horizontal
-		else if(Math.abs(xDisplacement) == 1 && Math.abs(yDisplacement) == 0)
-			return true;
-		// Vertical
-		else if(Math.abs(xDisplacement) == 0 && Math.abs(yDisplacement) == 1)
-			return true;
-		else
-			return false;
-	}
+    private boolean isValidKingMove(int xDisplacement, int yDisplacement) {
+        // Diagonal
+        if(Math.abs(xDisplacement) == 1 && Math.abs(yDisplacement) == 1)
+            return true;
+        // Horizontal
+        else if(Math.abs(xDisplacement) == 1 && Math.abs(yDisplacement) == 0)
+            return true;
+        // Vertical
+        else if(Math.abs(xDisplacement) == 0 && Math.abs(yDisplacement) == 1)
+            return true;
+        else
+            return false;
+    }
 
 }
 
