@@ -5,16 +5,30 @@ import cis350.games.chessSquare;
 import cis350.games.chessStandardBoard;
 import cis350.games.chessBoard.Color;
 
-
+/***********************************************************************
+ * Subclass of a Piece specific to a Pawn. This handles all 
+ * movements the pawn is capable of making.
+ **********************************************************************/
 public class chessPawn extends chessPiece {
 
-
+	/**
+    * Constructor for the Pawn
+    * @param initX x-coordinate
+    * @param initY y-coordinate
+    * @param color color of the piece
+    * @param board the current board
+    */
 	public chessPawn(int initX, int initY, Color color, chessStandardBoard board) {
 		super(initX, initY, color, board);
 		this.nameOfPiece = "pawn";
 	}
 
-
+	/**
+    * Checks if the Pawn move is valid
+    * @param newX new x-coordinate
+    * @param newY new y-coordinate
+    * @return true if the move is valid
+    */
 	@Override
 	boolean isValidSpecialMove(int newX, int newY) {
 		int xDisplacement = newX - xLocation;
@@ -37,7 +51,12 @@ public class chessPawn extends chessPiece {
 		return false;
 	}
 
-
+	/**
+	    * Checks if the Pawn move is valid
+	    * @param xDisplacement the change in x
+	    * @param yDisplacement the change in y
+	    * @return true if the move is valid
+	    */
 	private boolean isValidPawnMove(int xDisplacement, int yDisplacement) {
 		// Two steps allowed in first move
 		if((this.yLocation == 6 && this.color.equals(Color.black)) || (this.yLocation == 1 && this.color.equals(Color.white))){
@@ -49,7 +68,12 @@ public class chessPawn extends chessPiece {
 		}
 	}
 
-
+	/**
+	    * Handles Pawn moving only 1 space
+	    * @param xDisplacement the change in x
+	    * @param yDisplacement the change in y
+	    * @return true if the move is valid
+	    */
 	private boolean handleRegularPawnMove(int xDisplacement, int yDisplacement) {
 		if(color.equals(Color.white)){
 			// White capture or move upwards.
@@ -67,7 +91,12 @@ public class chessPawn extends chessPiece {
 		}
 	}
 
-
+	/**
+	    * Handles Pawn moving only 2 spaces on the first move
+	    * @param xDisplacement the change in x
+	    * @param yDisplacement the change in y
+	    * @return true if the move is valid
+	    */
 	private boolean handlePawnFirstMove(int xDisplacement, int yDisplacement) {
 		// White pawns can only move upwards.
 		if(color.equals(Color.white)){

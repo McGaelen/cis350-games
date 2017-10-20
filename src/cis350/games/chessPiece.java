@@ -10,36 +10,48 @@ import javax.imageio.ImageIO;
 import cis350.games.chessBoard.Color;
 
 /**
- *
+ * Superclass Piece since all chess pieces have common variables and methods to execute.
+ * Defines a standard piece and it's features.
+ 
  */
 public abstract class chessPiece {
 	
 
-	// Piece specific name will be stored here
+	/**
+	 * Piece specific name will be stored here
+	 */
 	String nameOfPiece;
-	// Black or White piece
+	/**
+	 * Black or White piece
+	 */
 	public Color color;
-	// Reference to the board this piece is on to indirectly access squaresList
+	/**
+	 * Reference to the board this piece is on to indirectly access squaresList
+	 */
 	chessStandardBoard currentBoard;
-	// xLocation of piece on board.
+	/**
+	 * xLocation of piece on board.
+	 */
 	public int xLocation;
-	// yLocation of piece on board.
+	/**
+	 * yLocation of piece on board.
+	 */
 	public int yLocation;
 
     /**
      *
-     * @param newX
-     * @param newY
+     * @param newX Is the x-coordinate of the move
+     * @param newY Is the y-coordinate of the move
      * @return
      */
 	abstract boolean isValidSpecialMove(int newX, int newY);
 
     /**
-     *
-     * @param initX
-     * @param initY
-     * @param color
-     * @param board
+     * Constructor for the Piece
+     * @param initX Is the x-coordinate of the chess piece
+     * @param initY Is the y-coordinate of the chess piece
+     * @param color Is the color of the piece
+     * @param board Is the current board
      */
 	public chessPiece(int initX, int initY, Color color, chessStandardBoard board) {
 		this.color = color;
@@ -51,10 +63,10 @@ public abstract class chessPiece {
 	}
 
     /**
-     *
-     * @param newX
-     * @param newY
-     * @return
+     * Checks of the piece can move to the location [newX][newY] on the board
+     * @param newX The new x-coordinate for the move
+     * @param newY The new y-coordinate for the move
+     * @return true if the piece can move to the new location
      */
 	public boolean canMove(int newX, int newY){
 		if(!currentBoard.inBoardBounds(newX, newY))
@@ -69,10 +81,10 @@ public abstract class chessPiece {
 	}
 
     /**
-     *
-     * @param newX
-     * @param newY
-     * @return
+     * Checks if the enemy piece is at the new location
+     * @param newX The new x-coordinate for the move
+     * @param newY The new y-coordinate for the move
+     * @return true is an enemy piece is at the new location
      */
 	private boolean isEnemyPieceAtDestination(int newX, int newY){
 		chessSquare squareToCheck = currentBoard.squaresList[newX][newY];
@@ -83,18 +95,18 @@ public abstract class chessPiece {
 	}
 
     /**
-     *
-     * @param newX
-     * @param newY
+     * Moves the piece to the new location
+     * @param newX The new x-coordinate for the move
+     * @param newY The new y-coordinate for the move
      */
 	public void executeCaptureOrMove(int newX, int newY){
 		movePiece(this, newX, newY);
 	}
 
     /**
-     *
-     * @param kingToCheck
-     * @return
+     * Checks if the King is in Check state
+     * @param kingToCheck Is the King to be checked
+     * @return true if the king is in check
      */
 	public boolean isKingInCheck(chessKing kingToCheck) {
 		int kingXLocation = kingToCheck.xLocation;
@@ -118,10 +130,10 @@ public abstract class chessPiece {
 	}
 
     /**
-     *
-     * @param newPieceX
-     * @param newPieceY
-     * @return
+     * Checks if the King is in check after a move
+     * @param newX The x-coordinate of the Piece
+     * @param newY The y-coordinate of the Piece
+     * @return true if the King is in danger after the move
      */
 	private boolean isKingInDanger(int newPieceX, int newPieceY) {
 		int oldPieceX = this.xLocation;
@@ -174,10 +186,10 @@ public abstract class chessPiece {
 	}
 
     /**
-     *
-     * @param pieceToMove
-     * @param newPieceX
-     * @param newPieceY
+     * Moves the Piece
+     * @param pieceToMove is the Piece to move
+     * @param newPieceX is the new x-coordinate
+     * @param newPieceY is the new y-coordinate
      */
 	private void movePiece(chessPiece pieceToMove, int newPieceX, int newPieceY){
 		chessSquare currentSquare = currentBoard.squaresList[pieceToMove.xLocation][pieceToMove.yLocation];
@@ -191,10 +203,10 @@ public abstract class chessPiece {
 	}
 
     /**
-     *
-     * @param colorToCheck
-     * @param occupyingPiece
-     * @return
+     * Checks if the piece is an enemy piece
+     * @param colorToCheck is the color to check
+     * @param occupyingPiece is the piece in question
+     * @return false if the color is the same as the piece 
      */
 	private boolean isEnemyPiece(Color colorToCheck, chessPiece occupyingPiece) {
 		if(colorToCheck.equals(occupyingPiece.color))
@@ -203,12 +215,12 @@ public abstract class chessPiece {
 			return true;
 	}
 
-    /**
-     *
-     * @param graphic
-     * @param squareSize
-     * @param x
-     * @param y
+    /** 
+     * Draws the piece
+     * @param graphic is the image of the piece
+     * @param squareSize size of the square
+     * @param x is the x-coordinate
+     * @param y is the y-coordinate
      */
 	public void drawPiece(Graphics graphic, int squareSize, int x, int y){
 		if(this.color.equals(Color.black)){
@@ -226,12 +238,12 @@ public abstract class chessPiece {
 	}
 
     /**
-     *
-     * @param graphic
-     * @param squareSize
-     * @param imageName
-     * @param x
-     * @param y
+     * A helper method to draw the piece in the proper coordinates on the board.
+     * @param graphic Is the image of the piece
+     * @param squareSize is the size of the square
+     * @param imageName is the image name
+     * @param x is the x-coordinate
+     * @param y is the y-coordinate
      */
 	private void drawPieceHelper(Graphics graphic, int squareSize, String imageName, int x, int y) {
 		File imageFile = new File(imageName);
@@ -249,9 +261,9 @@ public abstract class chessPiece {
 	}
 
     /**
-     *
-     * @param kingToCheck
-     * @return
+     * Checks if the game is over
+     * @param kingToCheck is the King to check
+     * @return true if the games is over
      */
 	public boolean isKingCheckmate(chessKing kingToCheck){
 		if(!isKingInCheck(kingToCheck))
@@ -273,10 +285,10 @@ public abstract class chessPiece {
 	}
 
     /**
-     *
-     * @param allyPiece
-     * @param kingToCheck
-     * @return
+     * Helper method to iterate through the pieces to check if any move can break the check.
+     * @param allyPiece Is the ally piece that can possibly move to take the King out of Check
+     * @param kingToCheck Is the King in check
+     * @return true if king is in checkmate
      */
 	private boolean checkmateHelper(chessPiece allyPiece, chessKing kingToCheck) {
 		int oldPieceX = allyPiece.xLocation;

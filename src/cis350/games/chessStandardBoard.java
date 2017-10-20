@@ -8,62 +8,69 @@ import cis350.games.chessPawn;
 import cis350.games.chessQueen;
 import cis350.games.chessRook;
 import cis350.games.chessSquare;
-import cis350.games.chessBoard.Color;
 
 /**
  * Subclass of a board. Standard version of a chess Board. Has methods for creating a standard
  * chess board and populating it with regular chess pieces.
- * Can be used to create a standard game of cis350.games.
+ * Can be used to create a standard game of Chess.
  */
 public class chessStandardBoard extends chessBoard {
-	
-	/**
-	 * Trackers for the white and black kings for check, checkmate and game ending conditions.
-	 */
-	public chessKing whiteKingTracker;
-	public chessKing blackKingTracker;
-	
-	/**
-	 * Method to initialize the chess board.
-	 * @param xSquares
-	 * @param ySquares
-	 */
-	public chessStandardBoard(int xSquares, int ySquares) {
 
-		this.numXSquares = xSquares;
-		this.numYSquares = ySquares;
-		this.totalSquares = this.numXSquares * this.numYSquares;
-		this.squaresList = new chessSquare[this.numXSquares][this.numYSquares];
-		populateBoardWithSquares();
-		this.whiteKingTracker = null;
-		this.blackKingTracker = null;
-	}
+  /**
+* Tracker for the white king for check, checkmate and game ending conditions.
+*/
+  public chessKing whiteKingTracker;
+  /**
+  * Tracker black king for check, checkmate and game ending conditions.
+  */
+  public chessKing blackKingTracker;
 
-	/**
-	 * Method to populate our board with Squares.
-	 * General pattern of white and black squares on the board.
-	 */
-	public void populateBoardWithSquares() {
-		for (int i = 0; i < this.numXSquares; i++) {
-			for (int j = 0; j < this.numYSquares; j++) {
-				if (i % 2 == 0) {
-					if (j % 2 == 0)
-						squaresList[i][j] = new chessSquare(false, Color.black);
-					else
-						squaresList[i][j] = new chessSquare(false, Color.white);
-				} 
-				else {
-					if (j % 2 == 0)
-						squaresList[i][j] = new chessSquare(false, Color.white);
-					else
-						squaresList[i][j] = new chessSquare(false, Color.black);
-				}
-			}
-		}
-	}
-	
+  /**
+  Method to initialize the chess board.
+* @param xSquares Number of Squares on the x-axis
+* @param ySquares Number of Squares on the y-axis
+*/
+  public chessStandardBoard(int xSquares, int ySquares) {
+
+    this.numXSquares = xSquares;
+    this.numYSquares = ySquares;
+    this.totalSquares = this.numXSquares * this.numYSquares;
+    this.squaresList = new chessSquare[this.numXSquares][this.numYSquares];
+    populateBoardWithSquares();
+    this.whiteKingTracker = null;
+    this.blackKingTracker = null;
+  }
+
+  /**
+* Method to populate our board with Squares.
+* General pattern of white and black squares on the board.
+*/
+  public void populateBoardWithSquares() {
+    for (int i = 0; i < this.numXSquares; i++) {
+      for (int j = 0; j < this.numYSquares; j++) {
+        if (i % 2 == 0) {
+          if (j % 2 == 0) {
+            squaresList[i][j] = new chessSquare(false, Color.black); 
+          }
+          else {
+            squaresList[i][j] = new chessSquare(false, Color.white);
+          }
+        }
+        else {
+          if (j % 2 == 0) {
+            squaresList[i][j] = new chessSquare(false, Color.white);
+          }
+          else {
+            squaresList[i][j] = new chessSquare(false, Color.black);
+          }
+        }
+      }
+    }
+  }
+
 	/**
 	 * Method to populate our chess board with standard pieces.
+	 * @param special Is the game type different
 	 */
 	public void populateBoardWithPieces(boolean special) {
 		setupKnights();
@@ -85,10 +92,10 @@ public class chessStandardBoard extends chessBoard {
 			this.squaresList[i][6].isOccupied = true;
 			this.squaresList[i][1].occupyingPiece = newWhitePawn;
 			this.squaresList[i][6].occupyingPiece = newBlackPawn;
-			
+
 		}
 	}
-	
+
 	/**
 	 * Setup 2 black rooks and 2 white rooks in their initial positions.
 	 */
@@ -105,9 +112,9 @@ public class chessStandardBoard extends chessBoard {
 		this.squaresList[7][7].isOccupied = true;
 		this.squaresList[0][7].occupyingPiece = blackRookOne;
 		this.squaresList[7][7].occupyingPiece = blackRookTwo;
-		
+
 	}
-	
+
 	/**
 	 * Setup 2 black Bishops and 2 white Bishops in their initial positions.
 	 */
@@ -125,7 +132,7 @@ public class chessStandardBoard extends chessBoard {
 		this.squaresList[2][7].occupyingPiece = blackBishopOne;
 		this.squaresList[5][7].occupyingPiece = blackBishopTwo;
 	}
-	
+
 	/**
 	 * Setup 2 black Knights and 2 white Knights in their initial positions.
 	 */
@@ -143,7 +150,7 @@ public class chessStandardBoard extends chessBoard {
 		this.squaresList[1][7].occupyingPiece = blackKnightOne;
 		this.squaresList[6][7].occupyingPiece = blackKnightTwo;
 	}
-	
+
 	/**
 	 * Setup 2 queens white and black in their initial positions.
 	 */	
@@ -155,7 +162,7 @@ public class chessStandardBoard extends chessBoard {
 		this.squaresList[3][0].occupyingPiece = whiteQueen;
 		this.squaresList[3][7].occupyingPiece = blackQueen;
 	}
-	
+
 	/**
 	 * Setup 2 queens white and black in their initial positions.
 	 */
@@ -169,7 +176,7 @@ public class chessStandardBoard extends chessBoard {
 		whiteKingTracker = whiteKing;
 		blackKingTracker = blackKing;
 	}
-	
+
 	/**
 	 * Helper method to check if locations passed in are mapped on our generated board.
 	 * @see cis350.games.Board#inBoardBounds(int, int)

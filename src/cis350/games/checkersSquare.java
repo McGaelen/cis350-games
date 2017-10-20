@@ -10,13 +10,16 @@ import cis350.games.checkersBoard.Color;
 public class checkersSquare {
 
 	/**
-	 * Common variables belonging to a checkers board square
+	 * Square is occupied or not
 	 */
-	// Square is occupied or not
 	public boolean isOccupied;
-	// Assign 0 as white color and 1 as black color
+	/**
+	 * Assign 0 as white color and 1 as black color
+	 */
 	public Color color;
-	// Square objects keep track of which piece occupies that square.
+	/**
+	 * Square objects keep track of which piece occupies that square.
+	 */
 	public checkersPiece occupyingPiece;
 
 	/**
@@ -31,8 +34,8 @@ public class checkersSquare {
 	}
 
     /**
-     *
-     * @param square
+     * Removes a piece from the Square
+     * @param square the square containing the piece to be removed
      */
 	public void remove(checkersSquare square) {
 		square.isOccupied = false;

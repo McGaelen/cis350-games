@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import cis350.games.chessBoard;
-//import cis350.games.chessPiece;
 import cis350.games.chessSquare;
 import cis350.games.chessStandardBoard;
 
@@ -16,18 +15,22 @@ import cis350.games.chessStandardBoard;
  */
 public class chessGameDisplay extends JPanel {
 	/**
-	 * 
+	 * No idea why we need this
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * the current board
+	 */
 	chessStandardBoard board;
+	/**
+	 * the square size
+	 */
 	int squareSize;
 	
-	// Constructor to initialize a game display
-
     /**
-     *
-     * @param gameBoard
-     * @param squareSize
+     * Constructor for the Game Display
+     * @param gameBoard the current game board
+     * @param squareSize the size of teh squares
      */
 	public chessGameDisplay(chessStandardBoard gameBoard, int squareSize){
 		board = gameBoard;
@@ -35,8 +38,8 @@ public class chessGameDisplay extends JPanel {
 	}
 
     /**
-     *
-     * @param graphic
+     * Creates the board
+     * @param graphic the graphic to be painted
      */
 	@Override
 	public void paintComponent(Graphics graphic){

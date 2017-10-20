@@ -58,10 +58,10 @@ public class chessBishop extends chessPiece {
 	}
 
     /**
-     *
-     * @param xDisplacement
-     * @param yDisplacement
-     * @return
+     * Checks if the move is a valid Bishop move 
+     * @param xDisplacement change in x from the move
+     * @param yDisplacement change in y from the move
+     * @return true if the move is a valid Bishop move
      */
 	public static boolean isValidBishopMove(int xDisplacement, int yDisplacement) {
 		if((Math.abs(xDisplacement) == Math.abs(yDisplacement)) && xDisplacement != 0)

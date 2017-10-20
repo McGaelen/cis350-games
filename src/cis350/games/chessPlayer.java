@@ -4,7 +4,7 @@ package cis350.games;
 import cis350.games.chessBoard.Color;
 
 /**
-* Class reprensenting a Chess Player.
+* Class representing a Chess Player.
 *
 */
 public class chessPlayer {
