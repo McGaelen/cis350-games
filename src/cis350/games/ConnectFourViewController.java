@@ -196,7 +196,8 @@ public class ConnectFourViewController {
         Button source = (Button) event.getSource();
         String id = source.getId();
         int col = Integer.parseInt(id.substring(id.indexOf('-') + 1));
-        System.out.println("Player " + this.game.getTurn() + " chose column " + col);
+        System.out.println("Player "
+        + this.game.getTurn() + " chose column " + col);
 
         try {
             int row = this.game.placeChip(col + 1);

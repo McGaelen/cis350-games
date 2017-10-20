@@ -1,17 +1,9 @@
 package cis350.games;
 
-import cis350.games.chessBishop;
-import cis350.games.chessBoard;
-import cis350.games.chessKing;
-import cis350.games.chessKnight;
-import cis350.games.chessPawn;
-import cis350.games.chessQueen;
-import cis350.games.chessRook;
-import cis350.games.chessSquare;
-
 /**
- * Subclass of a board. Standard version of a chess Board. Has methods for creating a standard
- * chess board and populating it with regular chess pieces.
+ * Subclass of a board. Standard version of a chess Board.
+ * Has methods for creating a standard chess board
+ * Populates it with regular chess pieces.
  * Can be used to create a standard game of Chess.
  */
 public class chessStandardBoard extends chessBoard {
@@ -30,7 +22,7 @@ public class chessStandardBoard extends chessBoard {
 * @param xSquares Number of Squares on the x-axis
 * @param ySquares Number of Squares on the y-axis
 */
-  public chessStandardBoard(int xSquares, int ySquares) {
+  public chessStandardBoard(final int xSquares, final int ySquares) {
 
     this.numXSquares = xSquares;
     this.numYSquares = ySquares;
@@ -50,17 +42,14 @@ public class chessStandardBoard extends chessBoard {
       for (int j = 0; j < this.numYSquares; j++) {
         if (i % 2 == 0) {
           if (j % 2 == 0) {
-            squaresList[i][j] = new chessSquare(false, Color.black); 
-          }
-          else {
+            squaresList[i][j] = new chessSquare(false, Color.black);
+          } else {
             squaresList[i][j] = new chessSquare(false, Color.white);
           }
-        }
-        else {
+        } else {
           if (j % 2 == 0) {
             squaresList[i][j] = new chessSquare(false, Color.white);
-          }
-          else {
+          } else {
             squaresList[i][j] = new chessSquare(false, Color.black);
           }
         }
@@ -72,7 +61,7 @@ public class chessStandardBoard extends chessBoard {
      * Method to populate our chess board with standard pieces.
      * @param special Is the game type different
      */
-    public void populateBoardWithPieces(boolean special) {
+    public void populateBoardWithPieces(final boolean special) {
         setupKnights();
         setupBishops();
         setupPawns();
@@ -84,8 +73,8 @@ public class chessStandardBoard extends chessBoard {
     /**
      * Setup 8 black and 8 white pawns in their initial positions.
      */
-    public void setupPawns(){
-        for(int i = 0; i < 8; i++){
+    public void setupPawns() {
+        for (int i = 0; i < 8; i++) {
             chessPawn newWhitePawn = new chessPawn(i, 1, Color.white, this);
             chessPawn newBlackPawn = new chessPawn(i, 6, Color.black, this);
             this.squaresList[i][1].isOccupied = true;
@@ -99,7 +88,7 @@ public class chessStandardBoard extends chessBoard {
     /**
      * Setup 2 black rooks and 2 white rooks in their initial positions.
      */
-    public void setupRooks(){
+    public void setupRooks() {
         chessRook whiteRookOne = new chessRook(0, 0, Color.white, this);
         chessRook whiteRookTwo = new chessRook(7, 0, Color.white, this);
         chessRook blackRookOne = new chessRook(0, 7, Color.black, this);
@@ -118,7 +107,7 @@ public class chessStandardBoard extends chessBoard {
     /**
      * Setup 2 black Bishops and 2 white Bishops in their initial positions.
      */
-    public void setupBishops(){
+    public void setupBishops() {
         chessBishop whiteBishopOne = new chessBishop(2, 0, Color.white, this);
         chessBishop whiteBishopTwo = new chessBishop(5, 0, Color.white, this);
         chessBishop blackBishopOne = new chessBishop(2, 7, Color.black, this);
@@ -136,7 +125,7 @@ public class chessStandardBoard extends chessBoard {
     /**
      * Setup 2 black Knights and 2 white Knights in their initial positions.
      */
-    public void setupKnights(){
+    public void setupKnights() {
         chessKnight whiteKnightOne = new chessKnight(1, 0, Color.white, this);
         chessKnight whiteKnightTwo = new chessKnight(6, 0, Color.white, this);
         chessKnight blackKnightOne = new chessKnight(1, 7, Color.black, this);
@@ -154,7 +143,7 @@ public class chessStandardBoard extends chessBoard {
     /**
      * Setup 2 queens white and black in their initial positions.
      */
-    public void setupQueens(){
+    public void setupQueens() {
         chessQueen whiteQueen = new chessQueen(3, 0, Color.white, this);
         chessQueen blackQueen = new chessQueen(3, 7, Color.black, this);
         this.squaresList[3][0].isOccupied = true;
@@ -166,7 +155,7 @@ public class chessStandardBoard extends chessBoard {
     /**
      * Setup 2 queens white and black in their initial positions.
      */
-    public void setupKings(){
+    public void setupKings() {
         chessKing whiteKing = new chessKing(4, 0, Color.white, this);
         chessKing blackKing = new chessKing(4, 7, Color.black, this);
         this.squaresList[4][0].isOccupied = true;
@@ -178,18 +167,19 @@ public class chessStandardBoard extends chessBoard {
     }
 
     /**
-     * Helper method to check if locations passed in are mapped on our generated board.
+     * Helper method to check if locations are on our generated board.
      * @see cis350.games.Board#inBoardBounds(int, int)
-     * @param newX
-     * @param newY
+     * @param newX new x coordinate
+     * @param newY new y coordinate
      * @return boolean true if move is in board bounds
      */
-    public boolean inBoardBounds(int newX, int newY){
-        if(newX < numXSquares && newY < numYSquares && newX > -1 && newY > -1){
+    public boolean inBoardBounds(final int newX, final int newY) {
+        if (newX < numXSquares && newY
+                < numYSquares && newX > -1 && newY > -1) {
             return true;
-        }
-        else
+        } else {
             return false;
+        }
     }
 
 }

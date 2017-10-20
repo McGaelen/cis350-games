@@ -37,7 +37,7 @@ public class checkersGameDisplay extends JPanel {
      * @param graphic the square to be drown.
      */
     @Override
-    public void paintComponent(Graphics graphic) {
+    public void paintComponent(final Graphics graphic) {
         for (int i = 0; i < board.numXSquares; i++) {
             for (int j = 0; j < board.numYSquares; j++) {
                 checkersSquare squareToDraw = board.squaresList[i][j];

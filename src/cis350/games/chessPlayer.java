@@ -9,24 +9,28 @@ import cis350.games.chessBoard.Color;
 */
 public class chessPlayer {
 
+
     /**
-     * Global variables of a chess Player
-     * - Name
-     * - Color being played.
-     * - Score of the player in game.
-     */
+    * Player name.
+    */
     public String playerName;
+    /**
+     * Player color.
+     */
     Color playerColor;
+    /**
+     * Player score.
+     */
     public int playerScore;
 
     /**
      * Constructor to add a new player to the game.
-     * @param playerName
-     * @param playerColor
+     * @param cPlayerName This is the Player name
+     * @param cPlayerColor This is the Player color
      */
-    public chessPlayer(String playerName, Color playerColor) {
-        this.playerName = playerName;
-        this.playerColor = playerColor;
+    public chessPlayer(final String cPlayerName, final Color cPlayerColor) {
+        this.playerName = cPlayerName;
+        this.playerColor = cPlayerColor;
         this.playerScore = 0;
 
     }

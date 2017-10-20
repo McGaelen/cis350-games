@@ -7,7 +7,8 @@ import javafx.stage.Stage;
 
 public final class Main extends Application {
 
-    /* Static references to each scene in the app. These are available globally */
+    /* Static references to each scene in the app.
+     * These are available globally */
     static Stage stage; // Don't overwrite this reference
     static Scene mainScene;
     static Scene connectFourScene;

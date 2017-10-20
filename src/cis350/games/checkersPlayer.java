@@ -16,26 +16,26 @@ public class checkersPlayer {
      * - Score of the player in game.
      */
     /**
-     * Player name
+     * Player name.
      */
     public String playerName;
     /**
-     * Player color
+     * Player color.
      */
     Color playerColor;
     /**
-     * Player Score
+     * Player Score.
      */
     public int playerScore;
 
     /**
      * Constructor to add a new player to the game.
-     * @param playerName
-     * @param playerColor
+     * @param cPlayerName This is the Player Name.
+     * @param cPlayerColor This is the Player Color.
      */
-    public checkersPlayer(String playerName, Color playerColor) {
-        this.playerName = playerName;
-        this.playerColor = playerColor;
+    public checkersPlayer(final String cPlayerName, final Color cPlayerColor) {
+        this.playerName = cPlayerName;
+        this.playerColor = cPlayerColor;
         this.playerScore = 0;
 
     }

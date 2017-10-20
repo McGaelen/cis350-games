@@ -1,23 +1,18 @@
 package cis350.games;
 
-import cis350.games.chessPiece;
 import cis350.games.chessBoard.Color;
 
 /**
  * This class represents a square on the chess board.
-  
  */
 public class chessSquare {
 
     /**
-     * Common variables belonging to a chess board square
-     */
-    /**
-     * Square is occupied or not
+     * Square is occupied or not.
      */
     public boolean isOccupied;
     /**
-     * Assign 0 as white color and 1 as black color
+     * Assign 0 as white color and 1 as black color.
      */
     public Color color;
     /**
@@ -26,13 +21,13 @@ public class chessSquare {
     public chessPiece occupyingPiece;
 
     /**
-     * Constructor to initialize chess board Squares
-     * @param isOccupied is the square occupied?
-     * @param color color of the piece
+     * Constructor to initialize chess board Squares.
+     * @param cIsOccupied is the square occupied?
+     * @param cColor color of the piece
      */
-    public chessSquare(boolean isOccupied, Color color) {
-        this.isOccupied = isOccupied;
-        this.color = color;
+    public chessSquare(final boolean cIsOccupied, final Color cColor) {
+        this.isOccupied = cIsOccupied;
+        this.color = cColor;
         this.occupyingPiece = null;
     }
 }

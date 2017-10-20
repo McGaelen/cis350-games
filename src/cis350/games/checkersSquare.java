@@ -1,20 +1,18 @@
 package cis350.games;
 
-import cis350.games.checkersPiece;
 import cis350.games.checkersBoard.Color;
 
 /**
  * This class represents a square on the checkers board.
-  
  */
 public class checkersSquare {
 
     /**
-     * Square is occupied or not
+     * Square is occupied or not.
      */
     public boolean isOccupied;
     /**
-     * Assign 0 as white color and 1 as black color
+     * Assign 0 as white color and 1 as black color.
      */
     public Color color;
     /**
@@ -23,21 +21,21 @@ public class checkersSquare {
     public checkersPiece occupyingPiece;
 
     /**
-     * Constructor to initialize checkers board Squares
-     * @param isOccupied
-     * @param color
+     * Constructor to initialize checkers board Squares.
+     * @param cIsOccupied Is the square occupied
+     * @param cColor The color of the piece
      */
-    public checkersSquare(boolean isOccupied, Color color) {
-        this.isOccupied = isOccupied;
-        this.color = color;
+    public checkersSquare(final boolean cIsOccupied, final Color cColor) {
+        this.isOccupied = cIsOccupied;
+        this.color = cColor;
         this.occupyingPiece = null;
     }
 
     /**
-     * Removes a piece from the Square
+     * Removes a piece from the Square.
      * @param square the square containing the piece to be removed
      */
-    public void remove(checkersSquare square) {
+    public void remove(final checkersSquare square) {
         square.isOccupied = false;
         square.occupyingPiece = null;
     }

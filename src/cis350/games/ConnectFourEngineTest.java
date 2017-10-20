@@ -21,12 +21,12 @@ public class ConnectFourEngineTest {
 
     @Test
     public void testGetRows() {
-        assertEquals( (Integer)10, game.getRows());
+        assertEquals((Integer)10, game.getRows());
     }
 
     @Test
     public void testGetCols() {
-        assertEquals( (Integer)9, game.getCols());
+        assertEquals((Integer)9, game.getCols());
     }
 
     @Test
@@ -37,7 +37,7 @@ public class ConnectFourEngineTest {
 
     @Test
     public void testGetTurn() {
-        assertEquals( (Integer)1, game.getTurn());
+        assertEquals((Integer)1, game.getTurn());
     }
 
     @Test
@@ -57,14 +57,14 @@ public class ConnectFourEngineTest {
     @Test
     public void testAdvanceTurnOneToTwo() {
         game.advanceTurn();
-        assertEquals( (Integer)2, game.getTurn());
+        assertEquals((Integer)2, game.getTurn());
     }
 
     @Test
     public void testAdvanceTurnTwoToOne() {
         game.advanceTurn();
         game.advanceTurn();
-        assertEquals( (Integer)1, game.getTurn());
+        assertEquals((Integer)1, game.getTurn());
     }
 
     @Test
@@ -75,9 +75,9 @@ public class ConnectFourEngineTest {
         game.placeChip(4);
         game.reset();
         ConnectFourBoard expectedboard = new ConnectFourBoard(10, 9);
-        assertEquals( expectedboard.toString(), game.toString());
-        assertEquals( (Integer)1, game.getTurn());
-        assertEquals( (Integer)0, game.getWinner());
+        assertEquals(expectedboard.toString(), game.toString());
+        assertEquals((Integer)1, game.getTurn());
+        assertEquals((Integer)0, game.getWinner());
         assertEquals("", game.getWinCase());
     }
 
@@ -130,77 +130,77 @@ public class ConnectFourEngineTest {
         assertEquals((Integer)2, game.getWinner());
         assertEquals("Diagonal (Up and to the Right) Win", game.getWinCase());
     }
-    
+
     @Test
     public void testCheckWinHitsColumnLimit() throws Exception {
-    		game.placeChip(9);
-    		game.placeChip(8);
-    		game.placeChip(7);
-    		assertEquals(false, game.checkWin());
+            game.placeChip(9);
+            game.placeChip(8);
+            game.placeChip(7);
+            assertEquals(false, game.checkWin());
     }
-    
+
     @Test
     public void testCheckDiagonalUpLeftWin() throws Exception {
-    		game.placeChip(1);
-    		game.placeChip(1);
-    		game.placeChip(1);
-    		game.placeChip(2);
-    		game.placeChip(2);
-    		game.placeChip(3);
-    		game.advanceTurn();
-    		game.placeChip(1);
-    		game.placeChip(2);
-    		game.placeChip(3);
-    		game.placeChip(4);
-    		System.out.println(game);
-    		assertEquals(true, game.checkWin());
+        game.placeChip(1);
+        game.placeChip(1);
+        game.placeChip(1);
+        game.placeChip(2);
+        game.placeChip(2);
+        game.placeChip(3);
+        game.advanceTurn();
+        game.placeChip(1);
+        game.placeChip(2);
+        game.placeChip(3);
+        game.placeChip(4);
+        System.out.println(game);
+        assertEquals(true, game.checkWin());
         assertEquals((Integer)2, game.getWinner());
         assertEquals("Diagonal (Up and to the Left) Win", game.getWinCase());
     }
-    
+
     @Test
     public void testCheckDiagonalUpLeftTopOfBoardLimit() throws Exception {
-    		ConnectFourEngine g = new ConnectFourEngine(3, 4, 1);
-    		g.placeChip(1);
-		g.placeChip(1);
-		g.placeChip(1);
-		g.placeChip(2);
-		g.placeChip(2);
-		g.placeChip(3);
-		g.advanceTurn();
-		g.placeChip(2);
-		g.placeChip(3);
-		g.placeChip(4);
-		System.out.println(g);
-		assertEquals(false, g.checkWin());
+        ConnectFourEngine g = new ConnectFourEngine(3, 4, 1);
+        g.placeChip(1);
+        g.placeChip(1);
+        g.placeChip(1);
+        g.placeChip(2);
+        g.placeChip(2);
+        g.placeChip(3);
+        g.advanceTurn();
+        g.placeChip(2);
+        g.placeChip(3);
+        g.placeChip(4);
+        System.out.println(g);
+        assertEquals(false, g.checkWin());
     }
-    
+
     @Test
     public void testEquals() throws Exception {
-    		ConnectFourEngine rowsDiff = new ConnectFourEngine(32, 9, 1);
-    		ConnectFourEngine colsDiff = new ConnectFourEngine(10, 32, 1);
-    		ConnectFourEngine equal = new ConnectFourEngine(10, 9, 1);
-    		assertTrue(game.equals(equal));
-    		assertTrue(game.equals(game));
-    		assertFalse(game.equals(null));
-    		assertFalse(game.equals(new Integer(10)));
-    		assertFalse(game.equals(rowsDiff));
-    		assertFalse(game.equals(colsDiff));
-    		game.placeChip(1);
-    		assertFalse(game.equals(equal));
-    		game.advanceTurn();
-    		assertFalse(game.equals(equal));
-    		game.advanceTurn();
+        ConnectFourEngine rowsDiff = new ConnectFourEngine(32, 9, 1);
+        ConnectFourEngine colsDiff = new ConnectFourEngine(10, 32, 1);
+        ConnectFourEngine equal = new ConnectFourEngine(10, 9, 1);
+        assertTrue(game.equals(equal));
+        assertTrue(game.equals(game));
+        assertFalse(game.equals(null));
+        assertFalse(game.equals(new Integer(10)));
+        assertFalse(game.equals(rowsDiff));
+        assertFalse(game.equals(colsDiff));
+        game.placeChip(1);
+        assertFalse(game.equals(equal));
+        game.advanceTurn();
+        assertFalse(game.equals(equal));
+        game.advanceTurn();
         game.placeChip(2);
         game.placeChip(3);
         game.placeChip(4);
         game.checkWin();
         assertFalse(game.equals(equal));
     }
-    
+
     @Test
     public void testHashCode() {
-    		ConnectFourEngine other = new ConnectFourEngine(10, 9, 1);
+        ConnectFourEngine other = new ConnectFourEngine(10, 9, 1);
         assertTrue(game.equals(other) && other.equals(game));
         assertTrue(game.hashCode() == other.hashCode());
     }
@@ -215,10 +215,10 @@ public class ConnectFourEngineTest {
 
     @Test
     public void testLoad() throws Exception {
-    		File f = new File("testLoadOut");
-    		game.save(f);
-    		ConnectFourEngine load = ConnectFourEngine.load(f);
-    		assertTrue(game.equals(load));
-    		Files.deleteIfExists(Paths.get("testLoadOut"));
+        File f = new File("testLoadOut");
+        game.save(f);
+        ConnectFourEngine load = ConnectFourEngine.load(f);
+        assertTrue(game.equals(load));
+        Files.deleteIfExists(Paths.get("testLoadOut"));
     }
 }

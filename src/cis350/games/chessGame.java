@@ -18,19 +18,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
-import cis350.games.chessKing;
-import cis350.games.chessPiece;
-import cis350.games.chessStandardBoard;
-//import cis350.games.chessBoard;
-import cis350.games.chessGameDisplay;
-
-
  /**
-  * Game class to setup a complete Chess Game. Will move to Controllers once implemented properly.
+  * Game class to setup a complete Chess Game.
+  * Will move to Controllers once implemented properly.
   * @author Austin Maley
   *
   */
-  
 public class chessGame {
 
     /**
@@ -58,70 +51,71 @@ public class chessGame {
      */
     boolean gameOver;
     /**
-    * returns game type
+    * returns game type.
     */
     static boolean gameType;
     /**
-    * size of Squares
+    * size of Squares.
     */
     int squareSize;
     /**
-    * Window for program
+    * Window for program.
     */
     JFrame window;
     /**
-    * Game Panel
+    * Game Panel.
     */
     JPanel gamePanel;
     /**
-    * Side Panel
+    * Side Panel.
     */
     JPanel sidePanel;
     /**
-    * White Player Name Label
+    * White Player Name Label.
     */
     JLabel whiteLabel;
     /**
-    * Black Player Name Label
+    * Black Player Name Label.
     */
     JLabel blackLabel;
     /**
-    * White Score Label
+    * White Score Label.
     */
     JLabel whiteScore;
     /**
-    * Black Score Label
+    * Black Score Label.
     */
     JLabel blackScore;
     /**
-    * Forfeit Button
+    * Forfeit Button.
     */
     JButton forfeitButton;
     /**
-    * Undo Button
+    * Undo Button.
     */
     JButton undoButton;
     /**
-    * Restart button
+    * Restart button.
     */
     JButton restartButton;
     /**
-    * The moving piece
+    * The moving piece.
     */
     chessPiece movingPiece;
     /**
-    * List of Moves
+    * List of Moves.
     */
     Stack<chessMoveCommand> commandStack;
 
 
     /**
-     * Method to initialize gameBoard, populate it with pieces according to gameType
-     * @param gameType Possible feature
+     * Method to initialize gameBoard, populate it with pieces.
+     * @param cGameType Possible feature
      */
-    public void gameInit(boolean gameType) {
-        gameBoard = new chessStandardBoard(8,8);
-        gameBoard.populateBoardWithPieces(gameType);
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public void gameInit(final boolean cGameType) {
+        gameBoard = new chessStandardBoard(8, 8);
+        gameBoard.populateBoardWithPieces(cGameType);
         gameTurn = cis350.games.chessBoard.Color.white;
         gameOver = false;
         squareSize = 80;
@@ -132,14 +126,21 @@ public class chessGame {
      * Helper method to instantiate players of the current game.
      */
     static void getGamePlayers() {
-        String whiteName = JOptionPane.showInputDialog("Please input White player name");
-        if(whiteName == "" || whiteName == null)
+        String whiteName =
+                JOptionPane.showInputDialog("Please input White player name");
+        if (whiteName == ""
+                || whiteName == null) {
             whiteName = "Player 1";
-        String blackName = JOptionPane.showInputDialog("Please input Black player name");
-        if(blackName == "" || blackName == null)
+        }
+        String blackName = JOptionPane.showInputDialog(
+                "Please input Black player name");
+        if (blackName == "" || blackName == null) {
             blackName = "Player 2";
-        whitePlayer = new chessPlayer(whiteName, cis350.games.chessBoard.Color.white);
-        blackPlayer = new chessPlayer(blackName, cis350.games.chessBoard.Color.black);
+        }
+        whitePlayer = new chessPlayer(
+                whiteName, cis350.games.chessBoard.Color.white);
+        blackPlayer = new chessPlayer(
+                blackName, cis350.games.chessBoard.Color.black);
     }
 
     /**
@@ -154,10 +155,10 @@ public class chessGame {
      /**
       * Method to start off a game thread and start running a game loop.
       */
-    public void gameStart(){
-        Thread gameThread = new Thread(){
+    public void gameStart() {
+        Thread gameThread = new Thread() {
             @Override
-            public void run(){
+            public void run() {
                 gameLoop();
             }
         };
@@ -166,28 +167,29 @@ public class chessGame {
     }
 
     /**
-     * Helper method to run the main game loop. If the game is over the game loop breaks
-     * and the gamePanel stops getting repainted (updated).
+     * Helper method to run the main game loop.
      */
-    private void gameLoop(){
-        while(true){
-            if(gameOver)
+    private void gameLoop() {
+        while (true) {
+            if (gameOver) {
                 break;
+            }
             gamePanel.repaint();
         }
     }
 
 
     /**
-     * Method to setup initial display of the Board. Sets up the gamePanel and sidePanel in the
-     * game's main frame.
+     * Method to setup initial display of the Board.
+     * Sets up the gamePanel and sidePanel in the game's main frame.
      */
 
-    public void setupDisplay(){
+    public void setupDisplay() {
         window = new JFrame("Chess");
-        gamePanel = initializeGamePanel(gameBoard); 
+        gamePanel = initializeGamePanel(gameBoard);
         Container contentPanel = window.getContentPane();
-        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.LINE_AXIS));
+        contentPanel.setLayout(
+                new BoxLayout(contentPanel, BoxLayout.LINE_AXIS));
         sidePanel = initializeSidePanel();
         contentPanel.add(gamePanel);
         contentPanel.add(sidePanel);
@@ -199,12 +201,14 @@ public class chessGame {
     }
 
     /**
-     * Initializes the Game Panel
-     * @param gameBoard The current board
+     * Initializes the Game Panel.
+     * @param cGameBoard The current board
+     * @return gameDisplay
      */
-    private JPanel initializeGamePanel(chessStandardBoard gameBoard) {
-        chessGameDisplay gameDisplay = new chessGameDisplay(gameBoard, squareSize);
-        gameDisplay.setPreferredSize(new Dimension(640,640));
+    private JPanel initializeGamePanel(final chessStandardBoard cGameBoard) {
+        chessGameDisplay gameDisplay =
+                new chessGameDisplay(cGameBoard, squareSize);
+        gameDisplay.setPreferredSize(new Dimension(640, 640));
         gameDisplay.setLayout(new BorderLayout());
         return gameDisplay;
     }
@@ -215,17 +219,21 @@ public class chessGame {
     * Helper method to initialize a side JPanel for the game.
     * @return sideDisplay
     */
-    private JPanel initializeSidePanel(){
+    private JPanel initializeSidePanel() {
         JPanel sideDisplay = new JPanel();
         undoButton = new JButton("Undo Move");
         restartButton = new JButton("Restart Game");
         forfeitButton = new JButton("Forfeit Game");
         setupButtonListeners();
-        whiteLabel = new JLabel("WHITE PLAYER : ".concat(whitePlayer.playerName) + " ");
+        whiteLabel = new JLabel(
+                "WHITE PLAYER : ".concat(whitePlayer.playerName) + " ");
         whiteLabel.setForeground(Color.BLUE);
-        blackLabel = new JLabel("BLACK PLAYER : ".concat(blackPlayer.playerName) + " ");
-        whiteScore = new JLabel(whitePlayer.playerName + " Score : " + whitePlayer.playerScore);
-        blackScore = new JLabel(blackPlayer.playerName + " Score : " + blackPlayer.playerScore);
+        blackLabel = new JLabel(
+                "BLACK PLAYER : ".concat(blackPlayer.playerName) + " ");
+        whiteScore = new JLabel(
+                whitePlayer.playerName + " Score : " + whitePlayer.playerScore);
+        blackScore = new JLabel(
+                blackPlayer.playerName + " Score : " + blackPlayer.playerScore);
         sideDisplay.setLayout(new BoxLayout(sideDisplay, BoxLayout.PAGE_AXIS));
         sideDisplay.add(whiteLabel);
         sideDisplay.add(blackLabel);
@@ -238,21 +246,22 @@ public class chessGame {
     }
 
     /**
-     * Helper method to setup the button listeners for Undo, Restart and Forfeit buttons.
+     * Helper method to setup the button listeners.
+     * Undo, Restart and Forfeit buttons.
      */
     private void setupButtonListeners() {
-        undoButton.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+        undoButton.addActionListener(new ActionListener() {
+            public void actionPerformed(final ActionEvent e) {
                 undoMove();
             }
         });
-        restartButton.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+        restartButton.addActionListener(new ActionListener() {
+            public void actionPerformed(final ActionEvent e) {
                 restartGame();
             }
         });
-        forfeitButton.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+        forfeitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(final ActionEvent e) {
                 forfeitGame();
             }
         });
@@ -260,101 +269,112 @@ public class chessGame {
 
 
     /**
-     * Actions for the mouse when it's clicked and released
+     * Actions for the mouse when it's clicked and released.
      */
-    public void mouseActions(){
-        gamePanel.addMouseListener(new MouseAdapter(){
+    public void mouseActions() {
+        gamePanel.addMouseListener(new MouseAdapter() {
 
             /**
             * Actions when the mouse is clicked
             * @param me the mouse
             */
-            public void mousePressed(MouseEvent me){
+            public void mousePressed(final MouseEvent me) {
                 int xOrigin = me.getX();
                 int yOrigin = me.getY();
-                xOrigin = xOrigin/squareSize;
-                yOrigin = yOrigin/squareSize;
+                xOrigin = xOrigin / squareSize;
+                yOrigin = yOrigin / squareSize;
                 yOrigin = 7 - yOrigin;
-                movingPiece = gameBoard.squaresList[xOrigin][yOrigin].occupyingPiece;
+                movingPiece = gameBoard.squaresList
+                        [xOrigin][yOrigin].occupyingPiece;
             }
 
             /**
             * Actions when the mouse is released
             * @param me the mouse
             */
-            public void mouseReleased(MouseEvent me) {
+            public void mouseReleased(final MouseEvent me) {
                 int xDestination = me.getX();
                 int yDestination = me.getY();
-                xDestination = xDestination/squareSize;
-                yDestination = yDestination/squareSize;
+                xDestination = xDestination / squareSize;
+                yDestination = yDestination / squareSize;
                 yDestination = 7 - yDestination;
-                if(movingPiece.color == gameTurn && movingPiece.canMove(xDestination, yDestination)){
+                if (movingPiece.color == gameTurn
+                        && movingPiece.canMove(xDestination, yDestination)) {
                     chessPiece enemyPiece = null;
-                    if(gameBoard.squaresList[xDestination][yDestination].isOccupied)
-                        enemyPiece = gameBoard.squaresList[xDestination][yDestination].occupyingPiece;
-                    chessMoveCommand newCommand = new chessMoveCommand(movingPiece, enemyPiece, xDestination, yDestination);
+                    if (gameBoard.squaresList
+                            [xDestination][yDestination].isOccupied) {
+                        enemyPiece = gameBoard.squaresList
+                                [xDestination][yDestination].occupyingPiece;
+                    }
+                    chessMoveCommand newCommand =
+                            new chessMoveCommand(movingPiece, enemyPiece,
+                                    xDestination, yDestination);
                     commandStack.add(newCommand);
                     newCommand.execute();
-                    if(movingPiece.color.equals(cis350.games.chessBoard.Color.white)){
+                    if (movingPiece.color.equals(
+                            cis350.games.chessBoard.Color.white)) {
                         gameTurn = gameTurn.opposite();
                         blackLabel.setForeground(Color.BLUE);
                         whiteLabel.setForeground(Color.BLACK);
                         checkKingStatus(gameBoard.blackKingTracker);
-                     }
-                     else{
+                     } else {
                          gameTurn = gameTurn.opposite();
                          whiteLabel.setForeground(Color.BLUE);
                          blackLabel.setForeground(Color.BLACK);
                          checkKingStatus(gameBoard.whiteKingTracker);
                      }
 
-                }
-                else{
-                    messageBox("This is an Illegal Move!", "Illegal move message");
+                } else {
+                    messageBox("This is an Illegal Move!",
+                            "Illegal move message");
                 }
             }
         });
     }
 
     /**
-    * Checks if the King is in Check of CheckMate
+    * Checks if the King is in Check of CheckMate.
     * @param kingToCheck is the king to check
     */
-    protected void checkKingStatus(chessKing kingToCheck) {
+    protected void checkKingStatus(final chessKing kingToCheck) {
         chessPlayer currentPlayer;
         chessPlayer otherPlayer;
-        if(kingToCheck.color == cis350.games.chessBoard.Color.white){
+        if (kingToCheck.color
+                == cis350.games.chessBoard.Color.white) {
             currentPlayer = whitePlayer;
             otherPlayer = blackPlayer;
-        }
-        else{
+        } else {
             currentPlayer = blackPlayer;
             otherPlayer = whitePlayer;
         }
-        if(kingToCheck.isKingInCheck(kingToCheck)) {
-            if(kingToCheck.isKingCheckmate(kingToCheck)) {
-                messageBox(currentPlayer.playerName + " ,Your King is in Checkmate\nYou Lost\nPlease Click Restart to Play again", "GAME OVER!!");
+        if (kingToCheck.isKingInCheck(kingToCheck)) {
+            if (kingToCheck.isKingCheckmate(kingToCheck)) {
+                messageBox(currentPlayer.playerName
+                        + " ,Your King is in Checkmate\nYou Lost\n"
+                        + "Please Click Restart to Play again", "GAME OVER!!");
                 gameOver = true;
                 otherPlayer.playerScore++;
-                whiteScore.setText(whitePlayer.playerName + " Score : " + whitePlayer.playerScore);
-                blackScore.setText(blackPlayer.playerName + " Score : " + blackPlayer.playerScore);
+                whiteScore.setText(whitePlayer.playerName
+                        + " Score : " + whitePlayer.playerScore);
+                blackScore.setText(blackPlayer.playerName
+                        + " Score : " + blackPlayer.playerScore);
                 return;
             }
-            messageBox(currentPlayer.playerName + " ,Your King is in Check", "King in Check!!");
+            messageBox(currentPlayer.playerName
+                    + " ,Your King is in Check", "King in Check!!");
         }
     }
     /**
-    * Undoes the previous move
+    * Undoes the previous move.
     */
-    private void undoMove(){
-        if(!commandStack.isEmpty()){
+    private void undoMove() {
+        if (!commandStack.isEmpty()) {
             chessMoveCommand move = commandStack.pop();
             move.undo();
-            if(gameTurn == cis350.games.chessBoard.Color.white){
+            if (gameTurn == cis350.games.chessBoard.Color.white) {
                 blackLabel.setForeground(Color.BLUE);
                 whiteLabel.setForeground(Color.BLACK);
-            }
-            else{
+            } else {
                 whiteLabel.setForeground(Color.BLUE);
                 blackLabel.setForeground(Color.BLACK);
             }
@@ -363,16 +383,19 @@ public class chessGame {
     }
 
     /**
-    * Restarts the Chess game
+    * Restarts the Chess game.
     */
-    private void restartGame(){
+    private void restartGame() {
         String player;
-        if(gameTurn.equals(cis350.games.chessBoard.Color.white))
+        if (gameTurn.equals(cis350.games.chessBoard.Color.white)) {
             player = blackPlayer.playerName;
-        else
+        } else {
             player = whitePlayer.playerName;
-        int response = JOptionPane.showConfirmDialog(null, player + " , would you like to restart?", "Restart", JOptionPane.YES_NO_OPTION);
-        if(response == JOptionPane.YES_OPTION){
+        }
+        int response = JOptionPane.showConfirmDialog(
+                null, player + " , would you like to restart?",
+                "Restart", JOptionPane.YES_NO_OPTION);
+        if (response == JOptionPane.YES_OPTION) {
             gameOver = true;
             window.setVisible(false);
             startNewGame();
@@ -380,26 +403,32 @@ public class chessGame {
     }
 
     /**
-    * Forfeits the Chess game
+    * Forfeits the Chess game.
     */
     private void forfeitGame() {
         chessPlayer currentPlayer;
         chessPlayer otherPlayer;
-        if(gameTurn == cis350.games.chessBoard.Color.white){
+        if (gameTurn == cis350.games.chessBoard.Color.white) {
             currentPlayer = whitePlayer;
             otherPlayer = blackPlayer;
-        }
-        else{
+        } else {
             currentPlayer = blackPlayer;
             otherPlayer = whitePlayer;
         }
-        int response = JOptionPane.showConfirmDialog(null, currentPlayer.playerName + " , Are you sure you want to forfeit", "Forfeit", JOptionPane.YES_NO_OPTION);
-        if(response == JOptionPane.YES_OPTION){
+        int response = JOptionPane.showConfirmDialog(
+                null, currentPlayer.playerName + " ,"
+                        + "Are you sure you want to forfeit",
+                        "Forfeit", JOptionPane.YES_NO_OPTION);
+        if (response == JOptionPane.YES_OPTION) {
             gameOver = true;
             otherPlayer.playerScore++;
-            whiteScore.setText(whitePlayer.playerName + " Score : " + whitePlayer.playerScore);
-            blackScore.setText(blackPlayer.playerName + " Score : " + blackPlayer.playerScore);
-            messageBox(currentPlayer.playerName + " ,You Lost\nPlease Click Restart to Play again", "GAME OVER!!");
+            whiteScore.setText(whitePlayer.playerName
+                    + " Score : " + whitePlayer.playerScore);
+            blackScore.setText(blackPlayer.playerName
+                    + " Score : " + blackPlayer.playerScore);
+            messageBox(currentPlayer.playerName
+                    + " ,You Lost\nPlease Click Restart to Play again",
+                    "GAME OVER!!");
         }
     }
 
@@ -408,14 +437,14 @@ public class chessGame {
     * Runs the Chess Game. Used for testing
     * @param args command line arguments
     */
-    public static void main(String args[]){
+    public static void main(final String[] args) {
         getGamePlayers();
         startNewGame();
     }
 
 
     /**
-    * Starts a new game
+    * Starts a new game.
     */
     public static void startNewGame() {
         chessGame newGame = new chessGame();
@@ -427,13 +456,13 @@ public class chessGame {
     }
 
     /**
-    * Displays error messages
+    * Displays error messages.
     * @param message the message to be displayed
     * @param title the title of the message box
     */
-    public static void messageBox(String message, String title)
-    {
-        JOptionPane.showMessageDialog(null, message, title, JOptionPane.WARNING_MESSAGE);
+    public static void messageBox(final String message, final String title) {
+        JOptionPane.showMessageDialog(
+                null, message, title, JOptionPane.WARNING_MESSAGE);
     }
 
 }

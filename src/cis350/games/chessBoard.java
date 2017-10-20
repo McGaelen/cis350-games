@@ -1,8 +1,5 @@
 package cis350.games;
 
-import cis350.games.chessSquare;
-import cis350.games.chessBoard.Color;
-
 /***********************************************************************
  * Superclass Board defines a standard board.
  **********************************************************************/
@@ -10,19 +7,19 @@ public abstract class chessBoard {
 
 
     /**
-     * number of squares on the x-axis
+     * number of squares on the x-axis.
      */
     public int numXSquares;
     /**
-     * number of squares on the y-axis
+     * number of squares on the y-axis.
      */
     public int numYSquares;
     /**
-     * number of squares in total on the board
+     * number of squares in total on the board.
      */
     public int totalSquares;
     /**
-     * square list
+     * square list.
      */
     public chessSquare squaresList[][];
 
@@ -35,16 +32,17 @@ public abstract class chessBoard {
     abstract boolean inBoardBounds(int xLocation, int yLocation);
 
     /**
-     * Enum for Color values of black or white pieces and squares
+     * Enum for Color values of black or white pieces and squares.
      */
-    public enum Color{
+    public enum Color {
         white, black;
 
-        public Color opposite(){
-            if(this == white)
+        public Color opposite() {
+            if (this == white) {
                 return black;
-            else
+            } else {
                 return white;
+            }
         }
     }
 }
