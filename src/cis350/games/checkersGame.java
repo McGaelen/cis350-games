@@ -17,27 +17,34 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-
-import cis350.games.checkersKing;
-import cis350.games.checkersPiece;
-import cis350.games.checkersStandardBoard;
-//import cis350.games.checkersBoard;
-import cis350.games.checkersGameDisplay;
-
-
-// Game class to setup a complete checkers Game. Will move to Controllers once implemented properly.
-
 /**
- *
+ * Game class to setup a complete checkers Game.
  */
 public class checkersGame {
-	
+
+    /**
+     * checkersPlayer representing the white player.
+     */
 	static checkersPlayer whitePlayer;
+    /**
+     * checkersPlayer representing the white player.
+     */
 	static checkersPlayer blackPlayer;
-	cis350.games.checkersBoard.Color gameTurn;
+    /**
+     * Color of the current player's turn.
+     */
+	checkersBoard.Color gameTurn;
+    /**
+     * Representation of the game board.
+     */
 	checkersStandardBoard gameBoard;
+    /**
+     * Is true if the game is over.
+     */
 	boolean gameOver;
-	static boolean gameType;
+    /**
+     *
+     */
 	int squareSize;
 	JFrame window;
 	JPanel gamePanel;
