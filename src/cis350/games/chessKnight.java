@@ -4,17 +4,18 @@ import cis350.games.chessPiece;
 import cis350.games.chessStandardBoard;
 import cis350.games.chessBoard.Color;
 
-/**
- *
- */
+/***********************************************************************
+ * Subclass of a Piece specific to a Knight. This handles all 
+ * movements the knight is capable of making.
+ **********************************************************************/
 public class chessKnight extends chessPiece {
 
     /**
-     *
-     * @param initX
-     * @param initY
-     * @param color
-     * @param board
+     * Constructor for the Knight
+     * @param initX x-coordinate
+     * @param initY y-coordinate
+     * @param color color of the Knight
+     * @param board the current board
      */
 	public chessKnight(int initX, int initY, Color color, chessStandardBoard board) {
 		super(initX, initY, color, board);
@@ -22,10 +23,10 @@ public class chessKnight extends chessPiece {
 	}
 
     /**
-     *
-     * @param newX
-     * @param newY
-     * @return
+     * Checks if the move is valid
+     * @param newX is the new x-coordinate
+     * @param newY is the new y-coordinate
+     * @return true if the move is valid
      */
 	@Override
 	boolean isValidSpecialMove(int newX, int newY) {
@@ -39,10 +40,10 @@ public class chessKnight extends chessPiece {
 	}
 
     /**
-     *
-     * @param xDisplacement
-     * @param yDisplacement
-     * @return
+     * Checks if the move is a knight move
+     * @param xDisplacement is the change in x
+     * @param yDisplacement is the change in y
+     * @return true if it is a valid knight move
      */
 	public static boolean isValidKnightMove(int xDisplacement, int yDisplacement) {
 		if(Math.abs(xDisplacement) == 2 && Math.abs(yDisplacement) == 1)

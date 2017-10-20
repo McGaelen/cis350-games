@@ -4,17 +4,18 @@ import cis350.games.chessPiece;
 import cis350.games.chessStandardBoard;
 import cis350.games.chessBoard.Color;
 
-/*8
-
- */
+/***********************************************************************
+ * Subclass of a Piece specific to a King. This handles all 
+ * movements the king is capable of making.
+ **********************************************************************/
 public class chessKing extends chessPiece {
 
     /**
-     *
-     * @param initX
-     * @param initY
-     * @param color
-     * @param board
+     * Constructor for the King
+     * @param initX x-coordinate
+     * @param initY y-coordinate
+     * @param color If the color of the king
+     * @param board is the current board
      */
 	public chessKing(int initX, int initY, Color color, chessStandardBoard board) {
 		super(initX, initY, color, board);
@@ -22,10 +23,10 @@ public class chessKing extends chessPiece {
 	}
 
     /**
-     *
-     * @param newX
-     * @param newY
-     * @return
+     * Checks if the move is valid
+     * @param newX the new x-coordinate
+     * @param newY the new y-coordinate
+     * @return true if the move is valid
      */
 	@Override
 	boolean isValidSpecialMove(int newX, int newY) {
@@ -39,10 +40,10 @@ public class chessKing extends chessPiece {
 	}
 
     /**
-     *
-     * @param xDisplacement
-     * @param yDisplacement
-     * @return
+     * Checks if the move is a valid King move
+     * @param xDisplacement change in x
+     * @param yDisplacement change in y
+     * @return true if the move is a valid king move
      */
 	private boolean isValidKingMove(int xDisplacement, int yDisplacement) {
 		// Diagonal

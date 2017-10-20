@@ -16,10 +16,10 @@ public class chessQueen extends chessPiece {
 	/**
 	 * Queen constructor initializes name of piece to Queen. Every other parameter is
 	 * initialized by superclass.
-	 * @param initX
-	 * @param initY
-	 * @param color
-	 * @param board
+	 * @param initX x-coordinate
+	 * @param initY y-coordinate
+	 * @param color color of the queen
+	 * @param board the current board
 	 */
 	public chessQueen(int initX, int initY, Color color, chessStandardBoard board) {
 		super(initX, initY, color, board);
@@ -29,8 +29,8 @@ public class chessQueen extends chessPiece {
 	/**
 	 * Queen specific implementation of abstract method.
 	 * @see chessGame.Piece#isValidSpecialMove(int, int)
-	 * @param newX
-	 * @param newY
+	 * @param newX new x location
+	 * @param newY new y location
 	 * @return boolean true if valid special move
 	 */
 	@Override
@@ -54,8 +54,8 @@ public class chessQueen extends chessPiece {
 
 	/**
 	 * Helper method for Queen specific moves (Diagonal + Vertical + Horizontal)
-	 * @param xDisplacement
-	 * @param yDisplacement
+	 * @param xDisplacement change in x from move
+	 * @param yDisplacement change in y from move
 	 * @return boolean true if valid queen move
 	 */
 	private boolean isValidQueenMove(int xDisplacement, int yDisplacement) {

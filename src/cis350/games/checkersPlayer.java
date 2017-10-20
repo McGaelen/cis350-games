@@ -15,8 +15,17 @@ public class checkersPlayer {
 	 * - Color being played.
 	 * - Score of the player in game.
 	 */
+	/**
+	 * Player name
+	 */
 	public String playerName;
+	/**
+	 * Player color
+	 */
 	Color playerColor;
+	/**
+	 * Player Score
+	 */
 	public int playerScore;
 
 	/**

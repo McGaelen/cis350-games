@@ -9,20 +9,23 @@ import cis350.games.checkersBoard.Color;
 /**
  * Subclass of a board. Standard version of a checkers Board. Has methods for creating a standard
  * checkers board and populating it with regular checkers pieces.
- * Can be used to create a standard game of cis350.games.
+ * Can be used to create a standard game of checkers.
  */
 public class checkersStandardBoard extends checkersBoard {
 	
 	/**
-	 * Trackers for the white and black kings for check, checkmate and game ending conditions.
+	 * Tracker for the white king for check, checkmate and game ending conditions.
 	 */
 	public checkersKing whiteKingTracker;
+	/**
+	 * Tracker for the black king for check, checkmate and game ending conditions.
+	 */
 	public checkersKing blackKingTracker;
 	
 	/**
 	 * Method to initialize the checkers board.
-	 * @param xSquares
-	 * @param ySquares
+	 * @param xSquares the number of squares on the x-axis
+	 * @param ySquares the number of squares on the y-axis
 	 */
 	public checkersStandardBoard(int xSquares, int ySquares) {
 
@@ -97,7 +100,7 @@ public class checkersStandardBoard extends checkersBoard {
 	
 	/**
 	 * Helper method to check if locations passed in are mapped on our generated board.
-	 * @see cis350.games.Board#inBoardBounds(int, int)
+	 * @see cis350.games.BoardinBoardBounds(int, int)
 	 * @param newX
 	 * @param newY
 	 * @return boolean true if move is in board bounds

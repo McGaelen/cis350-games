@@ -15,10 +15,10 @@ public class chessRook extends chessPiece {
 	/**
 	 * Rook constructor initializes name of piece to Rook. Every other parameter is
 	 * initialized by superclass.
-	 * @param initX
-	 * @param initY
-	 * @param color
-	 * @param board
+	 * @param initX x-coordinate
+	 * @param initY y-coordinate
+	 * @param color color of the Rook
+	 * @param board the current board
 	 */
 	public chessRook(int initX, int initY, Color color, chessStandardBoard board) {
 		super(initX, initY, color, board);
@@ -28,8 +28,8 @@ public class chessRook extends chessPiece {
 	/**
 	 * Rook specific implementation of abstract method.
 	 * @see chessGame.Piece#isValidSpecialMove(int, int)
-	 * @param newX
-	 * @param newY
+	 * @param newX the new x location
+	 * @param newY the new y location
 	 * @return boolean true if valid special move
 	 */
 	@Override
@@ -55,8 +55,8 @@ public class chessRook extends chessPiece {
 	
 	/**
 	 * Helper method for Rook specific move check (Vertical + Horizontal)
-	 * @param xDisplacement
-	 * @param yDisplacement
+	 * @param xDisplacement change in x from the move
+	 * @param yDisplacement change in y from the move
 	 * @return boolean true if valid Rook move
 	 */
 	public static boolean isValidRookMove(int xDisplacement, int yDisplacement) {
