@@ -290,6 +290,7 @@ public class ConnectFourViewController {
         }
         try {
             this.game = ConnectFourEngine.load(gameFile);
+            this.game.addObserver(Main.achievementsViewController);
         } catch (ClassNotFoundException c) {
             new Alert(AlertType.ERROR,
                     "The file was not a valid Connect Four file."

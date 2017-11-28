@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.io.File;
 import java.util.Objects;
 import java.util.Observable;
-import java.util.Observer;
 
 /**
  * Contains all the game logic for Connect Four. It also manages
@@ -20,9 +19,17 @@ import java.util.Observer;
  * if there is a win condition, figuring out who won and how, placing a
  * chip in the board, resetting the board, and loading and saving the game.
  */
-public final class ConnectFourEngine extends Observable implements Serializable {
+public final class ConnectFourEngine
+        extends Observable
+        implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    /**
+     * Holds the max number of turns that can be taken in order
+     * to get the 'Win under 5 moves' achievement.
+     */
+    private final Integer numTurnsNeededForAchievement = 5;
     /**
      * The number of chips in a row needed to win the game.
      */
@@ -51,6 +58,10 @@ public final class ConnectFourEngine extends Observable implements Serializable 
      * A description of how the winner won.
      */
     private String winCase;
+    /**
+     * The number of turns that have happened in the game.
+     */
+    private Integer numTurns;
 
     /**
      * Creates an instance of the Connect Four engine. Creates an
@@ -69,6 +80,7 @@ public final class ConnectFourEngine extends Observable implements Serializable 
         this.turn = startingTurn;
         this.winner = 0;
         this.winCase = "";
+        this.numTurns = 0;
     }
 
     /**
@@ -162,6 +174,7 @@ public final class ConnectFourEngine extends Observable implements Serializable 
                     if (i == ((c + this.connectsNeededForWin) - 1)) {
                         this.winner = cell;
                         this.winCase = "Horizontal Win";
+                        this.checkForTurnAchievement();
                         return true;
                     }
                 }
@@ -176,6 +189,7 @@ public final class ConnectFourEngine extends Observable implements Serializable 
                     if (i == ((r + this.connectsNeededForWin) - 1)) {
                         this.winner = cell;
                         this.winCase = "Vertical Win";
+                        this.checkForTurnAchievement();
                         return true;
                     }
                 }
@@ -193,6 +207,7 @@ public final class ConnectFourEngine extends Observable implements Serializable 
                     if (i == ((c + this.connectsNeededForWin) - 1)) {
                         this.winner = cell;
                         this.winCase = "Diagonal (Up and to the Right) Win";
+                        this.checkForTurnAchievement();
                         return true;
                     }
                     offset++;
@@ -212,6 +227,7 @@ public final class ConnectFourEngine extends Observable implements Serializable 
                     if (i == ((c - this.connectsNeededForWin) + 1)) {
                         this.winner = cell;
                         this.winCase = "Diagonal (Up and to the Left) Win";
+                        this.checkForTurnAchievement();
                         return true;
                     }
                     offset++;
@@ -222,6 +238,11 @@ public final class ConnectFourEngine extends Observable implements Serializable 
         return false;
     }
 
+    /**
+     * Checks if the board is currently full, and fires an achievement
+     * if it is.
+     * @return true if the board is full, false if not.
+     */
     public boolean checkFull() {
         if (this.board.checkFull()) {
             this.setChanged();
@@ -229,6 +250,17 @@ public final class ConnectFourEngine extends Observable implements Serializable 
             return true;
         }
         return false;
+    }
+
+    /**
+     * Checks if the player won under a certain amount of moves, and
+     * fires the corresponding achievement if they did.
+     */
+    private void checkForTurnAchievement() {
+        if (this.winner != 0 && this.numTurns <= this.numTurnsNeededForAchievement) {
+            this.setChanged();
+            this.notifyObservers(Achievement.C4_WIN_UNDER_MOVES_COUNT);
+        }
     }
 
     /**
@@ -249,6 +281,7 @@ public final class ConnectFourEngine extends Observable implements Serializable 
         this.turn++;
         if (this.turn > 2) {
             this.turn = 1;
+            this.numTurns++;
         }
     }
 
