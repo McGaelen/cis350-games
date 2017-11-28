@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.io.File;
 import java.util.Objects;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Contains all the game logic for Connect Four. It also manages
@@ -18,7 +20,7 @@ import java.util.Objects;
  * if there is a win condition, figuring out who won and how, placing a
  * chip in the board, resetting the board, and loading and saving the game.
  */
-public final class ConnectFourEngine implements Serializable {
+public final class ConnectFourEngine extends Observable implements Serializable {
 
     private static final long serialVersionUID = 1L;
     /**
@@ -217,6 +219,15 @@ public final class ConnectFourEngine implements Serializable {
             }
         }
 
+        return false;
+    }
+
+    public boolean checkFull() {
+        if (this.board.checkFull()) {
+            this.setChanged();
+            this.notifyObservers(Achievement.C4_FULL_BOARD);
+            return true;
+        }
         return false;
     }
 

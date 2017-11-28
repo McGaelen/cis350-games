@@ -52,13 +52,13 @@ public class MainMenuViewController {
     private void connectFourBtnClick() {
         if (Main.connectFourScene == null) {
             try {
-                Main.connectFourScene =
-                        new Scene(FXMLLoader.load(
-                                getClass().getResource("connect-four.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("connect-four.fxml"));
+                Main.connectFourScene = new Scene(loader.load());
+                Main.connectFourViewController = loader.getController();
+                Main.connectFourViewController.addConnectFourAchievementsObserver(Main.achievementsViewController);
                 Main.stage.setScene(Main.connectFourScene);
             } catch (IOException e) {
-                System.out.println(e.getMessage()
-                        + "Couldn't load connect-four.fxml");
+                System.out.println(e.getMessage() + "Couldn't load connect-four.fxml");
             }
         } else {
             Main.stage.setScene(Main.connectFourScene);

@@ -17,16 +17,20 @@ public final class Main extends Application {
     static Scene ticTacToeLaunchScene;
     static Scene achievementsLaunchScene;
 
-    @Override
+    static ConnectFourViewController connectFourViewController;
+    static AchievementsViewController achievementsViewController;
 
+    @Override
     public void start(final Stage primaryStage) throws Exception {
-        mainScene = new Scene(
-                FXMLLoader.load(getClass().getResource("MainMenu.fxml"))
-        );
-        primaryStage.setTitle("CIS 350 Games");
+        mainScene = new Scene(FXMLLoader.load(getClass().getResource("MainMenu.fxml")));
+        primaryStage.setTitle("Game Suite 2.0");
         primaryStage.setScene(mainScene);
         primaryStage.show();
         stage = primaryStage;
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("achievementsLaunch.fxml"));
+        achievementsLaunchScene = new Scene(loader.load());
+        achievementsViewController = loader.getController();
     }
 
 

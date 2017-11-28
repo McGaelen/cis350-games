@@ -20,6 +20,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * This class controls the UI for Connect Four. An instance of this class
@@ -115,17 +117,11 @@ public class ConnectFourViewController {
                 if (row < this.game.getRows()) {
                     Circle c;
                     if (this.game.getCellOwner(row, col) == 1) {
-                        c = new Circle(
-                                boardCellSize / 2, Paint.valueOf("#DE0003")
-                        );
+                        c = new Circle(boardCellSize / 2, Paint.valueOf("#DE0003"));
                     } else if (this.game.getCellOwner(row, col) == 2) {
-                        c = new Circle(
-                                boardCellSize / 2, Paint.valueOf("#3034F0")
-                        );
+                        c = new Circle(boardCellSize / 2, Paint.valueOf("#3034F0"));
                     } else {
-                        c = new Circle(
-                                boardCellSize / 2, Paint.valueOf("#BAC1C4")
-                        );
+                        c = new Circle(boardCellSize / 2, Paint.valueOf("#BAC1C4"));
                     }
                     c.setCenterX(boardCellSize / 2);
                     c.setCenterY(boardCellSize / 2);
@@ -234,6 +230,26 @@ public class ConnectFourViewController {
                 }
             });
         }
+
+        if (this.game.checkFull()) {
+            Alert a = new Alert(AlertType.INFORMATION);
+            a.setTitle("Full Board");
+            a.setContentText("The board is completely full!\nWould you like to play again?\n\n");
+            ButtonType no =  new ButtonType("No", ButtonBar.ButtonData.NO);
+            a.getDialogPane().getButtonTypes().add(no);
+
+            a.showAndWait().ifPresent((result) -> {
+                if (result == ButtonType.OK) {
+                    this.newGame();
+                } else {
+                    this.buttonsEnabled(false);
+                }
+            });
+        }
+    }
+
+    public void addConnectFourAchievementsObserver(Observer o) {
+        this.game.addObserver(o);
     }
 
     /**
@@ -250,7 +266,7 @@ public class ConnectFourViewController {
      * Starts a new game by resetting the engine and
      * manually calling initialize().
      */
-    @FXML public void newGame() {
+    @FXML private void newGame() {
         this.game.reset();
         this.initialize();
     }
@@ -261,7 +277,7 @@ public class ConnectFourViewController {
      * A file chooser dialog will appear, and if the file is valid,
      * the game will be set to the deserialized ConnectFourEngine object.
      */
-    @FXML public void loadGame() {
+    @FXML private void loadGame() {
         System.out.println("Load game attempted at " + new Date());
         FileChooser dialog = new FileChooser();
         File gameFile;
@@ -295,7 +311,7 @@ public class ConnectFourViewController {
      * to save their game, and the current game engine object will be
      * serialized to a file at the given location.
      */
-    @FXML public void saveGame() {
+    @FXML private void saveGame() {
         System.out.println("Save game attempted at " + new Date());
         FileChooser dialog = new FileChooser();
         File gameFile;
@@ -319,7 +335,7 @@ public class ConnectFourViewController {
      * Sets the main menu as the currently displaying scene,
      * in order to go "back".
      */
-    @FXML public void goBack() {
+    @FXML private void goBack() {
         Main.stage.setScene(Main.mainScene);
     }
 }
