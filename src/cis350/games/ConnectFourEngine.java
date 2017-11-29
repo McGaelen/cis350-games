@@ -257,7 +257,8 @@ public final class ConnectFourEngine
      * fires the corresponding achievement if they did.
      */
     private void checkForTurnAchievement() {
-        if (this.winner != 0 && this.numTurns <= this.numTurnsNeededForAchievement) {
+        if (this.winner != 0
+        		&& this.numTurns <= this.numTurnsNeededForAchievement) {
             this.setChanged();
             this.notifyObservers(Achievement.C4_WIN_UNDER_MOVES_COUNT);
         }
@@ -293,6 +294,7 @@ public final class ConnectFourEngine
         this.turn = 1;
         this.winner = 0;
         this.winCase = "";
+        this.numTurns = 0;
     }
 
     /**
