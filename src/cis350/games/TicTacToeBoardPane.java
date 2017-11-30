@@ -20,7 +20,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class TicTacToeBoardPane extends Application implements EventHandler{
+public class TicTacToeBoardPane extends GridPane implements EventHandler{
 
     /** game engine for 1024 game. */
     private TicTacToe game;
@@ -31,16 +31,11 @@ public class TicTacToeBoardPane extends Application implements EventHandler{
     /** the current player's turn. */
     private String currentPlayer;
 	
-	public static void main(String[] args) {
-		launch(args);
-	}
 	
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		
-		// set stage title
-		primaryStage.setTitle("Tic-Tac-Toe");
+	public TicTacToeBoardPane() {
 
+		super();
+		
         // create new tic tac toe game
         game = new TicTacToe();
 		
@@ -49,25 +44,15 @@ public class TicTacToeBoardPane extends Application implements EventHandler{
         
         // create new cells based on board size
         cells = new TicTacToeCellPane[3][3];
-        
-		GridPane layout = new GridPane();
 		
         for (int r = 0; r < 3; r++) {
             for (int c = 0; c < 3; c++) {
                 cells[r][c] = new TicTacToeCellPane("", r, c);
                 //cells[r][c].addMouseListener(this);
                 cells[r][c].setOnMouseClicked(this);
-                layout.add(cells[r][c], c, r);
+                add(cells[r][c], c, r);
             }
         }
-		
-        // create window and add scene to window
-		Scene scene = new Scene(layout, 450, 450);
-
-		primaryStage.setScene(scene);
-		primaryStage.sizeToScene();
-		primaryStage.setResizable(false);
-		primaryStage.show();
 	}
 
 	@Override
@@ -131,5 +116,38 @@ public class TicTacToeBoardPane extends Application implements EventHandler{
                 cells[r][c].getMark().setText(board[r][c]);
             }
         }
+    }
+    
+    /*******************************************************************
+     * Return the current TicTacToe object.
+     * @return game
+     ******************************************************************/
+    public TicTacToe getGame() {
+        return game;
+    }
+
+    /*******************************************************************
+     * Set the current TicTacToe object.
+     * @param cGame the TicTacToe object to set the current TicTacToe
+     * object to
+     ******************************************************************/
+    public void setGame(final TicTacToe cGame) {
+        this.game = cGame;
+    }
+
+    /*******************************************************************
+     * Return the current player.
+     * @return currentPlayer.
+     ******************************************************************/
+    public String getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    /*******************************************************************
+     * Set the current player.
+     * @param cCurrentPlayer the player to set the current player to
+     ******************************************************************/
+    public void setCurrentPlayer(final String cCurrentPlayer) {
+        this.currentPlayer = cCurrentPlayer;
     }
 }
