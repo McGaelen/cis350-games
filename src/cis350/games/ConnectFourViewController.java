@@ -41,7 +41,6 @@ public class ConnectFourViewController {
      * Holds a reference to every button in the bottom row of the game board.
      */
     private ArrayList<Button> buttonRow;
-//    private String feedback;  // for release 2
     /**
      * The current height of the window.
      */
@@ -63,7 +62,6 @@ public class ConnectFourViewController {
      * Reference to the toolbar in the UI.
      */
     @FXML private ToolBar toolBar;
-//    @FXML private Label feedbackLabel; // for release 2
 
     /**
      * Specifies the amount of padding around certain UI elements.
@@ -134,7 +132,7 @@ public class ConnectFourViewController {
                     Button b = new Button();
                     b.setMaxSize(boardCellSize, boardCellSize);
                     b.setPrefSize(boardCellSize, placeChipButtonHeight);
-                    b.setText("↑");
+                    b.setText("^");
                     b.setFont(new Font(12));
                     b.setId("placeChip-" + col);
                     b.setOnAction(this::placeChip);
@@ -160,9 +158,6 @@ public class ConnectFourViewController {
         this.windowHeight = this.toolBar.getHeight()
                 + paddingAmt + (this.boardGrid.getVgap() + boardCellSize)
                 * (this.game.getRows() + 1) + paddingAmt;
-//        this.feedbackLabel.setLayoutY(this.windowHeight
-//                - (this.toolBar.getHeight() + paddingAmt + boardCellSize)
-//        );
 
         this.toolBar.setPrefWidth(this.windowWidth);
         this.toolBar.resize(this.windowWidth, this.toolBar.getHeight());

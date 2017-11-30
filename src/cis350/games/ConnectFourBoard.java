@@ -72,14 +72,14 @@ public final class ConnectFourBoard implements Serializable {
      * The chip will "fall down" to the lowest spot without a chip in it.
      * After placing the chip, the number of the row that the chip fell into
      * is returned.
-     * @param col the column to place the chip in.
+     * @param column the column to place the chip in.
      * @param player the player to assign to the placed chip.
      * @return the number of the row that the chip fell into.
      * @throws Exception If an invalid column number is given.
      */
     public Integer placeChipForPlayer(
-            int col, final int player) throws Exception {
-        col -= 1;
+            final int column, final int player) throws Exception {
+        int col = column - 1;
 
         if (col < 0 || col >= this.cols) {
             throw new IllegalArgumentException("Invalid column number.");
