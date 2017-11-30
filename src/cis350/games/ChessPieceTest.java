@@ -18,7 +18,8 @@ public class ChessPieceTest extends TestCase {
         chessPawn blackPawn = new chessPawn(2, 2, Color.black, board);
         assertTrue(whitePawn.canMove(2, 2));
         whitePawn.executeCaptureOrMove(2, 2);
-        assertTrue(whitePawn.xLocation == 2 && whitePawn.yLocation == 2);
+        assertTrue(whitePawn.getXLocation() == 2 
+                && whitePawn.getYLocation() == 2);
     }
 
     /**
@@ -40,12 +41,12 @@ public class ChessPieceTest extends TestCase {
     }
 
     /**
-     * Testing the king in danger state on the baord for given king.
+     * Testing the king in danger state on the board for given king.
      */
     public void testKingInDanger() {
         chessStandardBoard board = new chessStandardBoard(8, 8);
         chessKing newKing = new chessKing(3, 7, Color.black, board);
-        board.blackKingTracker = newKing;
+        newKing = board.getBlackKingTracker();
         chessPawn allyPawn = new chessPawn(5, 5, Color.black, board);
         chessBishop enemyBishop = new chessBishop(7, 3, Color.white, board);
         assertFalse(allyPawn.canMove(5, 4));
@@ -57,19 +58,20 @@ public class ChessPieceTest extends TestCase {
     public void testCheckmate() {
         chessStandardBoard board = new chessStandardBoard(8, 8);
         board.populateBoardWithPieces(false);
-        chessPiece wpawn1 = board.squaresList[5][1].occupyingPiece;
+        chessPiece wpawn1 = board.getSquaresList()[5][1].getOccupyingPiece();
         wpawn1.executeCaptureOrMove(5, 2);
-        assertTrue(wpawn1.xLocation == 5 && wpawn1.yLocation == 2);
-        chessPiece bpawn1 = board.squaresList[4][6].occupyingPiece;
+        assertTrue(wpawn1.getXLocation() == 5 && wpawn1.getYLocation() == 2);
+        chessPiece bpawn1 = board.getSquaresList()[4][6].getOccupyingPiece();
         bpawn1.executeCaptureOrMove(4, 4);
-        assertTrue(bpawn1.xLocation == 4 && bpawn1.yLocation == 4);
-        chessPiece wpawn2 = board.squaresList[6][1].occupyingPiece;
+        assertTrue(bpawn1.getXLocation() == 4 && bpawn1.getYLocation() == 4);
+        chessPiece wpawn2 = board.getSquaresList()[6][1].getOccupyingPiece();
         wpawn2.executeCaptureOrMove(6, 3);
-        assertTrue(wpawn2.xLocation == 6 && wpawn2.yLocation == 3);
-        chessPiece bqueen = board.squaresList[3][7].occupyingPiece;
+        assertTrue(wpawn2.getXLocation() == 6 && wpawn2.getYLocation() == 3);
+        chessPiece bqueen = board.getSquaresList()[3][7].getOccupyingPiece();
         bqueen.executeCaptureOrMove(7, 3);
-        assertTrue(bqueen.xLocation == 7 && bqueen.yLocation == 3);
-        chessKing wking = (chessKing) board.squaresList[4][0].occupyingPiece;
+        assertTrue(bqueen.getXLocation() == 7 && bqueen.getYLocation() == 3);
+        chessKing wking = (chessKing) board
+                .getSquaresList()[4][0].getOccupyingPiece();
         assertTrue(wking.isKingInCheck(wking));
         assertTrue(wking.isKingCheckmate(wking));
     }

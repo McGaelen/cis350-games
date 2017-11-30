@@ -21,7 +21,7 @@ public class chessRook extends chessPiece {
             final int initX, final int initY,
             final Color color, final chessStandardBoard board) {
         super(initX, initY, color, board);
-        this.nameOfPiece = "rook";
+        this.setNameOfPiece("rook");
     }
 
     /**
@@ -33,8 +33,8 @@ public class chessRook extends chessPiece {
      */
     @Override
     boolean isValidSpecialMove(final int newX, final int newY) {
-        int xDisplacement = newX - xLocation;
-        int yDisplacement = newY - yLocation;
+        int xDisplacement = newX - getXLocation();
+        int yDisplacement = newY - getYLocation();
         if (isValidRookMove(xDisplacement, yDisplacement)) {
             // Total number of steps the piece has to take.
             //Either x = 0 or y = 0.
@@ -44,10 +44,10 @@ public class chessRook extends chessPiece {
             int yDirection = yDisplacement / steps;
             // Check for obstacles in path of Rook.
             for (int i = 1; i < steps; i++) {
-                chessSquare squareToCheck = currentBoard.squaresList
-                        [xLocation + i * xDirection]
-                                [yLocation + i * yDirection];
-                if (squareToCheck.isOccupied) {
+                chessSquare squareToCheck = getCurrentBoard().getSquaresList()
+                        [getXLocation() + i * xDirection]
+                                [getYLocation() + i * yDirection];
+                if (squareToCheck.getIsOccupied()) {
                     return false;
                 }
             }

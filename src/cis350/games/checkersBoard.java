@@ -8,19 +8,83 @@ public abstract class checkersBoard {
     /**
      * The number of squares in the game board in the X direction.
      */
-    int numXSquares;
+    private int numXSquares;
     /**
      * The number of squares in the game board in the Y direction.
      */
-    int numYSquares;
+    private int numYSquares;
     /**
      * The total number of squares in the game board.
      */
-    int totalSquares;
+    private int totalSquares;
     /**
      * A double array of checkersSquares representing the entire game board.
      */
-    public checkersSquare[][] squaresList;
+    private checkersSquare[][] squaresList;
+    
+    /**
+     * Get total squares.
+     * @return totalSquares
+     */
+    public int getTotalSquares() {
+        return totalSquares;
+    }
+
+    /**
+     * Set total squares.
+     * @param totalSquares The total amount of squares.
+     */
+    public void setTotalSquares(final int totalSquares) {
+        this.totalSquares = totalSquares;
+    }
+
+    /**
+     * Get number of vertical squares.
+     * @return numYSquares
+     */
+    public int getNumYSquares() {
+        return numYSquares;
+    }
+
+    /**
+     * Set the number of vertical squares.
+     * @param numYSquares Total amount of vertical squares. 
+     */
+    public void setNumYSquares(final int numYSquares) {
+        this.numYSquares = numYSquares;
+    }
+
+    /**
+     * Get the number of horizontal squares.
+     * @return numXSquares
+     */
+    public int getNumXSquares() {
+        return numXSquares;
+    }
+
+    /**
+     * Sets the number of horizontal squares.
+     * @param numXSquares Number of horizontal squares.
+     */
+    public void setNumXSquares(final int numXSquares) {
+        this.numXSquares = numXSquares;
+    }
+
+    /**
+     * Returns the square list.
+     * @return squaresList
+     */
+    public checkersSquare[][] getSquaresList() {
+        return squaresList;
+    }
+
+    /**
+     * Sets the square list.
+     * @param squaresList List of squares.
+     */
+    public void setSquaresList(final checkersSquare[][] squaresList) {
+        this.squaresList = squaresList;
+    }
 
     /**
      * Abstract method to check if a given coordinate is within the

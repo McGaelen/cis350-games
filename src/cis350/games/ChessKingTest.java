@@ -46,7 +46,7 @@ public class ChessKingTest extends TestCase {
     }
 
     /**
-     * Test ally pice putting king in check.
+     * Test ally piece putting king in check.
      */
     public void testInvalidAllyPieceMove() {
         chessStandardBoard board = new chessStandardBoard(8, 8);
@@ -71,7 +71,7 @@ public class ChessKingTest extends TestCase {
     public void testInvalidMoveToCheckLocation() {
         chessStandardBoard board = new chessStandardBoard(8, 8);
         chessKing newKing = new chessKing(3, 7, Color.black, board);
-        board.blackKingTracker = newKing;
+        newKing = board.getBlackKingTracker();
         chessPawn enemyPawn = new chessPawn(5, 5, Color.white, board);
         assertFalse(newKing.canMove(4, 6));
     }

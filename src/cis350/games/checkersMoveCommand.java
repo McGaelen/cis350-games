@@ -9,27 +9,27 @@ public class checkersMoveCommand {
     /**
      * The piece that was moved by the player.
      */
-    checkersPiece movingPiece;
+    private checkersPiece movingPiece;
     /**
      * The piece jumped by the player.
      */
-    checkersPiece enemyPiece;
+    private checkersPiece enemyPiece;
     /**
      * The resulting x coordinate of the player's piece.
      */
-    int xDestination;
+    private int xDestination;
     /**
      * The resulting y coordinate of the player's piece.
      */
-    int yDestination;
+    private int yDestination;
     /**
      * The original x coordinate of the player's piece.
      */
-    int xOrigin;
+    private int xOrigin;
     /**
      * The original y coordinate of the player's piece.
      */
-    int yOrigin;
+    private int yOrigin;
 
     /**
      * Creates a new record of a command in checkers.
@@ -47,8 +47,8 @@ public class checkersMoveCommand {
             final int yDestinationParam) {
         this.movingPiece = movingPieceParam;
         this.enemyPiece = enemyPieceParam;
-        this.xOrigin = movingPiece.xLocation;
-        this.yOrigin = movingPiece.yLocation;
+        this.xOrigin = movingPiece.getXLocation();
+        this.yOrigin = movingPiece.getYLocation();
         this.xDestination = xDestinationParam;
         this.yDestination = yDestinationParam;
     }

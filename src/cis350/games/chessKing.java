@@ -18,7 +18,7 @@ public class chessKing extends chessPiece {
     public chessKing(final int initX, final int initY,
             final Color color, final chessStandardBoard board) {
         super(initX, initY, color, board);
-        this.nameOfPiece = "king";
+        this.setNameOfPiece("king");
     }
 
     /**
@@ -29,8 +29,8 @@ public class chessKing extends chessPiece {
      */
     @Override
     boolean isValidSpecialMove(final int newX, final int newY) {
-        int xDisplacement = newX - xLocation;
-        int yDisplacement = newY - yLocation;
+        int xDisplacement = newX - getXLocation();
+        int yDisplacement = newY - getYLocation();
         // No need to check for obstacles since it's a single step move.
         if (isValidKingMove(xDisplacement, yDisplacement)) {
             return true;

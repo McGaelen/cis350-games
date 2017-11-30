@@ -8,27 +8,27 @@ public class chessMoveCommand {
     /**
      * The moving piece.
      */
-    chessPiece movingPiece;
+    private chessPiece movingPiece;
     /**
      * the enemy piece.
      */
-    chessPiece enemyPiece;
+    private chessPiece enemyPiece;
     /**
      * the destination x-coordinate.
      */
-    int xDestination;
+    private int xDestination;
     /**
      * the destination y-coordinate.
      */
-    int yDestination;
+    private int yDestination;
     /**
      * the original x-coordinate.
      */
-    int xOrigin;
+    private int xOrigin;
     /**
      * the original y-coordinate.
      */
-    int yOrigin;
+    private int yOrigin;
 
     /**
      * Constructor for the move.
@@ -41,8 +41,8 @@ public class chessMoveCommand {
             final chessPiece ePiece, final int xDest, final int yDest) {
         this.movingPiece = mPiece;
         this.enemyPiece = ePiece;
-        this.xOrigin = mPiece.xLocation;
-        this.yOrigin = mPiece.yLocation;
+        this.xOrigin = mPiece.getXLocation();
+        this.yOrigin = mPiece.getYLocation();
         this.xDestination = xDest;
         this.yDestination = yDest;
     }
