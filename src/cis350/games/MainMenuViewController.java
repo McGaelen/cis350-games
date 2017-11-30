@@ -46,7 +46,7 @@ public class MainMenuViewController {
     }
     @FXML
     private void ticTacToeStart() {
-        //launch tic-tac-toe
+    	//launch tic tac toe
     }
     @FXML
     private void connectFourBtnClick() {
@@ -112,7 +112,7 @@ public class MainMenuViewController {
 //            try {
 //                Main.ticTacToeLaunchScene
 //    = new Scene(FXMLLoader.load(getClass().getResource(
-        //"ticTacToeLaunch.fxml")));
+//        "ticTacToeLaunch.fxml")));
 //                Main.stage.setScene(Main.ticTacToeLaunchScene);
 //            } catch (IOException e) {
 //                System.out.println("Couldn't load ticTacToeLaunch.fxml");
@@ -120,11 +120,12 @@ public class MainMenuViewController {
 //        } else {
 //            Main.stage.setScene(Main.ticTacToeLaunchScene);
 //        }
-    TicTacToeGUI gui = new TicTacToeGUI();
-    gui.setTitle("Tic Tac Toe Test");
-    gui.pack();
-    gui.setResizable(false);
-    gui.setVisible(true);
+    TicTacToeFXGUI gui = new TicTacToeFXGUI();
+    Scene scene = new Scene(gui, 440, 460);
+    Main.stage.setScene(scene);
+    Main.stage.sizeToScene();
+    Main.stage.setResizable(false);
+    Main.stage.setTitle("Tic Tac Toe");
     }
 
     @FXML
