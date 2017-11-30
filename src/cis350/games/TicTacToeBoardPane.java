@@ -30,7 +30,9 @@ public class TicTacToeBoardPane extends GridPane implements EventHandler{
 
     /** the current player's turn. */
     private String currentPlayer;
-	
+    
+    /** number of turns */
+    private int numTurns;
 	
 	public TicTacToeBoardPane() {
 
@@ -77,6 +79,7 @@ public class TicTacToeBoardPane extends GridPane implements EventHandler{
                 game.startGame();
                 currentPlayer = "X";
                 updateBoard();
+                numTurns = 0;
             } else if (game.isTie()) {
             	Alert alert = new Alert(AlertType.INFORMATION);
             	alert.setTitle("Game Message");
@@ -86,12 +89,14 @@ public class TicTacToeBoardPane extends GridPane implements EventHandler{
                 game.startGame();
                 currentPlayer = "X";
                 updateBoard();
+                numTurns = 0;
             } else {
                 if (currentPlayer.equals("X")) {
                     currentPlayer = "O";
                 } else {
                     currentPlayer = "X";
                 }
+                numTurns++;
             }
         } catch (IllegalArgumentException e) {
         	Alert alert = new Alert(AlertType.INFORMATION);
