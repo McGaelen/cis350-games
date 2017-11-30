@@ -13,15 +13,15 @@ public class chessPlayer {
     /**
     * Player name.
     */
-    public String playerName;
+    private String playerName;
     /**
      * Player color.
      */
-    Color playerColor;
+    private Color playerColor;
     /**
      * Player score.
      */
-    public int playerScore;
+    private int playerScore;
 
     /**
      * Constructor to add a new player to the game.
@@ -29,10 +29,58 @@ public class chessPlayer {
      * @param cPlayerColor This is the Player color
      */
     public chessPlayer(final String cPlayerName, final Color cPlayerColor) {
-        this.playerName = cPlayerName;
-        this.playerColor = cPlayerColor;
-        this.playerScore = 0;
+        this.setPlayerName(cPlayerName);
+        this.setPlayerColor(cPlayerColor);
+        this.setPlayerScore(0);
 
+    }
+
+    /**
+     * Returns player name.
+     * @return playerName
+     */
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    /**
+     * Sets player name.
+     * @param playerName player name
+     */
+    public void setPlayerName(final String playerName) {
+        this.playerName = playerName;
+    }
+
+    /**
+     * Returns player color.
+     * @return playerColor
+     */
+    public Color getPlayerColor() {
+        return playerColor;
+    }
+
+    /**
+     * Sets player color.
+     * @param playerColor player color
+     */
+    public void setPlayerColor(final Color playerColor) {
+        this.playerColor = playerColor;
+    }
+
+    /**
+     * Returns player score.
+     * @return playerScore
+     */
+    public int getPlayerScore() {
+        return playerScore;
+    }
+
+    /**
+     * Sets player score.
+     * @param playerScore player's score
+     */
+    public void setPlayerScore(final int playerScore) {
+        this.playerScore = playerScore;
     }
 }
 

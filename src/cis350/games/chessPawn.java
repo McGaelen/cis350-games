@@ -19,7 +19,7 @@ public class chessPawn extends chessPiece {
             final int initX, final int initY,
             final Color color, final chessStandardBoard board) {
         super(initX, initY, color, board);
-        this.nameOfPiece = "pawn";
+        this.setNameOfPiece("pawn");
     }
 
     /**
@@ -30,20 +30,20 @@ public class chessPawn extends chessPiece {
     */
     @Override
     boolean isValidSpecialMove(final int newX, final int newY) {
-        int xDisplacement = newX - xLocation;
-        int yDisplacement = newY - yLocation;
+        int xDisplacement = newX - getXLocation();
+        int yDisplacement = newY - getYLocation();
         if (isValidPawnMove(xDisplacement, yDisplacement)) {
             chessSquare squareToCheck
-            = currentBoard.squaresList
-            [xLocation + xDisplacement][yLocation + yDisplacement];
+            = getCurrentBoard().getSquaresList()
+            [getXLocation() + xDisplacement][getYLocation() + yDisplacement];
             // If the pawn moves forward the square should not be occupied
             if (xDisplacement == 0) {
-                if (squareToCheck.isOccupied) {
+                if (squareToCheck.getIsOccupied()) {
                     return false;
                 }
                 return true;
             } else { // If the pawn moves to capture it should be occupied
-                if (squareToCheck.isOccupied) {
+                if (squareToCheck.getIsOccupied()) {
                     return true;
                 }
                 return false;
@@ -61,10 +61,10 @@ public class chessPawn extends chessPiece {
     private boolean isValidPawnMove(
             final int xDisplacement, final int yDisplacement) {
         // Two steps allowed in first move
-        if ((this.yLocation == 6
-                && this.color.equals(Color.black))
-                || (this.yLocation == 1
-                && this.color.equals(Color.white))) {
+        if ((this.getYLocation() == 6
+                && this.getColor().equals(Color.black))
+                || (this.getYLocation() == 1
+                && this.getColor().equals(Color.white))) {
             return handlePawnFirstMove(xDisplacement, yDisplacement);
         } else { // Single steps allowed in future moves.
             return handleRegularPawnMove(xDisplacement, yDisplacement);
@@ -79,7 +79,7 @@ public class chessPawn extends chessPiece {
         */
     private boolean handleRegularPawnMove(
             final int xDisplacement, final int yDisplacement) {
-        if (color.equals(Color.white)) {
+        if (getColor().equals(Color.white)) {
             // White capture or move upwards.
             if (yDisplacement == 1
                     && (xDisplacement == 0
@@ -107,7 +107,7 @@ public class chessPawn extends chessPiece {
     private boolean handlePawnFirstMove(
             final int xDisplacement, final int yDisplacement) {
         // White pawns can only move upwards.
-        if (color.equals(Color.white)) {
+        if (getColor().equals(Color.white)) {
             // Two step without capture.
             if ((yDisplacement == 1 || yDisplacement == 2)
                     && (xDisplacement == 0)) {

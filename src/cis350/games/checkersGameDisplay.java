@@ -14,11 +14,11 @@ public class checkersGameDisplay extends JPanel {
     /**
      * Holds an instance of a checkers board.
      */
-    checkersStandardBoard board;
+    private checkersStandardBoard board;
     /**
      * The size that each square in the board should be.
      */
-    int squareSize;
+    private int squareSize;
 
     /**
      * Constructor to initialize a game display.
@@ -38,18 +38,17 @@ public class checkersGameDisplay extends JPanel {
      */
     @Override
     public void paintComponent(final Graphics graphic) {
-        for (int i = 0; i < board.numXSquares; i++) {
-            for (int j = 0; j < board.numYSquares; j++) {
-                checkersSquare squareToDraw = board.squaresList[i][j];
-                if (squareToDraw.color.equals(checkersBoard.Color.black)) {
+        for (int i = 0; i < board.getNumXSquares(); i++) {
+            for (int j = 0; j < board.getNumYSquares(); j++) {
+                checkersSquare squareToDraw = board.getSquaresList()[i][j];
+                if (squareToDraw.getColor().equals(checkersBoard.Color.black)) {
                     graphic.setColor(new Color(58, 95, 205));
                     graphic.fillRect(
                             (squareSize * i),
                             (7 - j) * squareSize, squareSize, squareSize
                     );
-                    if (squareToDraw.isOccupied) {
-                        squareToDraw
-                                .occupyingPiece
+                    if (squareToDraw.getIsOccupied()) {
+                        squareToDraw.getOccupyingPiece()
                                 .drawPiece(graphic, squareSize, i, j);
                     }
                 } else {
@@ -58,9 +57,8 @@ public class checkersGameDisplay extends JPanel {
                             (squareSize * i),
                             (7 - j) * squareSize, squareSize, squareSize
                     );
-                    if (squareToDraw.isOccupied) {
-                        squareToDraw.
-                                occupyingPiece
+                    if (squareToDraw.getIsOccupied()) {
+                        squareToDraw.getOccupyingPiece()
                                 .drawPiece(graphic, squareSize, i, j);
                     }
                 }

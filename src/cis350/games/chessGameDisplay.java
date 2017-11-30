@@ -16,11 +16,11 @@ public class chessGameDisplay extends JPanel {
     /**
      * the current board.
      */
-    chessStandardBoard board;
+    private chessStandardBoard board;
     /**
      * the square size.
      */
-    int squareSize;
+    private int squareSize;
 
     /**
      * Constructor for the Game Display.
@@ -39,23 +39,23 @@ public class chessGameDisplay extends JPanel {
      */
     @Override
     public void paintComponent(final Graphics graphic) {
-        for (int i = 0; i < board.numXSquares; i++) {
-            for (int j = 0; j < board.numYSquares; j++) {
-                chessSquare squareToDraw = board.squaresList[i][j];
-                if (squareToDraw.color.equals(chessBoard.Color.black)) {
+        for (int i = 0; i < board.getNumXSquares(); i++) {
+            for (int j = 0; j < board.getNumYSquares(); j++) {
+                chessSquare squareToDraw = board.getSquaresList()[i][j];
+                if (squareToDraw.getColor().equals(chessBoard.Color.black)) {
                     graphic.setColor(new Color(58, 95, 205));
                     graphic.fillRect((squareSize * i),
                             (7 - j) * squareSize, squareSize, squareSize);
-                    if (squareToDraw.isOccupied) {
-                        squareToDraw.occupyingPiece.drawPiece(
+                    if (squareToDraw.getIsOccupied()) {
+                        squareToDraw.getOccupyingPiece().drawPiece(
                                 graphic, squareSize, i, j);
                     }
                 } else {
                     graphic.setColor(new Color(230, 230, 250));
                     graphic.fillRect((squareSize * i),
                             (7 - j) * squareSize, squareSize, squareSize);
-                    if (squareToDraw.isOccupied) {
-                        squareToDraw.occupyingPiece.drawPiece(
+                    if (squareToDraw.getIsOccupied()) {
+                        squareToDraw.getOccupyingPiece().drawPiece(
                                 graphic, squareSize, i, j);
                     }
                 }

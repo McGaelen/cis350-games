@@ -36,6 +36,7 @@ public class TicTacToeCellPanel extends JPanel {
     public TicTacToeCellPanel(final String p, final int r, final int c) {
         // set the layout to GridBag
         setLayout(new GridBagLayout());
+        
         // create border and background
         setBorder(BorderFactory.createEtchedBorder(
                 EtchedBorder.RAISED));

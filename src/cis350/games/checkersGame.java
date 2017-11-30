@@ -25,71 +25,71 @@ public class checkersGame {
     /**
      * checkersPlayer representing the white player.
      */
-    static checkersPlayer whitePlayer;
+    private static checkersPlayer whitePlayer;
     /**
      * checkersPlayer representing the white player.
      */
-    static checkersPlayer blackPlayer;
+    private static checkersPlayer blackPlayer;
     /**
      * Color of the current player's turn.
      */
-    checkersBoard.Color gameTurn;
+    private checkersBoard.Color gameTurn;
     /**
      * Representation of the game board.
      */
-    checkersStandardBoard gameBoard;
+    private checkersStandardBoard gameBoard;
     /**
      * Is true if the game is over.
      */
-    boolean gameOver;
+    private boolean gameOver;
     /**
      * Holds the size of a square in the game board.
      */
-    int squareSize;
+    private int squareSize;
     /**
      * Reference to the game's window.
      */
-    JFrame window;
+    private JFrame window;
     /**
      * Displays the game board.
      */
-    JPanel gamePanel;
+    private JPanel gamePanel;
     /**
      * Displays the right side controls.
      */
-    JPanel sidePanel;
+    private JPanel sidePanel;
     /**
      * Displays the white player's name.
      */
-    JLabel whiteLabel;
+    private JLabel whiteLabel;
     /**
      * Displays the black player's name.
      */
-    JLabel blackLabel;
+    private JLabel blackLabel;
     /**
      * Displays the white player's score.
      */
-    JLabel whiteScore;
+    private JLabel whiteScore;
     /**
      * Displays the black player's score.
      */
-    JLabel blackScore;
+    private JLabel blackScore;
     /**
      * Displays a forfeit button to end the game.
      */
-    JButton forfeitButton;
+    private JButton forfeitButton;
     /**
      * Displays a restart button to restart a game.
      */
-    JButton restartButton;
+    private JButton restartButton;
     /**
      * Reference to the currently moving piece.
      */
-    checkersPiece movingPiece;
+    private checkersPiece movingPiece;
     /**
      * History of commands that were executed.
      */
-    Stack<checkersMoveCommand> commandStack;
+    private Stack<checkersMoveCommand> commandStack;
 
     /**
      * Initializes the gameBoard, and populates it with pieces
@@ -196,17 +196,19 @@ public class checkersGame {
         forfeitButton = new JButton("Forfeit Game");
         setupButtonListeners();
         whiteLabel = new JLabel(
-                "WHITE PLAYER : ".concat(whitePlayer.playerName) + " "
+                "WHITE PLAYER : ".concat(whitePlayer.getPlayerName()) + " "
         );
         whiteLabel.setForeground(Color.BLUE);
         blackLabel = new JLabel(
-                "BLACK PLAYER : ".concat(blackPlayer.playerName) + " "
+                "BLACK PLAYER : ".concat(blackPlayer.getPlayerName()) + " "
         );
         whiteScore = new JLabel(
-                whitePlayer.playerName + " Score : " + whitePlayer.playerScore
+                whitePlayer.getPlayerName() + " Score : " + whitePlayer
+                .getPlayerScore()
         );
         blackScore = new JLabel(
-                blackPlayer.playerName + " Score : " + blackPlayer.playerScore
+                blackPlayer.getPlayerName() + " Score : " + blackPlayer
+                .getPlayerScore()
         );
         sideDisplay.setLayout(new BoxLayout(sideDisplay, BoxLayout.PAGE_AXIS));
         sideDisplay.add(whiteLabel);
@@ -239,8 +241,8 @@ public class checkersGame {
      */
     public void mouseActions() {
         gamePanel.addMouseListener(new MouseAdapter() {
-            int xPrev;
-            int yPrev;
+            private int xPrev;
+            private int yPrev;
 
             /**
              * Gets the currently moving piece based on the coordinates
@@ -256,7 +258,8 @@ public class checkersGame {
                 xPrev = xOrigin;
                 yPrev = yOrigin;
                 movingPiece =
-                        gameBoard.squaresList[xOrigin][yOrigin].occupyingPiece;
+                        gameBoard.getSquaresList()
+                        [xOrigin][yOrigin].getOccupyingPiece();
             }
 
             /**
@@ -270,45 +273,53 @@ public class checkersGame {
                 xDestination = xDestination / squareSize;
                 yDestination = yDestination / squareSize;
                 yDestination = 7 - yDestination;
-                if (movingPiece.color == gameTurn
+                if (movingPiece.getColor() == gameTurn
                         && movingPiece.canMove(xDestination, yDestination)) {
                     checkersPiece enemyPiece = null;
                     //White Pawn Piece Moves
                     if (yDestination > yPrev) {
                         if (xDestination > xPrev) {
                             gameBoard
-                                .squaresList[xDestination - 1][yDestination - 1]
-                                .occupyingPiece = null;
+                                .getSquaresList()
+                                [xDestination - 1][yDestination - 1]
+                                .setOccupyingPiece(null);
                             gameBoard
-                                .squaresList[xDestination - 1][yDestination - 1]
-                                .isOccupied = false;
+                                .getSquaresList()
+                                [xDestination - 1][yDestination - 1]
+                                .setIsOccupied(false);
                         }
                         if (xDestination < xPrev) {
                             gameBoard
-                                .squaresList[xDestination + 1][yDestination - 1]
-                                .occupyingPiece = null;
+                                .getSquaresList()
+                                [xDestination + 1][yDestination - 1]
+                                .setOccupyingPiece(null);
                             gameBoard
-                                .squaresList[xDestination + 1][yDestination - 1]
-                                .isOccupied = false;
+                                .getSquaresList()
+                                [xDestination + 1][yDestination - 1]
+                                .setIsOccupied(false);
                         }
                     }
                     //Black Pawn Piece Moves
                     if (yDestination < yPrev) {
                         if (xDestination > xPrev) {
                             gameBoard
-                                .squaresList[xDestination - 1][yDestination + 1]
-                                .occupyingPiece = null;
+                                .getSquaresList()
+                                [xDestination - 1][yDestination + 1]
+                                .setOccupyingPiece(null);
                             gameBoard
-                                .squaresList[xDestination - 1][yDestination + 1]
-                                .isOccupied = false;
+                                .getSquaresList()
+                                [xDestination - 1][yDestination + 1]
+                                .setIsOccupied(false);
                         }
                         if (xDestination < xPrev) {
                             gameBoard
-                                .squaresList[xDestination + 1][yDestination + 1]
-                                .occupyingPiece = null;
+                                .getSquaresList()
+                                [xDestination + 1][yDestination + 1]
+                                .setOccupyingPiece(null);
                             gameBoard
-                                .squaresList[xDestination + 1][yDestination + 1]
-                                .isOccupied = false;
+                                .getSquaresList()
+                                [xDestination + 1][yDestination + 1]
+                                .setIsOccupied(false);
                         }
                     }
                     checkersMoveCommand newCommand = new checkersMoveCommand(
@@ -324,7 +335,8 @@ public class checkersGame {
                         movingPiece.blackPromote(xDestination, yDestination);
                     }
 
-                    if (movingPiece.color.equals(checkersBoard.Color.white)) {
+                    if (movingPiece.getColor()
+                            .equals(checkersBoard.Color.white)) {
                         gameTurn = gameTurn.opposite();
                         blackLabel.setForeground(Color.BLUE);
                         whiteLabel.setForeground(Color.BLACK);
@@ -353,26 +365,27 @@ public class checkersGame {
         int count = 0;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if (gameBoard.squaresList[i][j].isOccupied) {
-                    cPiece = gameBoard.squaresList[i][j].occupyingPiece;
-                    if ((cPiece.color == checkersBoard.Color.black)) {
+                if (gameBoard.getSquaresList()[i][j].getIsOccupied()) {
+                    cPiece = gameBoard.getSquaresList()
+                            [i][j].getOccupyingPiece();
+                    if ((cPiece.getColor() == checkersBoard.Color.black)) {
                         count = count + 1;
                     }
                 }
             }
         }
         if (count == 0) {
-            messageBox(blackPlayer.playerName
+            messageBox(blackPlayer.getPlayerName()
                     + " ,You have no more pieces\nYou Lost\nPlease "
                     + "Click Restart to Play again", "GAME OVER!!"
             );
             gameOver = true;
-            whitePlayer.playerScore++;
-            whiteScore.setText(whitePlayer.playerName
-                    + " Score : " + whitePlayer.playerScore
+            whitePlayer.setPlayerScore(whitePlayer.getPlayerScore() + 1);
+            whiteScore.setText(whitePlayer.getPlayerName()
+                    + " Score : " + whitePlayer.getPlayerScore()
             );
-            blackScore.setText(blackPlayer.playerName
-                    + " Score : " + blackPlayer.playerScore
+            blackScore.setText(blackPlayer.getPlayerName()
+                    + " Score : " + blackPlayer.getPlayerScore()
             );
         }
     }
@@ -385,26 +398,28 @@ public class checkersGame {
         int count = 0;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if (gameBoard.squaresList[i][j].isOccupied) {
-                    cPiece = gameBoard.squaresList[i][j].occupyingPiece;
-                    if ((cPiece.color == checkersBoard.Color.white)) {
+                if (gameBoard.getSquaresList()
+                        [i][j].getIsOccupied()) {
+                    cPiece = gameBoard
+                            .getSquaresList()[i][j].getOccupyingPiece();
+                    if ((cPiece.getColor() == checkersBoard.Color.white)) {
                         count = count + 1;
                     }
                 }
             }
         }
         if (count == 0) {
-            messageBox(whitePlayer.playerName
+            messageBox(whitePlayer.getPlayerName()
                     + " ,You have no more pieces\nYou Lost\nPlease "
                     + "Click Restart to Play again", "GAME OVER!!"
             );
             gameOver = true;
-            blackPlayer.playerScore++;
-            whiteScore.setText(whitePlayer.playerName
-                    + " Score : " + whitePlayer.playerScore
+            blackPlayer.setPlayerScore(blackPlayer.getPlayerScore() + 1);
+            whiteScore.setText(whitePlayer.getPlayerName()
+                    + " Score : " + whitePlayer.getPlayerScore()
             );
-            blackScore.setText(blackPlayer.playerName
-                    + " Score : " + blackPlayer.playerScore
+            blackScore.setText(blackPlayer.getPlayerName()
+                    + " Score : " + blackPlayer.getPlayerScore()
             );
         }
     }
@@ -415,9 +430,9 @@ public class checkersGame {
     private void restartGame() {
         String player;
         if (gameTurn.equals(cis350.games.checkersBoard.Color.white)) {
-            player = blackPlayer.playerName;
+            player = blackPlayer.getPlayerName();
         } else {
-            player = whitePlayer.playerName;
+            player = whitePlayer.getPlayerName();
         }
         int response = JOptionPane.showConfirmDialog(
                 null,
@@ -447,20 +462,21 @@ public class checkersGame {
         }
         int response = JOptionPane.showConfirmDialog(
             null,
-            currentPlayer.playerName + " , Are you sure you want to forfeit",
+            currentPlayer.
+            getPlayerName() + " , Are you sure you want to forfeit",
             "Forfeit",
             JOptionPane.YES_NO_OPTION
         );
         if (response == JOptionPane.YES_OPTION) {
             gameOver = true;
-            otherPlayer.playerScore++;
-            whiteScore.setText(whitePlayer.playerName
-                    + " Score : " + whitePlayer.playerScore
+            otherPlayer.setPlayerScore(otherPlayer.getPlayerScore() + 1);
+            whiteScore.setText(whitePlayer.getPlayerName()
+                    + " Score : " + whitePlayer.getPlayerScore()
             );
-            blackScore.setText(blackPlayer.playerName
-                    + " Score : " + blackPlayer.playerScore
+            blackScore.setText(blackPlayer.getPlayerName()
+                    + " Score : " + blackPlayer.getPlayerScore()
             );
-            messageBox(currentPlayer.playerName
+            messageBox(currentPlayer.getPlayerName()
                     + " ,You Lost\nPlease Click Restart to Play again",
                     "GAME OVER!!"
             );

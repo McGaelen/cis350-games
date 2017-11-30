@@ -18,9 +18,9 @@ public class CheckersPieceTest extends TestCase {
         = new checkersPawn(2, 2, Color.black, board);
         assertTrue(whitePawn.canMove(3, 3));
         whitePawn.executeCaptureOrMove(3, 3);
-        assertTrue(whitePawn.xLocation
-                == 3 && whitePawn.yLocation == 3);
-        assertTrue((board.squaresList[2][2].isOccupied));
+        assertTrue(whitePawn.getXLocation()
+                == 3 && whitePawn.getYLocation() == 3);
+        assertTrue((board.getSquaresList()[2][2].getIsOccupied()));
     }
     /**
      * Testing out of bounds invalid move.
