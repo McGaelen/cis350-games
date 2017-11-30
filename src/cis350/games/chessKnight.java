@@ -19,7 +19,7 @@ public class chessKnight extends chessPiece {
             final int initX, final int initY,
             final Color color, final chessStandardBoard board) {
         super(initX, initY, color, board);
-        this.nameOfPiece = "knight";
+        this.setNameOfPiece("knight");
     }
 
     /**
@@ -30,8 +30,8 @@ public class chessKnight extends chessPiece {
      */
     @Override
     boolean isValidSpecialMove(final int newX, final int newY) {
-        int xDisplacement = newX - xLocation;
-        int yDisplacement = newY - yLocation;
+        int xDisplacement = newX - getXLocation();
+        int yDisplacement = newY - getYLocation();
         // No need to check for obstacles since knight can hop over pieces
         if (isValidKnightMove(xDisplacement, yDisplacement)) {
             return true;

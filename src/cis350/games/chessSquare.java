@@ -10,15 +10,15 @@ public class chessSquare {
     /**
      * Square is occupied or not.
      */
-    public boolean isOccupied;
+    private boolean isOccupied;
     /**
      * Assign 0 as white color and 1 as black color.
      */
-    public Color color;
+    private Color color;
     /**
      * Square objects keep track of which piece occupies that square.
      */
-    public chessPiece occupyingPiece;
+    private chessPiece occupyingPiece;
 
     /**
      * Constructor to initialize chess board Squares.
@@ -29,5 +29,53 @@ public class chessSquare {
         this.isOccupied = cIsOccupied;
         this.color = cColor;
         this.occupyingPiece = null;
+    }
+    
+    /**
+     * Returns isOccupied variable.
+     * @return isOccupied
+     */
+    public boolean getIsOccupied() {
+        return this.isOccupied;
+    }
+    
+    /**
+     * Returns color variable.
+     * @return color
+     */
+    public Color getColor() {
+        return this.color;
+    }
+    
+    /**
+     * Returns occupyingPiece variable.
+     * @return occupyingPiece
+     */
+    public chessPiece getOccupyingPiece() {
+        return this.occupyingPiece;
+    }
+    
+    /**
+     * Sets the isOccupied variable.
+     * @param bool State we are setting the boolean.
+     */
+    public void setIsOccupied(final boolean bool) {
+        this.isOccupied = bool;
+    }
+    
+    /**
+     * Sets color variable.
+     * @param col is the color we are setting
+     */
+    public void setColor(final Color col) {
+        this.color = col;
+    }
+    
+    /**
+     * sets occupyingPiece variable.
+     * @param nPiece is the piece we are setting
+     */
+    public void setOccupyingPiece(final chessPiece nPiece) {
+        this.occupyingPiece = nPiece;
     }
 }

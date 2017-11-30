@@ -20,7 +20,7 @@ public class checkersKing extends checkersPiece {
             final Color color,
             final checkersStandardBoard board) {
         super(initX, initY, color, board);
-        this.nameOfPiece = "king";
+        this.setNameOfPiece("king");
     }
 
     /**
@@ -31,23 +31,25 @@ public class checkersKing extends checkersPiece {
      */
     @Override
     boolean isValidSpecialMove(final int newX, final int newY) {
-        int xDisplacement = newX - xLocation;
-        int yDisplacement = newY - yLocation;
+        int xDisplacement = newX - getXLocation();
+        int yDisplacement = newY - getYLocation();
         checkersSquare squareToCheck =
-            currentBoard
-            .squaresList[xLocation + xDisplacement][yLocation + yDisplacement];
+            getCurrentBoard()
+            .getSquaresList()[getXLocation() + xDisplacement]
+                    [getYLocation() + yDisplacement];
         checkersSquare squareToCheck2 =
-            currentBoard
-            .squaresList[xLocation + xDisplacement][yLocation + yDisplacement];
+            getCurrentBoard()
+            .getSquaresList()[getXLocation() + xDisplacement]
+                    [getYLocation() + yDisplacement];
         if (isValidKingMove(xDisplacement, yDisplacement)) {
             if (Math.abs(yDisplacement) == 2) {
-                if (squareToCheck2.isOccupied) {
+                if (squareToCheck2.getIsOccupied()) {
                     return false;
                 } else {
                     return true;
                 }
             } else if (Math.abs(yDisplacement) == 1) {
-                if (squareToCheck.isOccupied) {
+                if (squareToCheck.getIsOccupied()) {
                     return false;
                 } else {
                     return true;

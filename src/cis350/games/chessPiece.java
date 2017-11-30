@@ -19,24 +19,96 @@ public abstract class chessPiece {
     /**
      * Piece specific name will be stored here.
      */
-    String nameOfPiece;
+    private String nameOfPiece;
     /**
      * Black or White piece.
      */
-    public Color color;
+    private Color color;
     /**
      * Reference to the board this piece is on to indirectly access squaresList.
      */
-    chessStandardBoard currentBoard;
+    private chessStandardBoard currentBoard;
     /**
      * xLocation of piece on board.
      */
-    public int xLocation;
+    private int xLocation;
     /**
      * yLocation of piece on board.
      */
-    public int yLocation;
+    private int yLocation;
+    
+    /**
+     * Returns the board.
+     * @return currentBoard
+     */
+    public chessStandardBoard getCurrentBoard() {
+        return this.currentBoard;
+    }
+    
+    /**
+     * Returns the xLocation of the piece.
+     * @return xLocation
+     */
+    public int getXLocation() {
+        return this.xLocation;
+    }
+    
+    /**
+     * Sets the xLocation of the piece.
+     * @param x X location of the piece
+     */
+    public void setXLocation(final int x) {
+        this.xLocation = x;
+    }
+    
+    /**
+     * Returns the yLocation of the piece.
+     * @return yLocation
+     */
+    public int getYLocation() {
+        return this.yLocation;
+    }
+    
+    /**
+     * Sets the yLocation of the piece.
+     * @param y Y location of the piece
+     */
+    public void setYLocation(final int y) {
+        this.yLocation = y;
+    }
 
+    /**
+     * Returns the name of the piece.
+     * @return nameOfPiece
+     */
+    public String getNameOfPiece() {
+        return this.nameOfPiece;
+    }
+    
+    /**
+     * Sets the name of the piece.
+     * @param name name of the piece
+     */
+    public void setNameOfPiece(final String name) {
+        this.nameOfPiece = name;
+    }
+    
+    /**
+     * Returns the color of the piece.
+     * @return color
+     */
+    public Color getColor() {
+        return this.color;
+    }
+    
+    /**
+     * Sets the color of the piece.
+     * @param col color of the piece
+     */
+    public void setColor(final Color col) {
+        this.color = col;
+    }
+    
     /**
      *
      * @param newX Is the x-coordinate of the move
@@ -56,8 +128,8 @@ public abstract class chessPiece {
             final int initX, final int initY,
             final Color pColor, final chessStandardBoard board) {
         this.color = pColor;
-        board.squaresList[initX][initY].isOccupied = true;
-        board.squaresList[initX][initY].occupyingPiece = this;
+        board.getSquaresList()[initX][initY].setIsOccupied(true);
+        board.getSquaresList()[initX][initY].setOccupyingPiece(this);
         this.currentBoard = board;
         this.xLocation = initX;
         this.yLocation = initY;
@@ -92,9 +164,9 @@ public abstract class chessPiece {
      * @return true is an enemy piece is at the new location
      */
     private boolean isEnemyPieceAtDestination(final int newX, final int newY) {
-        chessSquare squareToCheck = currentBoard.squaresList[newX][newY];
-        if (squareToCheck.isOccupied) {
-            return isEnemyPiece(this.color, squareToCheck.occupyingPiece);
+        chessSquare squareToCheck = currentBoard.getSquaresList()[newX][newY];
+        if (squareToCheck.getIsOccupied()) {
+            return isEnemyPiece(this.color, squareToCheck.getOccupyingPiece());
         }
         return true;
     }
@@ -114,16 +186,17 @@ public abstract class chessPiece {
      * @return true if the king is in check
      */
     public boolean isKingInCheck(final chessKing kingToCheck) {
-        int kingXLocation = kingToCheck.xLocation;
-        int kingYLocation = kingToCheck.yLocation;
-        Color colorToCheck = kingToCheck.color;
-        for (int i = 0; i < currentBoard.numXSquares; i++) {
-            for (int j = 0; j < currentBoard.numYSquares; j++) {
-                chessSquare squareToCheck = currentBoard.squaresList[i][j];
-                if (squareToCheck.isOccupied) {
+        int kingXLocation = kingToCheck.getXLocation();
+        int kingYLocation = kingToCheck.getYLocation();
+        Color colorToCheck = kingToCheck.getColor();
+        for (int i = 0; i < currentBoard.getNumXSquares(); i++) {
+            for (int j = 0; j < currentBoard.getNumYSquares(); j++) {
+                chessSquare squareToCheck = currentBoard.getSquaresList()[i][j];
+                if (squareToCheck.getIsOccupied()) {
                     if (isEnemyPiece(colorToCheck,
-                            squareToCheck.occupyingPiece)) {
-                        chessPiece enemyPiece = squareToCheck.occupyingPiece;
+                            squareToCheck.getOccupyingPiece())) {
+                        chessPiece enemyPiece = squareToCheck
+                                .getOccupyingPiece();
                         if (enemyPiece.isValidSpecialMove(
                                 kingXLocation, kingYLocation)) {
                             return true;
@@ -147,21 +220,21 @@ public abstract class chessPiece {
         int oldPieceY = this.yLocation;
         chessKing kingToCheck;
         chessSquare squareToCheck
-        = currentBoard.squaresList[newPieceX][newPieceY];
-        if (squareToCheck.isOccupied) {
-            chessPiece pieceToCheck = squareToCheck.occupyingPiece;
+        = currentBoard.getSquaresList()[newPieceX][newPieceY];
+        if (squareToCheck.getIsOccupied()) {
+            chessPiece pieceToCheck = squareToCheck.getOccupyingPiece();
             if (isEnemyPieceAtDestination(newPieceX, newPieceY)) {
                 chessPiece enemyPiece = pieceToCheck;
                 if (this.color.equals(Color.white)) {
-                    if (currentBoard.whiteKingTracker == null) {
+                    if (currentBoard.getWhiteKingTracker() == null) {
                         return false;
                     }
-                    kingToCheck = currentBoard.whiteKingTracker;
+                    kingToCheck = currentBoard.getWhiteKingTracker();
                 } else {
-                    if (currentBoard.blackKingTracker == null) {
+                    if (currentBoard.getBlackKingTracker() == null) {
                         return false;
                     }
-                    kingToCheck = currentBoard.blackKingTracker;
+                    kingToCheck = currentBoard.getBlackKingTracker();
                 }
                 movePiece(this, newPieceX, newPieceY);
                 if (isKingInCheck(kingToCheck)) {
@@ -174,15 +247,15 @@ public abstract class chessPiece {
             }
         } else {
             if (this.color.equals(Color.white)) {
-                if (currentBoard.whiteKingTracker == null) {
+                if (currentBoard.getWhiteKingTracker() == null) {
                     return false;
                 }
-                kingToCheck = currentBoard.whiteKingTracker;
+                kingToCheck = currentBoard.getWhiteKingTracker();
             } else {
-                if (currentBoard.blackKingTracker == null) {
+                if (currentBoard.getBlackKingTracker() == null) {
                     return false;
                 }
-                kingToCheck = currentBoard.blackKingTracker;
+                kingToCheck = currentBoard.getBlackKingTracker();
             }
             movePiece(this, newPieceX, newPieceY);
             if (isKingInCheck(kingToCheck)) {
@@ -204,14 +277,14 @@ public abstract class chessPiece {
             final chessPiece pieceToMove, final int newPieceX,
             final int newPieceY) {
         chessSquare currentSquare
-        = currentBoard.squaresList
+        = currentBoard.getSquaresList()
         [pieceToMove.xLocation][pieceToMove.yLocation];
         chessSquare targetSquare
-        = currentBoard.squaresList[newPieceX][newPieceY];
-        currentSquare.isOccupied = false;
-        currentSquare.occupyingPiece = null;
-        targetSquare.isOccupied = true;
-        targetSquare.occupyingPiece = pieceToMove;
+        = currentBoard.getSquaresList()[newPieceX][newPieceY];
+        currentSquare.setIsOccupied(false);
+        currentSquare.setOccupyingPiece(null);
+        targetSquare.setIsOccupied(true);
+        targetSquare.setOccupyingPiece(pieceToMove);
         pieceToMove.xLocation = newPieceX;
         pieceToMove.yLocation = newPieceY;
     }
@@ -290,14 +363,15 @@ public abstract class chessPiece {
         if (!isKingInCheck(kingToCheck)) {
             return false;
         }
-        Color colorToCheck = kingToCheck.color;
-        for (int i = 0; i < currentBoard.numXSquares; i++) {
-            for (int j = 0; j < currentBoard.numYSquares; j++) {
-                chessSquare squareToCheck = currentBoard.squaresList[i][j];
-                if (squareToCheck.isOccupied) {
+        Color colorToCheck = kingToCheck.getColor();
+        for (int i = 0; i < currentBoard.getNumXSquares(); i++) {
+            for (int j = 0; j < currentBoard.getNumYSquares(); j++) {
+                chessSquare squareToCheck = currentBoard.getSquaresList()[i][j];
+                if (squareToCheck.getIsOccupied()) {
                     if (!isEnemyPiece(colorToCheck,
-                            squareToCheck.occupyingPiece)) {
-                        chessPiece allyPiece = squareToCheck.occupyingPiece;
+                            squareToCheck.getOccupyingPiece())) {
+                        chessPiece allyPiece = squareToCheck
+                                .getOccupyingPiece();
                          if (!checkmateHelper(allyPiece, kingToCheck)) {
                              return false;
                          }
@@ -318,14 +392,14 @@ public abstract class chessPiece {
             final chessPiece allyPiece, final chessKing kingToCheck) {
         int oldPieceX = allyPiece.xLocation;
         int oldPieceY = allyPiece.yLocation;
-        for (int i = 0; i < currentBoard.numXSquares; i++) {
-            for (int j = 0; j < currentBoard.numYSquares; j++) {
-                chessSquare squareToCheck = currentBoard.squaresList[i][j];
+        for (int i = 0; i < currentBoard.getNumXSquares(); i++) {
+            for (int j = 0; j < currentBoard.getNumYSquares(); j++) {
+                chessSquare squareToCheck = currentBoard.getSquaresList()[i][j];
                 if (isEnemyPieceAtDestination(i, j)) {
                     if (allyPiece.isValidSpecialMove(i, j)) {
-                        if (squareToCheck.isOccupied) {
+                        if (squareToCheck.getIsOccupied()) {
                             chessPiece enemyPiece
-                            = squareToCheck.occupyingPiece;
+                            = squareToCheck.getOccupyingPiece();
                             movePiece(allyPiece, i, j);
                             if (!isKingInCheck(kingToCheck)) {
                                 movePiece(allyPiece, oldPieceX, oldPieceY);

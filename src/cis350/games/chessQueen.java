@@ -20,7 +20,7 @@ public class chessQueen extends chessPiece {
       final int initX, final int initY,
       final Color color, final chessStandardBoard board) {
     super(initX, initY, color, board);
-    this.nameOfPiece = "queen";
+    this.setNameOfPiece("queen");
   }
 
 /**
@@ -32,8 +32,8 @@ public class chessQueen extends chessPiece {
  */
  @Override
   boolean isValidSpecialMove(final int newX, final int newY) {
-    int xDisplacement = newX - xLocation;
-    int yDisplacement = newY - yLocation;
+    int xDisplacement = newX - getXLocation();
+    int yDisplacement = newY - getYLocation();
     if (isValidQueenMove(xDisplacement, yDisplacement)) {
       int steps = Math.max(Math.abs(xDisplacement),
           Math.abs(yDisplacement));
@@ -42,10 +42,10 @@ public class chessQueen extends chessPiece {
       // Check for obstacles in path of Queen.
       for (int i = 1; i < steps; i++) {
         chessSquare squareToCheck =
-            currentBoard.squaresList
-            [xLocation + i * xDirection]
-            [yLocation + i * yDirection];
-            if (squareToCheck.isOccupied) {
+            getCurrentBoard().getSquaresList()
+            [getXLocation() + i * xDirection]
+            [getYLocation() + i * yDirection];
+            if (squareToCheck.getIsOccupied()) {
           return false;
             }
       }

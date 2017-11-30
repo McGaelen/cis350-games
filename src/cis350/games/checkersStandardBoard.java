@@ -13,12 +13,28 @@ public class checkersStandardBoard extends checkersBoard {
      * Tracker for the white king for check.
      * checkmate and game ending conditions.
      */
-    public checkersKing whiteKingTracker;
+    private checkersKing whiteKingTracker;
     /**
      * Tracker for the black king for check.
      * checkmate and game ending conditions.
      */
-    public checkersKing blackKingTracker;
+    private checkersKing blackKingTracker;
+    
+    /**
+     * Returns white king tracker.
+     * @return whiteKingTracker
+     */
+     public checkersKing getWhiteKingTracker() {
+         return this.whiteKingTracker;
+     }
+     
+     /**
+     * Returns black king tracker.
+     * @return blackKingTracker
+     */
+     public checkersKing getBlackKingTracker() {
+         return this.blackKingTracker;
+     }
 
     /**
      * Method to initialize the checkers board.
@@ -27,11 +43,11 @@ public class checkersStandardBoard extends checkersBoard {
      */
     public checkersStandardBoard(final int xSquares, final int ySquares) {
 
-        this.numXSquares = xSquares;
-        this.numYSquares = ySquares;
-        this.totalSquares = this.numXSquares * this.numYSquares;
-        this.squaresList = new checkersSquare
-                [this.numXSquares][this.numYSquares];
+        this.setNumXSquares(xSquares);
+        this.setNumYSquares(ySquares);
+        this.setTotalSquares(this.getNumXSquares() * this.getNumYSquares());
+        this.setSquaresList(new checkersSquare
+                [this.getNumXSquares()][this.getNumYSquares()]);
         populateBoardWithSquares();
         this.whiteKingTracker = null;
         this.blackKingTracker = null;
@@ -42,22 +58,22 @@ public class checkersStandardBoard extends checkersBoard {
      * General pattern of white and black squares on the board.
      */
     public void populateBoardWithSquares() {
-        for (int i = 0; i < this.numXSquares; i++) {
-            for (int j = 0; j < this.numYSquares; j++) {
+        for (int i = 0; i < this.getNumXSquares(); i++) {
+            for (int j = 0; j < this.getNumYSquares(); j++) {
                 if (i % 2 == 0) {
                     if (j % 2 == 0) {
-                        squaresList[i][j] =
+                        getSquaresList()[i][j] =
                                 new checkersSquare(false, Color.black);
                     } else {
-                        squaresList[i][j] =
+                        getSquaresList()[i][j] =
                                 new checkersSquare(false, Color.white);
                     }
                 } else {
                     if (j % 2 == 0) {
-                        squaresList[i][j] =
+                        getSquaresList()[i][j] =
                                  new checkersSquare(false, Color.white);
                     } else {
-                        squaresList[i][j] =
+                        getSquaresList()[i][j] =
                                 new checkersSquare(false, Color.black);
                     }
                 }
@@ -84,12 +100,12 @@ public class checkersStandardBoard extends checkersBoard {
                     new checkersPawn(i, 2, Color.white, this);
             checkersPawn newBlackPawn =
                     new checkersPawn(i, 6, Color.black, this);
-            this.squaresList[i][0].isOccupied = true;
-            this.squaresList[i][2].isOccupied = true;
-            this.squaresList[i][6].isOccupied = true;
-            this.squaresList[i][0].occupyingPiece = newWhitePawn;
-            this.squaresList[i][2].occupyingPiece = newWhitePawn2;
-            this.squaresList[i][6].occupyingPiece = newBlackPawn;
+            this.getSquaresList()[i][0].setIsOccupied(true);
+            this.getSquaresList()[i][2].setIsOccupied(true);
+            this.getSquaresList()[i][6].setIsOccupied(true);
+            this.getSquaresList()[i][0].setOccupyingPiece(newWhitePawn);
+            this.getSquaresList()[i][2].setOccupyingPiece(newWhitePawn2);
+            this.getSquaresList()[i][6].setOccupyingPiece(newBlackPawn);
             } else {
                 checkersPawn newWhitePawn =
                         new checkersPawn(i, 1, Color.white, this);
@@ -97,12 +113,12 @@ public class checkersStandardBoard extends checkersBoard {
                         new checkersPawn(i, 7, Color.black, this);
                 checkersPawn newBlackPawn2 =
                         new checkersPawn(i, 5, Color.black, this);
-                this.squaresList[i][1].isOccupied = true;
-                this.squaresList[i][7].isOccupied = true;
-                this.squaresList[i][5].isOccupied = true;
-                this.squaresList[i][1].occupyingPiece = newWhitePawn;
-                this.squaresList[i][7].occupyingPiece = newBlackPawn;
-                this.squaresList[i][5].occupyingPiece = newBlackPawn2;
+                this.getSquaresList()[i][1].setIsOccupied(true);
+                this.getSquaresList()[i][7].setIsOccupied(true);
+                this.getSquaresList()[i][5].setIsOccupied(true);
+                this.getSquaresList()[i][1].setOccupyingPiece(newWhitePawn);
+                this.getSquaresList()[i][7].setOccupyingPiece(newBlackPawn);
+                this.getSquaresList()[i][5].setOccupyingPiece(newBlackPawn2);
             }
         }
     }
@@ -115,8 +131,8 @@ public class checkersStandardBoard extends checkersBoard {
      * @return boolean true if move is in board bounds
      */
     public boolean inBoardBounds(final int newX, final int newY) {
-        if (newX < numXSquares && newY
-                < numYSquares && newX > -1 && newY > -1) {
+        if (newX < getNumXSquares() && newY
+                < getNumYSquares() && newX > -1 && newY > -1) {
             return true;
         } else {
             return false;

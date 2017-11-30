@@ -11,12 +11,27 @@ public class chessStandardBoard extends chessBoard {
   /**
 * Tracker for the white king for check, checkmate and game ending conditions.
 */
-  public chessKing whiteKingTracker;
+  private chessKing whiteKingTracker;
   /**
   * Tracker black king for check, checkmate and game ending conditions.
   */
-  public chessKing blackKingTracker;
-
+  private chessKing blackKingTracker;
+  
+  /**
+  * Returns white king tracker.
+  * @return whiteKingTracker
+  */
+  public chessKing getWhiteKingTracker() {
+      return this.whiteKingTracker;
+  }
+  
+  /**
+  * Returns black king tracker.
+  * @return blackKingTracker
+  */
+  public chessKing getBlackKingTracker() {
+      return this.blackKingTracker;
+  }
   /**
   Method to initialize the chess board.
 * @param xSquares Number of Squares on the x-axis
@@ -24,10 +39,11 @@ public class chessStandardBoard extends chessBoard {
 */
   public chessStandardBoard(final int xSquares, final int ySquares) {
 
-    this.numXSquares = xSquares;
-    this.numYSquares = ySquares;
-    this.totalSquares = this.numXSquares * this.numYSquares;
-    this.squaresList = new chessSquare[this.numXSquares][this.numYSquares];
+    this.setNumXSquares(xSquares);
+    this.setNumYSquares(ySquares);
+    this.setTotalSquares(this.getNumXSquares() * this.getNumYSquares());
+    this.setSquaresList(new chessSquare
+            [this.getNumXSquares()][this.getNumYSquares()]);
     populateBoardWithSquares();
     this.whiteKingTracker = null;
     this.blackKingTracker = null;
@@ -38,19 +54,19 @@ public class chessStandardBoard extends chessBoard {
 * General pattern of white and black squares on the board.
 */
   public void populateBoardWithSquares() {
-    for (int i = 0; i < this.numXSquares; i++) {
-      for (int j = 0; j < this.numYSquares; j++) {
+    for (int i = 0; i < this.getNumXSquares(); i++) {
+      for (int j = 0; j < this.getNumYSquares(); j++) {
         if (i % 2 == 0) {
           if (j % 2 == 0) {
-            squaresList[i][j] = new chessSquare(false, Color.black);
+            getSquaresList()[i][j] = new chessSquare(false, Color.black);
           } else {
-            squaresList[i][j] = new chessSquare(false, Color.white);
+            getSquaresList()[i][j] = new chessSquare(false, Color.white);
           }
         } else {
           if (j % 2 == 0) {
-            squaresList[i][j] = new chessSquare(false, Color.white);
+            getSquaresList()[i][j] = new chessSquare(false, Color.white);
           } else {
-            squaresList[i][j] = new chessSquare(false, Color.black);
+            getSquaresList()[i][j] = new chessSquare(false, Color.black);
           }
         }
       }
@@ -77,10 +93,10 @@ public class chessStandardBoard extends chessBoard {
         for (int i = 0; i < 8; i++) {
             chessPawn newWhitePawn = new chessPawn(i, 1, Color.white, this);
             chessPawn newBlackPawn = new chessPawn(i, 6, Color.black, this);
-            this.squaresList[i][1].isOccupied = true;
-            this.squaresList[i][6].isOccupied = true;
-            this.squaresList[i][1].occupyingPiece = newWhitePawn;
-            this.squaresList[i][6].occupyingPiece = newBlackPawn;
+            this.getSquaresList()[i][1].setIsOccupied(true);
+            this.getSquaresList()[i][6].setIsOccupied(true);
+            this.getSquaresList()[i][1].setOccupyingPiece(newWhitePawn);
+            this.getSquaresList()[i][6].setOccupyingPiece(newBlackPawn);
 
         }
     }
@@ -93,14 +109,14 @@ public class chessStandardBoard extends chessBoard {
         chessRook whiteRookTwo = new chessRook(7, 0, Color.white, this);
         chessRook blackRookOne = new chessRook(0, 7, Color.black, this);
         chessRook blackRookTwo = new chessRook(7, 7, Color.black, this);
-        this.squaresList[0][0].isOccupied = true;
-        this.squaresList[7][0].isOccupied = true;
-        this.squaresList[0][0].occupyingPiece = whiteRookOne;
-        this.squaresList[7][0].occupyingPiece = whiteRookTwo;
-        this.squaresList[0][7].isOccupied = true;
-        this.squaresList[7][7].isOccupied = true;
-        this.squaresList[0][7].occupyingPiece = blackRookOne;
-        this.squaresList[7][7].occupyingPiece = blackRookTwo;
+        this.getSquaresList()[0][0].setIsOccupied(true);
+        this.getSquaresList()[7][0].setIsOccupied(true);
+        this.getSquaresList()[0][0].setOccupyingPiece(whiteRookOne);
+        this.getSquaresList()[7][0].setOccupyingPiece(whiteRookTwo);
+        this.getSquaresList()[0][7].setIsOccupied(true);
+        this.getSquaresList()[7][7].setIsOccupied(true);
+        this.getSquaresList()[0][7].setOccupyingPiece(blackRookOne);
+        this.getSquaresList()[7][7].setOccupyingPiece(blackRookTwo);
 
     }
 
@@ -112,14 +128,14 @@ public class chessStandardBoard extends chessBoard {
         chessBishop whiteBishopTwo = new chessBishop(5, 0, Color.white, this);
         chessBishop blackBishopOne = new chessBishop(2, 7, Color.black, this);
         chessBishop blackBishopTwo = new chessBishop(5, 7, Color.black, this);
-        this.squaresList[2][0].isOccupied = true;
-        this.squaresList[5][0].isOccupied = true;
-        this.squaresList[2][0].occupyingPiece = whiteBishopOne;
-        this.squaresList[5][0].occupyingPiece = whiteBishopTwo;
-        this.squaresList[2][7].isOccupied = true;
-        this.squaresList[5][7].isOccupied = true;
-        this.squaresList[2][7].occupyingPiece = blackBishopOne;
-        this.squaresList[5][7].occupyingPiece = blackBishopTwo;
+        this.getSquaresList()[2][0].setIsOccupied(true);
+        this.getSquaresList()[5][0].setIsOccupied(true);
+        this.getSquaresList()[2][0].setOccupyingPiece(whiteBishopOne);
+        this.getSquaresList()[5][0].setOccupyingPiece(whiteBishopTwo);
+        this.getSquaresList()[2][7].setIsOccupied(true);
+        this.getSquaresList()[5][7].setIsOccupied(true);
+        this.getSquaresList()[2][7].setOccupyingPiece(blackBishopOne);
+        this.getSquaresList()[5][7].setOccupyingPiece(blackBishopTwo);
     }
 
     /**
@@ -130,14 +146,14 @@ public class chessStandardBoard extends chessBoard {
         chessKnight whiteKnightTwo = new chessKnight(6, 0, Color.white, this);
         chessKnight blackKnightOne = new chessKnight(1, 7, Color.black, this);
         chessKnight blackKnightTwo = new chessKnight(6, 7, Color.black, this);
-        this.squaresList[1][0].isOccupied = true;
-        this.squaresList[6][0].isOccupied = true;
-        this.squaresList[1][0].occupyingPiece = whiteKnightOne;
-        this.squaresList[6][0].occupyingPiece = whiteKnightTwo;
-        this.squaresList[1][7].isOccupied = true;
-        this.squaresList[6][7].isOccupied = true;
-        this.squaresList[1][7].occupyingPiece = blackKnightOne;
-        this.squaresList[6][7].occupyingPiece = blackKnightTwo;
+        this.getSquaresList()[1][0].setIsOccupied(true);
+        this.getSquaresList()[6][0].setIsOccupied(true);
+        this.getSquaresList()[1][0].setOccupyingPiece(whiteKnightOne);
+        this.getSquaresList()[6][0].setOccupyingPiece(whiteKnightTwo);
+        this.getSquaresList()[1][7].setIsOccupied(true);
+        this.getSquaresList()[6][7].setIsOccupied(true);
+        this.getSquaresList()[1][7].setOccupyingPiece(blackKnightOne);
+        this.getSquaresList()[6][7].setOccupyingPiece(blackKnightTwo);
     }
 
     /**
@@ -146,10 +162,10 @@ public class chessStandardBoard extends chessBoard {
     public void setupQueens() {
         chessQueen whiteQueen = new chessQueen(3, 0, Color.white, this);
         chessQueen blackQueen = new chessQueen(3, 7, Color.black, this);
-        this.squaresList[3][0].isOccupied = true;
-        this.squaresList[3][7].isOccupied = true;
-        this.squaresList[3][0].occupyingPiece = whiteQueen;
-        this.squaresList[3][7].occupyingPiece = blackQueen;
+        this.getSquaresList()[3][0].setIsOccupied(true);
+        this.getSquaresList()[3][7].setIsOccupied(true);
+        this.getSquaresList()[3][0].setOccupyingPiece(whiteQueen);
+        this.getSquaresList()[3][7].setOccupyingPiece(blackQueen);
     }
 
     /**
@@ -158,10 +174,10 @@ public class chessStandardBoard extends chessBoard {
     public void setupKings() {
         chessKing whiteKing = new chessKing(4, 0, Color.white, this);
         chessKing blackKing = new chessKing(4, 7, Color.black, this);
-        this.squaresList[4][0].isOccupied = true;
-        this.squaresList[4][7].isOccupied = true;
-        this.squaresList[4][0].occupyingPiece = whiteKing;
-        this.squaresList[4][7].occupyingPiece = blackKing;
+        this.getSquaresList()[4][0].setIsOccupied(true);
+        this.getSquaresList()[4][7].setIsOccupied(true);
+        this.getSquaresList()[4][0].setOccupyingPiece(whiteKing);
+        this.getSquaresList()[4][7].setOccupyingPiece(blackKing);
         whiteKingTracker = whiteKing;
         blackKingTracker = blackKing;
     }
@@ -174,8 +190,8 @@ public class chessStandardBoard extends chessBoard {
      * @return boolean true if move is in board bounds
      */
     public boolean inBoardBounds(final int newX, final int newY) {
-        if (newX < numXSquares && newY
-                < numYSquares && newX > -1 && newY > -1) {
+        if (newX < getNumXSquares() && newY
+                < getNumYSquares() && newX > -1 && newY > -1) {
             return true;
         } else {
             return false;
