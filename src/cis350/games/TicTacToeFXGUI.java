@@ -1,5 +1,7 @@
 package cis350.games;
 
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Optional;
 
 import javax.swing.JOptionPane;
@@ -21,20 +23,30 @@ import javafx.stage.Stage;
 
 public class TicTacToeFXGUI extends VBox implements EventHandler{
 	
+	/** menu bar */
 	private MenuBar menu;
 	
+	/** file munu drop down */
 	private Menu fileMenu;
 	
+	/** new game option in file menu */
 	private MenuItem newGame;
 	
+	/** quit option in file menu */
 	private MenuItem quit;
 	
+	/** tic tac toe game board */
 	private TicTacToeBoardPane board;
 	
 //	public static void main(String[] args) {
 //		launch(args);
 //	}
 
+	
+    /*******************************************************************
+     * Constructor for Tic Tac Toe gui. Contains game board and menu
+     * bar. 
+     ******************************************************************/
 	public TicTacToeFXGUI() {
 		// set stage title
 		//primaryStage.setTitle("Tic Tac Toe");
@@ -74,6 +86,11 @@ public class TicTacToeFXGUI extends VBox implements EventHandler{
 //		primaryStage.show();
 	}
 
+    /*******************************************************************
+     * Responds to file menu actions.
+     * 
+     * @param e the event that was fired
+     ******************************************************************/
 	@Override
 	public void handle(Event event) {
 		// if new game menu item clicked, restart game and update board
@@ -106,5 +123,24 @@ public class TicTacToeFXGUI extends VBox implements EventHandler{
             }
         }
     }
+
+    /*******************************************************************
+     * Returns the game board pane.
+     * 
+     * @return the game board pane
+     ******************************************************************/
+	public TicTacToeBoardPane getBoard() {
+		return board;
+	}
+
+    /*******************************************************************
+     * Sets the game board pane.
+     * 
+     * @param board the game board pane to set
+     ******************************************************************/
+	public void setBoard(TicTacToeBoardPane board) {
+		this.board = board;
+	}
+	
 	
 }

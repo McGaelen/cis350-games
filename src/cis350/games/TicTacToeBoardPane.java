@@ -1,5 +1,9 @@
 package cis350.games;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observer;
+
 import javax.swing.JOptionPane;
 
 import javafx.application.Application;
@@ -20,7 +24,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class TicTacToeBoardPane extends GridPane implements EventHandler{
+public class TicTacToeBoardPane extends GridPane implements EventHandler {
 
     /** game engine for 1024 game. */
     private TicTacToe game;
@@ -30,10 +34,12 @@ public class TicTacToeBoardPane extends GridPane implements EventHandler{
 
     /** the current player's turn. */
     private String currentPlayer;
-    
-    /** number of turns */
-    private int numTurns;
 	
+    
+    /*******************************************************************
+     * Constructor for Tic Tac Toe board. Starts a new game and 
+     * initializes an empty board. Current player is set at x.
+     ******************************************************************/
 	public TicTacToeBoardPane() {
 
 		super();
@@ -57,6 +63,14 @@ public class TicTacToeBoardPane extends GridPane implements EventHandler{
         }
 	}
 
+    /*******************************************************************
+     * Responds to a click on a cell, which is the player attempting to
+     * make a move. Makes the move if it is valid, and checks to see
+     * if win or tie conditions have been met. Updates the GUI board
+     * after every move.
+     * 
+     * @param event the event that fired
+     ******************************************************************/
 	@Override
 	public void handle(Event event) {
 
@@ -79,7 +93,6 @@ public class TicTacToeBoardPane extends GridPane implements EventHandler{
                 game.startGame();
                 currentPlayer = "X";
                 updateBoard();
-                numTurns = 0;
             } else if (game.isTie()) {
             	Alert alert = new Alert(AlertType.INFORMATION);
             	alert.setTitle("Game Message");
@@ -89,14 +102,12 @@ public class TicTacToeBoardPane extends GridPane implements EventHandler{
                 game.startGame();
                 currentPlayer = "X";
                 updateBoard();
-                numTurns = 0;
             } else {
                 if (currentPlayer.equals("X")) {
                     currentPlayer = "O";
                 } else {
                     currentPlayer = "X";
                 }
-                numTurns++;
             }
         } catch (IllegalArgumentException e) {
         	Alert alert = new Alert(AlertType.INFORMATION);
@@ -122,6 +133,8 @@ public class TicTacToeBoardPane extends GridPane implements EventHandler{
             }
         }
     }
+    
+    
     
     /*******************************************************************
      * Return the current TicTacToe object.

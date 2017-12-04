@@ -21,12 +21,19 @@ import javafx.stage.Stage;
 
 public class TicTacToeCellPane extends BorderPane {
 	
+	/** player mark x or o 8*/
 	private Label mark;
 	
+	/** row of the cell */
 	private int row;
 	
+	/** column of the cell */
 	private int col;
 	
+    /*******************************************************************
+     * Constructor for board cell. Contains a label for the player's 
+     * mark. Stores the row and column of the cell in the board.
+     ******************************************************************/
 	public TicTacToeCellPane(final String p, final int r, final int c) {
 		
 		super();
