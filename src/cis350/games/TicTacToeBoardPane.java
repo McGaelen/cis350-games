@@ -34,6 +34,21 @@ public class TicTacToeBoardPane extends GridPane implements EventHandler {
 
     /** the current player's turn. */
     private String currentPlayer;
+    
+    /** number of X turns for achievements. */
+    private int numTurnsX;
+    
+    /** number of O turns for achievements. */
+    private int numTurnsO;
+    
+    /** tie status for achievements. */
+    private boolean tieStatus;
+    
+    /** win status for achievements. */
+    private boolean winStatus;
+
+	/** observer for achievements. */
+    private TicTacToeObserver observer;
 	
     
     /*******************************************************************
@@ -82,6 +97,12 @@ public class TicTacToeBoardPane extends GridPane implements EventHandler {
             // move and update board
             game.move(row, col, currentPlayer);
             updateBoard();
+            
+            if (currentPlayer == "X") {
+            	numTurnsX++;
+            } else {
+                numTurnsO++;
+            }
 
             // check if win
             if (game.isWinner()) {
@@ -93,6 +114,8 @@ public class TicTacToeBoardPane extends GridPane implements EventHandler {
                 game.startGame();
                 currentPlayer = "X";
                 updateBoard();
+                
+                winStatus = true;
             } else if (game.isTie()) {
             	Alert alert = new Alert(AlertType.INFORMATION);
             	alert.setTitle("Game Message");
@@ -102,6 +125,8 @@ public class TicTacToeBoardPane extends GridPane implements EventHandler {
                 game.startGame();
                 currentPlayer = "X";
                 updateBoard();
+                
+                tieStatus = true;
             } else {
                 if (currentPlayer.equals("X")) {
                     currentPlayer = "O";
@@ -168,4 +193,36 @@ public class TicTacToeBoardPane extends GridPane implements EventHandler {
     public void setCurrentPlayer(final String cCurrentPlayer) {
         this.currentPlayer = cCurrentPlayer;
     }
+	
+	public int getNumTurnsX() {
+		return numTurnsX;
+	}
+
+	public void setNumTurnsX(int numTurnsX) {
+		this.numTurnsX = numTurnsX;
+	}
+
+	public int getNumTurnsO() {
+		return numTurnsO;
+	}
+
+	public void setNumTurnsO(int numTurnsO) {
+		this.numTurnsO = numTurnsO;
+	}
+	
+	public boolean isWinStatus() {
+		return winStatus;
+	}
+
+	public void setWinStatus(boolean winStatus) {
+		this.winStatus = winStatus;
+	}
+
+	public boolean isTieStatus() {
+		return tieStatus;
+	}
+
+	public void setTieStatus(boolean tieStatus) {
+		this.tieStatus = tieStatus;
+	}
 }

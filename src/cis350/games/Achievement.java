@@ -10,7 +10,7 @@ public enum Achievement {
 
     /* Tic Tac Toe Achievements */
     TTT_TIE,
-    WIN_THREE_MOVES
+    TTT_WIN_THREE
     
 
     /* ------------------------ */

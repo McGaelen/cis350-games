@@ -26,7 +26,7 @@ public class TicTacToeFXGUI extends VBox implements EventHandler{
 	/** menu bar */
 	private MenuBar menu;
 	
-	/** file munu drop down */
+	/** file menu drop down */
 	private Menu fileMenu;
 	
 	/** new game option in file menu */

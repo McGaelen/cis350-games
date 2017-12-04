@@ -120,8 +120,13 @@ public class MainMenuViewController {
 //        } else {
 //            Main.stage.setScene(Main.ticTacToeLaunchScene);
 //        }
-    TicTacToeFXGUI gui = new TicTacToeFXGUI();
-    Scene scene = new Scene(gui, 440, 460);
+    	
+    // create and add observer
+    TicTacToeObserver observer = new TicTacToeObserver();
+    observer.addTicTacToeObserver(Main.achievementsViewController);
+    
+    // add gui to scene and scene to stage
+    Scene scene = new Scene(observer.getGui(), 440, 460);
     Main.stage.setScene(scene);
     Main.stage.sizeToScene();
     Main.stage.setResizable(false);
