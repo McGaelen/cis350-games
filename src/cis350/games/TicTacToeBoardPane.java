@@ -1,30 +1,20 @@
 package cis350.games;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observer;
-
-import javax.swing.JOptionPane;
-
-import javafx.application.Application;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
-public class TicTacToeBoardPane extends GridPane implements EventHandler {
+/***********************************************************************
+ * Class to display the Tic Tac Toe game board. Contains a 2D array of
+ * CellPane which displays the Tic Tac Toe game.
+ * 
+ * @author Edric Lin
+ * @version 12/5/17
+ **********************************************************************/
+public class TicTacToeBoardPane extends GridPane 
+implements EventHandler<Event> {
 
     /** game engine for 1024 game. */
     private TicTacToe game;
@@ -46,9 +36,6 @@ public class TicTacToeBoardPane extends GridPane implements EventHandler {
     
     /** win status for achievements. */
     private boolean winStatus;
-
-	/** observer for achievements. */
-    private TicTacToeObserver observer;
 	
     
     /*******************************************************************
@@ -87,7 +74,7 @@ public class TicTacToeBoardPane extends GridPane implements EventHandler {
      * @param event the event that fired
      ******************************************************************/
 	@Override
-	public void handle(Event event) {
+	public void handle(final Event event) {
 
         // get the row and column of the cell that was clicked
         int row = ((TicTacToeCellPane) event.getSource()).getRow();
@@ -163,6 +150,7 @@ public class TicTacToeBoardPane extends GridPane implements EventHandler {
     
     /*******************************************************************
      * Return the current TicTacToe object.
+     * 
      * @return game
      ******************************************************************/
     public TicTacToe getGame() {
@@ -171,6 +159,7 @@ public class TicTacToeBoardPane extends GridPane implements EventHandler {
 
     /*******************************************************************
      * Set the current TicTacToe object.
+     * 
      * @param cGame the TicTacToe object to set the current TicTacToe
      * object to
      ******************************************************************/
@@ -180,6 +169,7 @@ public class TicTacToeBoardPane extends GridPane implements EventHandler {
 
     /*******************************************************************
      * Return the current player.
+     * 
      * @return currentPlayer.
      ******************************************************************/
     public String getCurrentPlayer() {
@@ -188,41 +178,82 @@ public class TicTacToeBoardPane extends GridPane implements EventHandler {
 
     /*******************************************************************
      * Set the current player.
+     * 
      * @param cCurrentPlayer the player to set the current player to
      ******************************************************************/
     public void setCurrentPlayer(final String cCurrentPlayer) {
         this.currentPlayer = cCurrentPlayer;
     }
 	
+    /*******************************************************************
+     * Return number of turns X has taken.
+     * 
+     * @return the number of turns X has taken.
+     ******************************************************************/
 	public int getNumTurnsX() {
 		return numTurnsX;
 	}
 
-	public void setNumTurnsX(int numTurnsX) {
+    /*******************************************************************
+     * Set the number of turns X has taken.
+     * 
+     * @param numTurnsX the number of turns X has taken.
+     ******************************************************************/
+	public void setNumTurnsX(final int numTurnsX) {
 		this.numTurnsX = numTurnsX;
 	}
 
+    /*******************************************************************
+     * Return number of turns O has taken.
+     * 
+     * @return the number of turns O has taken.
+     ******************************************************************/
 	public int getNumTurnsO() {
 		return numTurnsO;
 	}
 
-	public void setNumTurnsO(int numTurnsO) {
+    /*******************************************************************
+     * Set the number of turns O has taken.
+     * 
+     * @param numTurnsO the number of turns O has taken.
+     ******************************************************************/
+	public void setNumTurnsO(final int numTurnsO) {
 		this.numTurnsO = numTurnsO;
 	}
 	
+    /*******************************************************************
+     * Return the win status of the game.
+     * 
+     * @return the win status of the game.
+     ******************************************************************/
 	public boolean isWinStatus() {
 		return winStatus;
 	}
 
-	public void setWinStatus(boolean winStatus) {
+    /*******************************************************************
+     * Set the win status of the game.
+     * 
+     * @param winStatus the win status of the game
+     ******************************************************************/
+	public void setWinStatus(final boolean winStatus) {
 		this.winStatus = winStatus;
 	}
 
+    /*******************************************************************
+     * Return the tie status of the game.
+     * 
+     * @return the tie status of the game.
+     ******************************************************************/
 	public boolean isTieStatus() {
 		return tieStatus;
 	}
 
-	public void setTieStatus(boolean tieStatus) {
+    /*******************************************************************
+     * Set the tie status of the game.
+     * 
+     * @param tieStatus the tie status of the game
+     ******************************************************************/
+	public void setTieStatus(final boolean tieStatus) {
 		this.tieStatus = tieStatus;
 	}
 }
