@@ -75,6 +75,16 @@ implements EventHandler<Event> {
 					System.out.println("Win 3 "
 							+ "Move Achievement");
 				}
+				
+				
+				if ((board.getNumTurnsX() 
+						+ board.getNumTurnsO()) == 9) {
+					setChanged();
+					notifyObservers(Achievement.
+							TTT_WIN_FULL_BOARD);
+					System.out.println("Win Full Board "
+							+ "Achievement");
+				}
 				board.setNumTurnsX(0);
 				board.setNumTurnsO(0);
 				board.setWinStatus(false);
