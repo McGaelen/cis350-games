@@ -71,22 +71,8 @@ public class MainMenuViewController {
 
     @FXML
     private void checkersButtonClick() {
-        checkersGame.getGamePlayers();
-        checkersGame.startNewGame();
-        /**
-        if (Main.checkersLaunchScene == null) {
-            try {
-                Main.checkersLaunchScene =
-                new Scene(FXMLLoader.load(getClass().getResource(
-                "CheckerLaunch.fxml")));
-                Main.stage.setScene(Main.checkersLaunchScene);
-            } catch (IOException e) {
-                System.out.println("Couldn't load CheckerLaunch.fxml");
-            }
-        } else {
-            Main.stage.setScene(Main.checkersLaunchScene);
-        }
-         **/
+        CheckersGame.getGamePlayers();
+        CheckersGame.startNewGame();
     }
 
     @FXML
