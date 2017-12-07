@@ -47,8 +47,8 @@ public class MainMenuViewController {
      ***********************************************************/
     @FXML
     private void checkersButtonClick() {
-        checkersGame.getGamePlayers();
-        checkersGame.startNewGame();
+        CheckersGame.getGamePlayers();
+        CheckersGame.startNewGame(0, null);
         /**
         if (Main.checkersLaunchScene == null) {
             try {
@@ -71,8 +71,8 @@ public class MainMenuViewController {
      ***********************************************************/
     @FXML
     private void chessButtonClick() {
-        chessGame.getGamePlayers();
-        chessGame.startNewGame();
+        ChessGame.getGamePlayers();
+        ChessGame.startNewGame();
     }
 
     /************************************************************
@@ -83,7 +83,7 @@ public class MainMenuViewController {
     private void ticTacToeButtonClick() {
   
     // create and add observer
-    TicTacToeObserver observer = new TicTacToeObserver();
+    TicTacToeObservable observer = new TicTacToeObservable();
     observer.addTicTacToeObserver(Main.achievementsViewController);
     
     // add GUI to the scene and the scene to the stage

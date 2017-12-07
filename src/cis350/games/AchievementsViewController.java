@@ -11,13 +11,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 
-/*******************************************************************************
+/***********************************************************************
  * controller class for the achievementsLaunch.fxml file
  * gives information such as the achievements, name, game and descriptions to 
  * achievementsLaunch to display them in the GUI
  * @author Mathew Charath
  * @version 12/1/2017
- *******************************************************************************/
+ **********************************************************************/
 public class AchievementsViewController implements Observer {
 
 	/** ArrayList that holds the triggered achievements */
@@ -113,9 +113,9 @@ public class AchievementsViewController implements Observer {
     }
     
     
-    /****************************************************************************
-     * Returns the GUI back to the main menu
-     ****************************************************************************/
+    /*******************************************************************
+     * Returns the GUI back to the main menu.
+     ******************************************************************/
     @FXML private void goBack() {
         Main.stage.setScene(Main.mainScene);
     }
