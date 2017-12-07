@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cis350.games.AchievementsViewController">
    <children>
@@ -15,7 +15,8 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" onAction="#goBack" text="Back" />
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
@@ -30,31 +31,27 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button layoutX="14.0" layoutY="32.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
-      <Button layoutX="104.0" layoutY="248.0" mnemonicParsing="false" onAction="#goBack" prefWidth="175.0" text="Chess">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="324.0" layoutY="248.0" mnemonicParsing="false" onAction="#goBack" prefWidth="175.0" text="Checkers">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="324.0" layoutY="178.0" mnemonicParsing="false" onAction="#goBack" prefWidth="175.0" text="Connect Four">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="104.0" layoutY="178.0" mnemonicParsing="false" onAction="#goBack" prefWidth="175.0" text="Tic-Tac-Toe">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Label layoutX="183.0" layoutY="65.0" text="Achievements">
-         <font>
-            <Font name="System Bold" size="35.0" />
-         </font>
-      </Label>
+      <SplitPane dividerPositions="0.29797979797979796" layoutY="25.0" prefHeight="377.0" prefWidth="600.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <ListView fx:id="list" layoutX="-1.0" layoutY="25.0" onMouseClicked="#handleMouseClick" prefHeight="351.0" prefWidth="175.0" />
+                  <Label layoutX="53.0" layoutY="6.0" text="Achievements" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" onMouseClicked="#handleMouseClick" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="description" layoutX="14.0" layoutY="142.0" wrapText="true" />
+                  <Label layoutX="14.0" layoutY="106.0" text="Description:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="title" layoutX="76.0" layoutY="23.0" prefHeight="17.0" prefWidth="339.0" textAlignment="CENTER" underline="true" wrapText="true" />
+                  <Label fx:id="game" layoutX="14.0" layoutY="73.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
    </children>
 </AnchorPane>

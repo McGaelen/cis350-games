@@ -1,93 +1,107 @@
 package cis350.games;
 
 import javafx.fxml.FXML;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import java.io.IOException;
 
+/******************************************************************************
+ * Controller class for the main menu
+ * @author Mathew Charath
+ * @version 12/1/2017
+ ******************************************************************************/
 public class MainMenuViewController {
-
-    /* To get access to buttons, labels, etc,
-     * in your code, declare it with the same name as
-     * it's corresponding fx:id set in the fxml file */
-    /* Example: the name 'textfield1' matches
-     * the fx:id attribute in the main-menu.fxml file */
-    @FXML
-    private TextField textfield1;
-    @FXML
-    private Label label1;
-    @FXML
-    private Button launchConnectFour;
-
-    /* clicking the button will trigger this method, which sets the text
-    * of label1 to the text currently entered in textfield1 */
-    @FXML
-    private void setText() {
-        label1.setText(textfield1.getText());
-    }
-
+	
+	/************************************************************
+	 * resets the scene to the main menu
+	 ***********************************************************/
     @FXML
     private void goBack() {
         Main.stage.setScene(Main.mainScene);
     }
-    @FXML
-    private void connectFourStart() {
-        //launch connectFourStart
-    }
-    @FXML
-    private void checkersStart() {
-        //launch checkers
-    }
-    @FXML
-    private void chessStart() {
-        //launch chess
-    }
-    @FXML
-    private void ticTacToeStart() {
-    	//launch tic tac toe
-    }
+    
+    /************************************************************
+     * Launches the connectFour game when the 
+     * connect four button is clicked
+     ***********************************************************/
     @FXML
     private void connectFourBtnClick() {
         if (Main.connectFourScene == null) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().
-                		getResource("connect-four.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("connect-four.fxml"));
                 Main.connectFourScene = new Scene(loader.load());
                 Main.connectFourViewController = loader.getController();
-                Main.connectFourViewController.
-                addConnectFourAchievementsObserver(Main.
-                		achievementsViewController);
+                Main.connectFourViewController.addConnectFourAchievementsObserver(Main.achievementsViewController);
                 Main.stage.setScene(Main.connectFourScene);
             } catch (IOException e) {
-                System.out.println(e.getMessage() 
-                		+ "Couldn't load connect-four.fxml");
+                System.out.println(e.getMessage() + "Couldn't load connect-four.fxml");
             }
         } else {
             Main.stage.setScene(Main.connectFourScene);
         }
     }
 
+    /************************************************************
+     * Launches the checkers game when the 
+     * checkers button is clicked
+     ***********************************************************/
     @FXML
     private void checkersButtonClick() {
-        CheckersGame.getGamePlayers();
-        CheckersGame.startNewGame(0, null);
+        checkersGame.getGamePlayers();
+        checkersGame.startNewGame();
+        /**
+        if (Main.checkersLaunchScene == null) {
+            try {
+                Main.checkersLaunchScene =
+                new Scene(FXMLLoader.load(getClass().getResource(
+                "CheckerLaunch.fxml")));
+                Main.stage.setScene(Main.checkersLaunchScene);
+            } catch (IOException e) {
+                System.out.println("Couldn't load CheckerLaunch.fxml");
+            }
+        } else {
+            Main.stage.setScene(Main.checkersLaunchScene);
+        }
+         **/
     }
 
+    /************************************************************
+     * Launches the chess game when the
+     * chess button is clicked
+     ***********************************************************/
     @FXML
     private void chessButtonClick() {
-        ChessGame.getGamePlayers();
-        ChessGame.startNewGame();
+        chessGame.getGamePlayers();
+        chessGame.startNewGame();
+        /**
+        if (Main.chessLaunchScene == null) {
+            try {
+                Main.chessLaunchScene =
+                new Scene(FXMLLoader.load(
+                getClass().getResource("chessLaunch.fxml")));
+                Main.stage.setScene(Main.chessLaunchScene);
+            } catch (IOException e) {
+                System.out.println("Couldn't load chessLaunch.fxml");
+            }
+        }
+        else {
+            Main.stage.setScene(Main.chessLaunchScene);
+        }
+        **/
     }
 
+    /************************************************************
+     * Launches the tic-tac-toe game when the
+     * tic-tac-toe button is clicked
+     ***********************************************************/
     @FXML
     private void ticTacToeButtonClick() {
+  
     // create and add observer
-    TicTacToeObservable observer = new TicTacToeObservable();
+    TicTacToeObserver observer = new TicTacToeObserver();
     observer.addTicTacToeObserver(Main.achievementsViewController);
     
-    // add gui to scene and scene to stage
+    // add GUI to the scene and the scene to the stage
     Scene scene = new Scene(observer.getGui(), 440, 460);
     Main.stage.setScene(scene);
     Main.stage.sizeToScene();
@@ -95,6 +109,10 @@ public class MainMenuViewController {
     Main.stage.setTitle("Tic Tac Toe");
     }
 
+    /************************************************************
+     * Launches the achievements screen when the 
+     * achievements button is clicked 
+     ***********************************************************/
     @FXML
     private void achievementsButtonClick() {
         if (Main.achievementsLaunchScene == null) {
@@ -111,6 +129,9 @@ public class MainMenuViewController {
         }
     }
 
+    /************************************************************
+     *Exits the application 
+     ***********************************************************/
     @FXML
     private void exit() {
         System.exit(0);
