@@ -88,16 +88,19 @@ public class ChessStandardBoard extends ChessBoard {
         setupQueens();
         setupKings();
         } else if (type == 1) {
-            PeasantsBoard();
+            peasantsBoard();
             
         } else if (type == 0) {
             randomizeBoard();
         } else if (type == 2) {
-            LegalBoard();
+            legalBoard();
         }
     }
 
-    private void LegalBoard() {
+    /**
+     * Sets up Legal's board.
+     */
+    private void legalBoard() {
         setupKnights();
         setupBishops();
         setupPawns();
@@ -117,7 +120,10 @@ public class ChessStandardBoard extends ChessBoard {
         
     }
 
-    private void PeasantsBoard() {
+    /**
+     * Sets up peasants board.
+     */
+    private void peasantsBoard() {
         setupKings();
         addWhitePawn(1, 0);
         addWhitePawn(1, 1);
@@ -135,6 +141,9 @@ public class ChessStandardBoard extends ChessBoard {
         
     }
 
+    /**
+     * Sets up a random board.
+     */
     private void randomizeBoard() {
         int wpCount = 0;
         int wbCount = 0;
@@ -150,39 +159,34 @@ public class ChessStandardBoard extends ChessBoard {
         int bkingCount = 0;
         
         //Adds White Pieces
-        for(int i = 0; i < 2; i++) {
-            for(int j = 0; j < 8; j++) {
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 8; j++) {
                 int k = 0;
-                while(k == 0) {
+                while (k == 0) {
                     Random rand = new Random(); 
                     int value = rand.nextInt(6);
-                    if(value == 0 && wpCount != 8) {
-                        addWhitePawn(i,j);
+                    if (value == 0 && wpCount != 8) {
+                        addWhitePawn(i, j);
                         wpCount = wpCount + 1;
                         k = 1;
-                    }
-                    else if(value == 1 && wbCount != 4) {
-                        addWhiteBishop(i,j);
+                    } else if (value == 1 && wbCount != 4) {
+                        addWhiteBishop(i, j);
                         wbCount = wbCount + 1;
                         k = 1;
-                    }
-                    else if(value == 2 && wrCount != 4) {
-                        addWhiteRook(i,j);
+                    } else if (value == 2 && wrCount != 4) {
+                        addWhiteRook(i, j);
                         wrCount = wrCount + 1;
                         k = 1;
-                    }
-                    else if(value == 3 && wknightCount != 4) {
-                        addWhiteKnight(i,j);
+                    } else if (value == 3 && wknightCount != 4) {
+                        addWhiteKnight(i, j);
                         wknightCount = wknightCount + 1;
                         k = 1;
-                    }
-                    else if(value == 4 && wqCount != 2) {
-                        addWhiteQueen(i,j);
+                    } else if (value == 4 && wqCount != 2) {
+                        addWhiteQueen(i, j);
                         wqCount = wqCount + 1;
                         k = 1;
-                    }
-                    else if(value == 5 && wkingCount != 1) {
-                        addWhiteKing(i,j);
+                    } else if (value == 5 && wkingCount != 1) {
+                        addWhiteKing(i, j);
                         wkingCount = wkingCount + 1;
                         k = 1;
                     }
@@ -191,39 +195,34 @@ public class ChessStandardBoard extends ChessBoard {
         }
         
       //Adds Black Pieces
-        for(int i = 6; i < 8; i++) {
-            for(int j = 0; j < 8; j++) {
+        for (int i = 6; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
                 int k = 0;
-                while(k == 0) {
+                while (k == 0) {
                     Random rand = new Random(); 
                     int value = rand.nextInt(6);
-                    if(value == 0 && bpCount != 8) {
-                        addBlackPawn(i,j);
+                    if (value == 0 && bpCount != 8) {
+                        addBlackPawn(i, j);
                         bpCount = bpCount + 1;
                         k = 1;
-                    }
-                    else if(value == 1 && bbCount != 4) {
-                        addBlackBishop(i,j);
+                    } else if (value == 1 && bbCount != 4) {
+                        addBlackBishop(i, j);
                         bbCount = bbCount + 1;
                         k = 1;
-                    }
-                    else if(value == 2 && brCount != 4) {
-                        addBlackRook(i,j);
+                    } else if (value == 2 && brCount != 4) {
+                        addBlackRook(i, j);
                         brCount = brCount + 1;
                         k = 1;
-                    }
-                    else if(value == 3 && bknightCount != 4) {
-                        addBlackKnight(i,j);
+                    } else if (value == 3 && bknightCount != 4) {
+                        addBlackKnight(i, j);
                         bknightCount = bknightCount + 1;
                         k = 1;
-                    }
-                    else if(value == 4 && bqCount != 2) {
-                        addBlackQueen(i,j);
+                    } else if (value == 4 && bqCount != 2) {
+                        addBlackQueen(i, j);
                         bqCount = bqCount + 1;
                         k = 1;
-                    }
-                    else if(value == 5 && bkingCount != 1) {
-                        addBlackKing(i,j);
+                    } else if (value == 5 && bkingCount != 1) {
+                        addBlackKing(i, j);
                         bkingCount = bkingCount + 1;
                         k = 1;
                     }
@@ -234,7 +233,12 @@ public class ChessStandardBoard extends ChessBoard {
         
     }
 
-    private void addBlackKing(int i, int j) {
+    /**
+     * Add Black King.
+     * @param i X-Location
+     * @param j Y-Location
+     */
+    private void addBlackKing(final int i, final int j) {
         ChessKing blackKing = new ChessKing(j, i, Color.black, this);
         this.getSquaresList()[j][i].setIsOccupied(true);
         this.getSquaresList()[j][i].setOccupyingPiece(blackKing);
@@ -242,73 +246,128 @@ public class ChessStandardBoard extends ChessBoard {
         
     }
 
-    private void addBlackQueen(int i, int j) {
+    /**
+     * Add Black Queen.
+     * @param i x-location
+     * @param j y-location
+     */
+    private void addBlackQueen(final int i, final int j) {
         ChessQueen blackQueen = new ChessQueen(j, i, Color.black, this);
         this.getSquaresList()[j][i].setIsOccupied(true);
         this.getSquaresList()[j][i].setOccupyingPiece(blackQueen);
         
     }
 
-    private void addBlackKnight(int i, int j) {
+    /**
+     * Add Black Knight.
+     * @param i x-location
+     * @param j y-location
+     */
+    private void addBlackKnight(final int i, final int j) {
         ChessKnight blackKnight = new ChessKnight(j, i, Color.black, this);
         this.getSquaresList()[j][i].setIsOccupied(true);
         this.getSquaresList()[j][i].setOccupyingPiece(blackKnight);
         
     }
 
-    private void addBlackRook(int i, int j) {
+    /**
+     * Add Black Rook.
+     * @param i x-location
+     * @param j y-location
+     */
+    private void addBlackRook(final int i, final int j) {
         ChessRook blackRook = new ChessRook(j, i, Color.black, this);
         this.getSquaresList()[j][i].setIsOccupied(true);
         this.getSquaresList()[j][i].setOccupyingPiece(blackRook);
         
     }
 
-    private void addBlackBishop(int i, int j) {
+    /**
+     * Add Black Bishop.
+     * @param i x-location
+     * @param j y-location
+     */
+    private void addBlackBishop(final int i, final int j) {
         ChessBishop blackBishop = new ChessBishop(j, i, Color.black, this);
         this.getSquaresList()[j][i].setIsOccupied(true);
         this.getSquaresList()[j][i].setOccupyingPiece(blackBishop);
         
     }
 
-    private void addBlackPawn(int i, int j) {
+    /**
+     * Add Black Pawn.
+     * @param i x-location
+     * @param j y-location
+     */
+    private void addBlackPawn(final int i, final int j) {
         ChessPawn newblackPawn = new ChessPawn(j, i, Color.black, this);
         this.getSquaresList()[j][i].setIsOccupied(true);
         this.getSquaresList()[j][i].setOccupyingPiece(newblackPawn);
         
     }
 
-    private void addWhiteKing(int i, int j) {
+    /**
+     * Add White King.
+     * @param i x-location
+     * @param j y-location
+     */
+    private void addWhiteKing(final int i, final int j) {
         ChessKing whiteKing = new ChessKing(j, i, Color.white, this);
         this.getSquaresList()[j][i].setIsOccupied(true);
         this.getSquaresList()[j][i].setOccupyingPiece(whiteKing);
         whiteKingTracker = whiteKing;
     }
 
-    private void addWhiteQueen(int i, int j) {
+    /**
+     * Add White Queen.
+     * @param i x-location
+     * @param j y-location
+     */
+    private void addWhiteQueen(final int i, final int j) {
         ChessQueen whiteQueen = new ChessQueen(j, i, Color.white, this);
         this.getSquaresList()[j][i].setIsOccupied(true);
         this.getSquaresList()[j][i].setOccupyingPiece(whiteQueen);
     }
 
-    private void addWhiteKnight(int i, int j) {
+    /**
+     * Add White Knight.
+     * @param i x-location
+     * @param j y-location
+     */
+    private void addWhiteKnight(final int i, final int j) {
         ChessKnight whiteKnight = new ChessKnight(j, i, Color.white, this);
         this.getSquaresList()[j][i].setIsOccupied(true);
         this.getSquaresList()[j][i].setOccupyingPiece(whiteKnight);
     }
 
-    private void addWhiteRook(int i, int j) {
+    /**
+     * Add White Rook.
+     * @param i x-location
+     * @param j y-location
+     */
+    private void addWhiteRook(final int i, final int j) {
         ChessRook whiteRook = new ChessRook(j, i, Color.white, this);
         this.getSquaresList()[j][i].setIsOccupied(true);
         this.getSquaresList()[j][i].setOccupyingPiece(whiteRook);
     }
 
-    private void addWhiteBishop(int i, int j) {
+    /**
+     * Add White Bishop.
+     * @param i x-location
+     * @param j y-location
+     */
+    private void addWhiteBishop(final int i, final int j) {
         ChessBishop whiteBishop = new ChessBishop(j, i, Color.white, this);
         this.getSquaresList()[j][i].setIsOccupied(true);
         this.getSquaresList()[j][i].setOccupyingPiece(whiteBishop);
     }
 
-    private void addWhitePawn(int i, int j) {
+    /**
+     * Add White Pawn.
+     * @param i x-location
+     * @param j y-location
+     */
+    private void addWhitePawn(final int i, final int j) {
         ChessPawn newWhitePawn = new ChessPawn(j, i, Color.white, this);
         this.getSquaresList()[j][i].setIsOccupied(true);
         this.getSquaresList()[j][i].setOccupyingPiece(newWhitePawn);
@@ -421,9 +480,8 @@ public class ChessStandardBoard extends ChessBoard {
         if (newX < getNumXSquares() && newY
                 < getNumYSquares() && newX > -1 && newY > -1) {
             return true;
-        } else {
-            return false;
         }
+            return false;
     }
 
 }
