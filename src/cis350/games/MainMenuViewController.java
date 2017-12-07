@@ -72,7 +72,7 @@ public class MainMenuViewController {
     @FXML
     private void checkersButtonClick() {
         CheckersGame.getGamePlayers();
-        CheckersGame.startNewGame();
+        CheckersGame.startNewGame(0, null);
     }
 
     @FXML
