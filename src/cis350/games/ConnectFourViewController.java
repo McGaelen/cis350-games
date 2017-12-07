@@ -20,7 +20,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Observable;
 import java.util.Observer;
 
 /**
@@ -115,11 +114,17 @@ public class ConnectFourViewController {
                 if (row < this.game.getRows()) {
                     Circle c;
                     if (this.game.getCellOwner(row, col) == 1) {
-                        c = new Circle(boardCellSize / 2, Paint.valueOf("#DE0003"));
+                        c = new Circle(
+                        		boardCellSize / 2,
+                        		Paint.valueOf("#DE0003"));
                     } else if (this.game.getCellOwner(row, col) == 2) {
-                        c = new Circle(boardCellSize / 2, Paint.valueOf("#3034F0"));
+                        c = new Circle(
+                        		boardCellSize / 2,
+                        		Paint.valueOf("#3034F0"));
                     } else {
-                        c = new Circle(boardCellSize / 2, Paint.valueOf("#BAC1C4"));
+                        c = new Circle(
+                        		boardCellSize / 2,
+                        		Paint.valueOf("#BAC1C4"));
                     }
                     c.setCenterX(boardCellSize / 2);
                     c.setCenterY(boardCellSize / 2);
@@ -229,7 +234,9 @@ public class ConnectFourViewController {
         if (this.game.checkFull()) {
             Alert a = new Alert(AlertType.INFORMATION);
             a.setTitle("Full Board");
-            a.setContentText("The board is completely full!\nWould you like to play again?\n\n");
+            a.setContentText(
+            		"The board is completely full!\n"
+            		+ "Would you like to play again?\n\n");
             ButtonType no =  new ButtonType("No", ButtonBar.ButtonData.NO);
             a.getDialogPane().getButtonTypes().add(no);
 
@@ -243,7 +250,12 @@ public class ConnectFourViewController {
         }
     }
 
-    public void addConnectFourAchievementsObserver(Observer o) {
+    /**
+     * Exposes a method on the ConnectFourEngine so that we can add an
+     * observer to the game's achievements.
+     * @param o the observer to add.
+     */
+    public void addConnectFourAchievementsObserver(final Observer o) {
         this.game.addObserver(o);
     }
 

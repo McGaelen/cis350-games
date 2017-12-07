@@ -221,4 +221,45 @@ public class ConnectFourEngineTest {
         assertTrue(game.equals(load));
         Files.deleteIfExists(Paths.get("testLoadOut"));
     }
+    
+    @Test
+    public void testCheckFull() {
+    		assertFalse(game.checkFull());
+    }
+    
+    @Test
+    public void testCheckFullTrue() throws Exception {
+    		game = new ConnectFourEngine(2, 2, 1);
+    		game.placeChip(1);
+    		game.placeChip(1);
+    		game.placeChip(2);
+    		game.placeChip(2);
+    		assertTrue(game.checkFull());
+    }
+    
+//    @Test
+//    public void testCheckTurnAchievementNotWon() {
+//    		
+//    }
+    
+//    @Test
+//    public void testCheckTurnAchievement() throws Exception {
+//    		game.placeChip(1);
+//    		game.advanceTurn();
+//    		game.placeChip(1);
+//    		game.advanceTurn();
+//		game.placeChip(2);
+//		game.advanceTurn();
+//		game.placeChip(2);
+//		game.advanceTurn();
+//		game.placeChip(3);
+//		game.advanceTurn();
+//		game.placeChip(3);
+//		game.advanceTurn();
+//		game.placeChip(4);
+//		game.advanceTurn();
+//		game.placeChip(4);
+//		game.advanceTurn();
+//		
+//    }
 }

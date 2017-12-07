@@ -2,7 +2,7 @@ package cis350.games;
 
 public enum Achievement {
     /* Connect Four Achievements */
-    C4_WIN_UNDER_TIMER,
+    C4_DIAGONAL_WIN,
     C4_WIN_UNDER_MOVES_COUNT,
     C4_FULL_BOARD,
     /* ------------------------ */

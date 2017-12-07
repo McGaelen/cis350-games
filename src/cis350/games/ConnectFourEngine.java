@@ -208,6 +208,8 @@ public final class ConnectFourEngine
                         this.winner = cell;
                         this.winCase = "Diagonal (Up and to the Right) Win";
                         this.checkForTurnAchievement();
+                        this.setChanged();
+                        this.notifyObservers(Achievement.C4_DIAGONAL_WIN);
                         return true;
                     }
                     offset++;
@@ -228,6 +230,8 @@ public final class ConnectFourEngine
                         this.winner = cell;
                         this.winCase = "Diagonal (Up and to the Left) Win";
                         this.checkForTurnAchievement();
+                        this.setChanged();
+                        this.notifyObservers(Achievement.C4_DIAGONAL_WIN);
                         return true;
                     }
                     offset++;
