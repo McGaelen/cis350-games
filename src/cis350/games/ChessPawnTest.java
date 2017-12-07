@@ -1,6 +1,6 @@
 package cis350.games;
 
-import cis350.games.chessBoard.Color;
+import cis350.games.ChessBoard.Color;
 import junit.framework.TestCase;
 
 /**
@@ -12,8 +12,8 @@ public class ChessPawnTest extends TestCase {
      * Test valid white pawn move.
      */
     public void testValidWhitePawnMove() {
-        chessStandardBoard board = new chessStandardBoard(8, 8);
-        chessPawn newPawn = new chessPawn(0, 1, Color.white, board);
+        ChessStandardBoard board = new ChessStandardBoard(8, 8);
+        ChessPawn newPawn = new ChessPawn(0, 1, Color.white, board);
         assertTrue(newPawn.canMove(0, 2));
     }
 
@@ -21,8 +21,8 @@ public class ChessPawnTest extends TestCase {
      * Test valid black pawn move.
      */
     public void testValidBlackPawnMove() {
-        chessStandardBoard board = new chessStandardBoard(8, 8);
-        chessPawn newPawn = new chessPawn(0, 1, Color.black, board);
+        ChessStandardBoard board = new ChessStandardBoard(8, 8);
+        ChessPawn newPawn = new ChessPawn(0, 1, Color.black, board);
         assertTrue(newPawn.canMove(0, 0));
     }
 
@@ -30,8 +30,8 @@ public class ChessPawnTest extends TestCase {
      * Test invalid pawn move.
      */
     public void testInvalidPawnMove() {
-        chessStandardBoard board = new chessStandardBoard(8, 8);
-        chessPawn newPawn = new chessPawn(1, 4, Color.black, board);
+        ChessStandardBoard board = new ChessStandardBoard(8, 8);
+        ChessPawn newPawn = new ChessPawn(1, 4, Color.black, board);
         assertFalse(newPawn.canMove(1, 6));
     }
 
@@ -39,9 +39,9 @@ public class ChessPawnTest extends TestCase {
      * Test valid enemy piece move/capture.
      */
     public void testValidEnemyPieceMove() {
-        chessStandardBoard board = new chessStandardBoard(8, 8);
-        chessPawn newPawn = new chessPawn(2, 2, Color.white, board);
-        chessPawn enemyPawn = new chessPawn(3, 3, Color.black, board);
+        ChessStandardBoard board = new ChessStandardBoard(8, 8);
+        ChessPawn newPawn = new ChessPawn(2, 2, Color.white, board);
+        ChessPawn enemyPawn = new ChessPawn(3, 3, Color.black, board);
         assertTrue(newPawn.canMove(3, 3));
     }
 
@@ -49,8 +49,8 @@ public class ChessPawnTest extends TestCase {
      * Test valid First white pawn move.
      */
     public void testValidFirstPawnMove() {
-        chessStandardBoard board = new chessStandardBoard(8, 8);
-        chessPawn newPawn = new chessPawn(0, 1, Color.white, board);
+        ChessStandardBoard board = new ChessStandardBoard(8, 8);
+        ChessPawn newPawn = new ChessPawn(0, 1, Color.white, board);
         assertTrue(newPawn.canMove(0, 3));
     }
 
@@ -58,8 +58,8 @@ public class ChessPawnTest extends TestCase {
      * Test valid First black pawn move.
      */
     public void testValidFirstBlackPawnMove() {
-        chessStandardBoard board = new chessStandardBoard(8, 8);
-        chessPawn newPawn = new chessPawn(3, 6, Color.black, board);
+        ChessStandardBoard board = new ChessStandardBoard(8, 8);
+        ChessPawn newPawn = new ChessPawn(3, 6, Color.black, board);
         assertTrue(newPawn.canMove(3, 4));
     }
 
@@ -67,9 +67,9 @@ public class ChessPawnTest extends TestCase {
      * Test valid black pawn first move.
      */
     public void testValidFirstPawnEnemyMove() {
-        chessStandardBoard board = new chessStandardBoard(8, 8);
-        chessPawn newPawn = new chessPawn(0, 1, Color.white, board);
-        chessPawn enemyPawn = new chessPawn(1, 2, Color.black, board);
+        ChessStandardBoard board = new ChessStandardBoard(8, 8);
+        ChessPawn newPawn = new ChessPawn(0, 1, Color.white, board);
+        ChessPawn enemyPawn = new ChessPawn(1, 2, Color.black, board);
         assertTrue(newPawn.canMove(1, 2));
     }
 

@@ -1,6 +1,6 @@
 package cis350.games;
 
-import cis350.games.chessBoard.Color;
+import cis350.games.ChessBoard.Color;
 import junit.framework.TestCase;
 
   /**
@@ -13,8 +13,8 @@ public class ChessQueenTest extends TestCase {
      * Test valid vertical queen move.
      */
     public void testValidVerticalQueenMove() {
-        chessStandardBoard board = new chessStandardBoard(8, 8);
-        chessQueen newQueen = new chessQueen(3, 0, Color.black, board);
+        ChessStandardBoard board = new ChessStandardBoard(8, 8);
+        ChessQueen newQueen = new ChessQueen(3, 0, Color.black, board);
         assertTrue(newQueen.canMove(7, 0));
     }
 
@@ -22,8 +22,8 @@ public class ChessQueenTest extends TestCase {
      * Test valid queen horizontal move.
      */
     public void testValidHorizontalQueenMove() {
-        chessStandardBoard board = new chessStandardBoard(8, 8);
-        chessQueen newQueen = new chessQueen(3, 0, Color.black, board);
+        ChessStandardBoard board = new ChessStandardBoard(8, 8);
+        ChessQueen newQueen = new ChessQueen(3, 0, Color.black, board);
         assertTrue(newQueen.canMove(5, 0));
     }
 
@@ -31,8 +31,8 @@ public class ChessQueenTest extends TestCase {
      * Test valid queen diagonal move.
      */
     public void testValidDiagonalQueenMove() {
-        chessStandardBoard board = new chessStandardBoard(8, 8);
-        chessQueen newQueen = new chessQueen(3, 0, Color.black, board);
+        ChessStandardBoard board = new ChessStandardBoard(8, 8);
+        ChessQueen newQueen = new ChessQueen(3, 0, Color.black, board);
         assertTrue(newQueen.canMove(6, 3));
     }
 
@@ -40,9 +40,9 @@ public class ChessQueenTest extends TestCase {
      * Test blocking piece queen move.
      */
     public void testBlockingPieceQueenMove() {
-        chessStandardBoard board = new chessStandardBoard(8, 8);
-        chessQueen newQueen = new chessQueen(3, 0, Color.black, board);
-        chessRook newRook = new chessRook(3, 1, Color.white, board);
+        ChessStandardBoard board = new ChessStandardBoard(8, 8);
+        ChessQueen newQueen = new ChessQueen(3, 0, Color.black, board);
+        ChessRook newRook = new ChessRook(3, 1, Color.white, board);
         assertFalse(newQueen.canMove(3, 3));
     }
 
@@ -50,8 +50,8 @@ public class ChessQueenTest extends TestCase {
      * TYest invalid queen move.
      */
     public void testInvalidQueenMove() {
-        chessStandardBoard board = new chessStandardBoard(8, 8);
-        chessQueen newQueen = new chessQueen(1, 2, Color.black, board);
+        ChessStandardBoard board = new ChessStandardBoard(8, 8);
+        ChessQueen newQueen = new ChessQueen(1, 2, Color.black, board);
         assertFalse(newQueen.canMove(2, 4));
     }
 

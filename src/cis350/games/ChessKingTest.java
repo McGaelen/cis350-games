@@ -1,6 +1,6 @@
 package cis350.games;
 
-import cis350.games.chessBoard.Color;
+import cis350.games.ChessBoard.Color;
 import junit.framework.TestCase;
 
 /**
@@ -13,8 +13,8 @@ public class ChessKingTest extends TestCase {
      * Test valid horizontal move.
      */
     public void testValidHorizontalKingMove() {
-        chessStandardBoard board = new chessStandardBoard(8, 8);
-        chessKing newKing = new chessKing(4, 0, Color.white, board);
+        ChessStandardBoard board = new ChessStandardBoard(8, 8);
+        ChessKing newKing = new ChessKing(4, 0, Color.white, board);
         assertTrue(newKing.canMove(5, 0));
     }
 
@@ -22,8 +22,8 @@ public class ChessKingTest extends TestCase {
      * Test valid vertical move.
      */
     public void testValidVerticalKingMove() {
-        chessStandardBoard board = new chessStandardBoard(8, 8);
-        chessKing newKing = new chessKing(4, 0, Color.white, board);
+        ChessStandardBoard board = new ChessStandardBoard(8, 8);
+        ChessKing newKing = new ChessKing(4, 0, Color.white, board);
         assertTrue(newKing.canMove(4, 1));
     }
 
@@ -31,8 +31,8 @@ public class ChessKingTest extends TestCase {
      * Test valid Diagonal move.
      */
     public void testValidDiagonalKingMove() {
-        chessStandardBoard board = new chessStandardBoard(8, 8);
-        chessKing newKing = new chessKing(4, 1, Color.white, board);
+        ChessStandardBoard board = new ChessStandardBoard(8, 8);
+        ChessKing newKing = new ChessKing(4, 1, Color.white, board);
         assertTrue(newKing.canMove(3, 2));
     }
 
@@ -40,8 +40,8 @@ public class ChessKingTest extends TestCase {
      * Test invalid King move.
      */
     public void testInvalidKingMove() {
-        chessStandardBoard board = new chessStandardBoard(8, 8);
-        chessKing newKing = new chessKing(3, 7, Color.black, board);
+        ChessStandardBoard board = new ChessStandardBoard(8, 8);
+        ChessKing newKing = new ChessKing(3, 7, Color.black, board);
         assertFalse(newKing.canMove(3, 5));
     }
 
@@ -49,9 +49,9 @@ public class ChessKingTest extends TestCase {
      * Test ally piece putting king in check.
      */
     public void testInvalidAllyPieceMove() {
-        chessStandardBoard board = new chessStandardBoard(8, 8);
-        chessKing newKing = new chessKing(3, 7, Color.black, board);
-        chessPawn allyPawn = new chessPawn(2, 6, Color.black, board);
+        ChessStandardBoard board = new ChessStandardBoard(8, 8);
+        ChessKing newKing = new ChessKing(3, 7, Color.black, board);
+        ChessPawn allyPawn = new ChessPawn(2, 6, Color.black, board);
         assertFalse(newKing.canMove(2, 6));
     }
 
@@ -59,9 +59,9 @@ public class ChessKingTest extends TestCase {
      * Test king capturing enemy piece.
      */
     public void testValidEnemyPieceMove() {
-        chessStandardBoard board = new chessStandardBoard(8, 8);
-        chessKing newKing = new chessKing(3, 7, Color.black, board);
-        chessPawn enemyPawn = new chessPawn(2, 6, Color.white, board);
+        ChessStandardBoard board = new ChessStandardBoard(8, 8);
+        ChessKing newKing = new ChessKing(3, 7, Color.black, board);
+        ChessPawn enemyPawn = new ChessPawn(2, 6, Color.white, board);
         assertTrue(newKing.canMove(2, 6));
     }
 
@@ -69,10 +69,10 @@ public class ChessKingTest extends TestCase {
      * Test King putting itself in check.
      */
     public void testInvalidMoveToCheckLocation() {
-        chessStandardBoard board = new chessStandardBoard(8, 8);
-        chessKing newKing = new chessKing(3, 7, Color.black, board);
+        ChessStandardBoard board = new ChessStandardBoard(8, 8);
+        ChessKing newKing = new ChessKing(3, 7, Color.black, board);
         newKing = board.getBlackKingTracker();
-        chessPawn enemyPawn = new chessPawn(5, 5, Color.white, board);
+        ChessPawn enemyPawn = new ChessPawn(5, 5, Color.white, board);
         assertFalse(newKing.canMove(4, 6));
     }
 
@@ -80,9 +80,9 @@ public class ChessKingTest extends TestCase {
      * Test if King displays checked status.
      */
     public void testKingInCheck() {
-        chessStandardBoard board = new chessStandardBoard(8, 8);
-        chessKing newKing = new chessKing(3, 7, Color.black, board);
-        chessPawn enemyPawn = new chessPawn(4, 6, Color.white, board);
+        ChessStandardBoard board = new ChessStandardBoard(8, 8);
+        ChessKing newKing = new ChessKing(3, 7, Color.black, board);
+        ChessPawn enemyPawn = new ChessPawn(4, 6, Color.white, board);
         assertTrue(newKing.isKingInCheck(newKing));
     }
 

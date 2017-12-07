@@ -1,6 +1,6 @@
 package cis350.games;
 
-import cis350.games.checkersBoard.Color;
+import cis350.games.CheckersBoard.Color;
 import junit.framework.TestCase;
 
 /**
@@ -12,10 +12,10 @@ public class CheckersKingTest extends TestCase {
     * Test valid vertical move.
     */
     public void testValidKingMove() {
-        checkersStandardBoard board
-        = new checkersStandardBoard(8, 8);
-        checkersKing newKing
-        = new checkersKing(4, 4, Color.white, board);
+        CheckersStandardBoard board
+        = new CheckersStandardBoard(8, 8);
+        CheckersKing newKing
+        = new CheckersKing(4, 4, Color.white, board);
         assertTrue(newKing.canMove(6, 6));
         assertTrue(newKing.canMove(2, 2));
         assertTrue(newKing.canMove(6, 2));
@@ -29,9 +29,9 @@ public class CheckersKingTest extends TestCase {
      * Test invalid King move.
      */
     public void testInvalidKingMove() {
-        checkersStandardBoard board = new checkersStandardBoard(8, 8);
-        checkersKing newKing
-        = new checkersKing(3, 7, Color.black, board);
+        CheckersStandardBoard board = new CheckersStandardBoard(8, 8);
+        CheckersKing newKing
+        = new CheckersKing(3, 7, Color.black, board);
         assertFalse(newKing.canMove(3, 5));
     }
 
