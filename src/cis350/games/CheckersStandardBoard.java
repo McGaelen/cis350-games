@@ -1,7 +1,5 @@
 package cis350.games;
 
-import cis350.games.CheckersBoard.Color;
-
 /**
  * Subclass of a board.
  * Standard version of a Checkers Board. Has methods for creating a standard

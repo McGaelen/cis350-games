@@ -21,7 +21,7 @@ import javax.swing.JPanel;
 /**
  * Game class to setup a complete Checkers Game.
  */
-public class CheckersGame extends Observable{
+public class CheckersGame extends Observable {
 
     /**
      * CheckersPlayer representing the white player.
@@ -31,9 +31,13 @@ public class CheckersGame extends Observable{
      * CheckersPlayer representing the white player.
      */
     private static CheckersPlayer blackPlayer;
-    
+    /**
+     * Win streak for achievements.
+     */
     private int streak;
-    
+    /**
+     * Player currently with win streak.
+     */
     private CheckersPlayer playerWithStreak;
     /**
      * Color of the current player's turn.
@@ -106,7 +110,7 @@ public class CheckersGame extends Observable{
         gameTurn = cis350.games.CheckersBoard.Color.white;
         gameOver = false;
         squareSize = 80;
-        commandStack = new Stack();
+        commandStack = new Stack<CheckersMoveCommand>();
     }
 
     /**

@@ -34,11 +34,10 @@ public class ChessKing extends ChessPiece {
         // No need to check for obstacles since it's a single step move.
         if (isValidKingMove(xDisplacement, yDisplacement)) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
-
+    
     /**
      * Checks if the move is a valid King move.
      * @param xDisplacement change in x
@@ -56,9 +55,8 @@ public class ChessKing extends ChessPiece {
         } else if (Math.abs(xDisplacement)
                 == 0 && Math.abs(yDisplacement) == 1) { // Vertical
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
 }

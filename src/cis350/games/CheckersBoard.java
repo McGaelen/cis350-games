@@ -1,6 +1,5 @@
 package cis350.games;
 
-import cis350.games.CheckersBoard.Color;
 
 /**
  * Represents a game board for a Checkers Game.

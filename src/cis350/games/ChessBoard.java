@@ -1,7 +1,5 @@
 package cis350.games;
 
-import cis350.games.ChessBoard.Color;
-
 /***********************************************************************
  * Superclass Board defines a standard board.
  **********************************************************************/
