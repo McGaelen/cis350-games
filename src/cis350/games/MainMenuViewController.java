@@ -12,8 +12,8 @@ import java.io.IOException;
  ******************************************************************************/
 public class MainMenuViewController {
 	
-	/************************************************************
-	 * resets the scene to the main menu
+    /************************************************************
+     * resets the scene to the main menu
 	 ***********************************************************/
     @FXML
     private void goBack() {
@@ -73,21 +73,6 @@ public class MainMenuViewController {
     private void chessButtonClick() {
         chessGame.getGamePlayers();
         chessGame.startNewGame();
-        /**
-        if (Main.chessLaunchScene == null) {
-            try {
-                Main.chessLaunchScene =
-                new Scene(FXMLLoader.load(
-                getClass().getResource("chessLaunch.fxml")));
-                Main.stage.setScene(Main.chessLaunchScene);
-            } catch (IOException e) {
-                System.out.println("Couldn't load chessLaunch.fxml");
-            }
-        }
-        else {
-            Main.stage.setScene(Main.chessLaunchScene);
-        }
-        **/
     }
 
     /************************************************************
