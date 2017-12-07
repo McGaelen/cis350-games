@@ -80,12 +80,6 @@ public class AchievementsViewController implements Observer {
 			description.setText("Use the entire board in Connect Four");
 			//System.out.println("Use the entire board in Connect Four");
 			break;
-		case C4_WIN_UNDER_TIMER:
-			title.setText("SPEED WIN");
-			game.setText("Game: CONNECT FOUR");
-			description.setText("Win a game of Connect Four before the timer runs out");
-			//System.out.println("Win a game of Connect Four before the timer runs out");
-			break;
 		case TTT_WIN_THREE:
 			title.setText("TRIPLE WIN");
 			game.setText("Game: TIC-TAC-TOE");
