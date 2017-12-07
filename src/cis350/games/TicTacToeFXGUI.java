@@ -1,47 +1,40 @@
 package cis350.games;
 
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Optional;
 
-import javax.swing.JOptionPane;
-
-import javafx.application.Application;
-import javafx.event.Event;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-public class TicTacToeFXGUI extends VBox implements EventHandler{
+/***********************************************************************
+ * Class to create the Tic Tac Toe GUI. Adds the game board and a
+ * file menu to start a new game and quit.
+ * 
+ * @author Edric Lin
+ * @version 12/5/17
+ **********************************************************************/
+public class TicTacToeFXGUI extends VBox implements EventHandler<ActionEvent> {
 	
-	/** menu bar */
+	/** menu bar. */
 	private MenuBar menu;
 	
-	/** file munu drop down */
+	/** file menu drop down. */
 	private Menu fileMenu;
 	
-	/** new game option in file menu */
+	/** new game option in file menu. */
 	private MenuItem newGame;
 	
-	/** quit option in file menu */
+	/** quit option in file menu. */
 	private MenuItem quit;
 	
-	/** tic tac toe game board */
+	/** tic tac toe game board. */
 	private TicTacToeBoardPane board;
-	
-//	public static void main(String[] args) {
-//		launch(args);
-//	}
-
 	
     /*******************************************************************
      * Constructor for Tic Tac Toe gui. Contains game board and menu
@@ -89,10 +82,10 @@ public class TicTacToeFXGUI extends VBox implements EventHandler{
     /*******************************************************************
      * Responds to file menu actions.
      * 
-     * @param e the event that was fired
+     * @param event the event that was fired
      ******************************************************************/
 	@Override
-	public void handle(Event event) {
+	public void handle(final ActionEvent event) {
 		// if new game menu item clicked, restart game and update board
         if (event.getSource() == newGame) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -102,7 +95,7 @@ public class TicTacToeFXGUI extends VBox implements EventHandler{
             alert.setContentText("Click OK to continue.");
 
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
+            if (result.get() == ButtonType.OK) {
             	board.getGame().startGame();
                 board.setCurrentPlayer("X");
                 board.updateBoard();
@@ -118,7 +111,7 @@ public class TicTacToeFXGUI extends VBox implements EventHandler{
             alert.setContentText("Click OK to continue.");
 
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
+            if (result.get() == ButtonType.OK) {
             	Main.stage.setScene(Main.mainScene);
             }
         }
@@ -138,7 +131,7 @@ public class TicTacToeFXGUI extends VBox implements EventHandler{
      * 
      * @param board the game board pane to set
      ******************************************************************/
-	public void setBoard(TicTacToeBoardPane board) {
+	public void setBoard(final TicTacToeBoardPane board) {
 		this.board = board;
 	}
 	

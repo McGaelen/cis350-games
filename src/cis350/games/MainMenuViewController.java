@@ -52,13 +52,17 @@ public class MainMenuViewController {
     private void connectFourBtnClick() {
         if (Main.connectFourScene == null) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("connect-four.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().
+                		getResource("connect-four.fxml"));
                 Main.connectFourScene = new Scene(loader.load());
                 Main.connectFourViewController = loader.getController();
-                Main.connectFourViewController.addConnectFourAchievementsObserver(Main.achievementsViewController);
+                Main.connectFourViewController.
+                addConnectFourAchievementsObserver(Main.
+                		achievementsViewController);
                 Main.stage.setScene(Main.connectFourScene);
             } catch (IOException e) {
-                System.out.println(e.getMessage() + "Couldn't load connect-four.fxml");
+                System.out.println(e.getMessage() 
+                		+ "Couldn't load connect-four.fxml");
             }
         } else {
             Main.stage.setScene(Main.connectFourScene);
@@ -108,20 +112,12 @@ public class MainMenuViewController {
 
     @FXML
     private void ticTacToeButtonClick() {
-//    if (Main.ticTacToeLaunchScene == null) {
-//            try {
-//                Main.ticTacToeLaunchScene
-//    = new Scene(FXMLLoader.load(getClass().getResource(
-//        "ticTacToeLaunch.fxml")));
-//                Main.stage.setScene(Main.ticTacToeLaunchScene);
-//            } catch (IOException e) {
-//                System.out.println("Couldn't load ticTacToeLaunch.fxml");
-//            }
-//        } else {
-//            Main.stage.setScene(Main.ticTacToeLaunchScene);
-//        }
-    TicTacToeFXGUI gui = new TicTacToeFXGUI();
-    Scene scene = new Scene(gui, 440, 460);
+    // create and add observer
+    TicTacToeObservable observer = new TicTacToeObservable();
+    observer.addTicTacToeObserver(Main.achievementsViewController);
+    
+    // add gui to scene and scene to stage
+    Scene scene = new Scene(observer.getGui(), 440, 460);
     Main.stage.setScene(scene);
     Main.stage.sizeToScene();
     Main.stage.setResizable(false);

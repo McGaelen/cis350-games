@@ -43,7 +43,6 @@ public class chessGame {
      * Representation of the game board.
      */
     private chessStandardBoard gameBoard;
-
     /**
      * Is true if the game is over.
      */
@@ -180,6 +179,7 @@ public class chessGame {
 
     public void setupDisplay() {
         window = new JFrame("Chess");
+        window.setLocationRelativeTo(null);
         gamePanel = initializeGamePanel(gameBoard);
         Container contentPanel = window.getContentPane();
         contentPanel.setLayout(
