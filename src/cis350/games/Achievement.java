@@ -18,11 +18,16 @@ public enum Achievement {
 
 
     /* Chess Achievements */
-
+    CHESS_FIRST_WIN,
+    CHESS_COMPLETE_RANDOM_GAME,
+    CHESS_COMPLETE_LEGALS_GAME,
+    CHESS_COMPLETE_PEASANTS_GAME,
     /* ------------------------ */
 
 
     /* Checkers Achievements */
-
+    CHECKERS_FIRST_WIN,
+    CHECKERS_WIN_STREAK_3,
+    CHECKERS_WIN_STREAK_5
     /* ------------------------ */
 }
