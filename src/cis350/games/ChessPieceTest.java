@@ -57,7 +57,7 @@ public class ChessPieceTest extends TestCase {
      */
     public void testCheckmate() {
         ChessStandardBoard board = new ChessStandardBoard(8, 8);
-        board.populateBoardWithPieces(false);
+        board.populateBoardWithPieces(3);
         ChessPiece wpawn1 = board.getSquaresList()[5][1].getOccupyingPiece();
         wpawn1.executeCaptureOrMove(5, 2);
         assertTrue(wpawn1.getXLocation() == 5 && wpawn1.getYLocation() == 2);
