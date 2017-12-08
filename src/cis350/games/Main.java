@@ -9,8 +9,13 @@ public final class Main extends Application {
 
     /* Static references to each scene in the app.
      * These are available globally */
+	
+	/** main stage to display everything. */
     static Stage stage; // Don't overwrite this reference
+    
+    /** main screen to launch games. */
     static Scene mainScene;
+    
     static Scene connectFourScene;
     static Scene checkersLaunchScene;
     static Scene chessLaunchScene;
