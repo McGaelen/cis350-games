@@ -133,9 +133,8 @@ public class CheckersStandardBoard extends CheckersBoard {
         if (newX < getNumXSquares() && newY
                 < getNumYSquares() && newX > -1 && newY > -1) {
             return true;
-        } else {
-            return false;
         }
+    return false;
     }
 
 }

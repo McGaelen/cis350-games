@@ -305,9 +305,8 @@ public abstract class CheckersPiece {
             final CheckersPiece occupyingPiece) {
         if (colorToCheck.equals(occupyingPiece.color)) {
             return false;
-        } else {
-            return true;
         }
+        return true;
     }
 
     /**

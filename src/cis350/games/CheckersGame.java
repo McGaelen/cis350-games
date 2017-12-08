@@ -119,12 +119,12 @@ public class CheckersGame extends Observable {
     static void getGamePlayers() {
         String whiteName =
                 JOptionPane.showInputDialog("Please input White player name");
-        if (whiteName == "" || whiteName == null) {
+        if (whiteName.equals("")) {
             whiteName = "Player 1";
         }
         String blackName =
                 JOptionPane.showInputDialog("Please input Black player name");
-        if (blackName == "" || blackName == null) {
+        if (blackName.equals("")) {
             blackName = "Player 2";
         }
         whitePlayer = new CheckersPlayer(
