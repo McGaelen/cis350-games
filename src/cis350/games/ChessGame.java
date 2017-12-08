@@ -128,12 +128,9 @@ public class ChessGame extends Observable {
     static void getGamePlayers() {
         String whiteName =
                 JOptionPane.showInputDialog("Please input White player name");
-<<<<<<< HEAD
+
         if (whiteName.equals("")
                 || whiteName.equals(null)) {
-=======
-        if (whiteName.equals("")) {
->>>>>>> 9de799d6485ece4189067d7bb27293505b73d21f
             whiteName = "Player 1";
         }
         String blackName = JOptionPane.showInputDialog(
@@ -398,12 +395,9 @@ public class ChessGame extends Observable {
             this.setChanged();
             this.notifyObservers(Achievement.CHESS_COMPLETE_RANDOM_GAME);
             System.out.println("Completed Random Chess Game!");
-<<<<<<< HEAD
-        } 
-        else if(ChessGame.returnGameType() == 1) {
-=======
+
         } else if (ChessGame.returnGameType() == 1) {
->>>>>>> ee54dd150cd1ba435f8c6be5dbfcbcfba699e9e2
+
             this.setChanged();
             this.notifyObservers(Achievement.CHESS_COMPLETE_PEASANTS_GAME);
             System.out.println("Completed peasants chess game!");
@@ -423,16 +417,13 @@ public class ChessGame extends Observable {
     private static int returnGameType() {
         return currGameType;
     }
-<<<<<<< HEAD
 
-    private void checkForFirstWin(int score) {
-=======
     /**
      * Checks for first win.
      * @param score score of player
      */
     private void checkForFirstWin(final int score) {
->>>>>>> ee54dd150cd1ba435f8c6be5dbfcbcfba699e9e2
+
         if (score == 1) {
             this.setChanged();
             this.notifyObservers(Achievement.CHESS_FIRST_WIN);
