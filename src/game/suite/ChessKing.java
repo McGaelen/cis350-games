@@ -14,7 +14,8 @@ public class ChessKing extends ChessPiece {
      * @param board is the current board
      */
     public ChessKing(final int initX, final int initY,
-                     final ChessBoard.Color color, final ChessStandardBoard board) {
+                     final ChessBoard.
+                     Color color, final ChessStandardBoard board) {
         super(initX, initY, color, board);
         this.setNameOfPiece("king");
     }

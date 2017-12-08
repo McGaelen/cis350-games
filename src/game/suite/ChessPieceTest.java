@@ -13,8 +13,10 @@ public class ChessPieceTest extends TestCase {
      */
     public void testEnemyCapture() {
         ChessStandardBoard board = new ChessStandardBoard(8, 8);
-        ChessPawn whitePawn = new ChessPawn(1, 1, ChessBoard.Color.white, board);
-        ChessPawn blackPawn = new ChessPawn(2, 2, ChessBoard.Color.black, board);
+        ChessPawn whitePawn = new ChessPawn(
+        		1, 1, ChessBoard.Color.white, board);
+        ChessPawn blackPawn = new ChessPawn(
+        		2, 2, ChessBoard.Color.black, board);
         assertTrue(whitePawn.canMove(2, 2));
         whitePawn.executeCaptureOrMove(2, 2);
         assertTrue(whitePawn.getXLocation() == 2 
@@ -26,7 +28,8 @@ public class ChessPieceTest extends TestCase {
      */
     public void testInvalidPositiveBoundsMove() {
         ChessStandardBoard board = new ChessStandardBoard(8, 8);
-        ChessPawn whitePawn = new ChessPawn(7, 7, ChessBoard.Color.white, board);
+        ChessPawn whitePawn = new ChessPawn(
+        		7, 7, ChessBoard.Color.white, board);
         assertFalse(whitePawn.canMove(8, 8));
     }
 
@@ -35,7 +38,8 @@ public class ChessPieceTest extends TestCase {
      */
     public void testInvalidNegativeBoundsMove() {
         ChessStandardBoard board = new ChessStandardBoard(8, 8);
-        ChessPawn whitePawn = new ChessPawn(0, 1, ChessBoard.Color.white, board);
+        ChessPawn whitePawn = new ChessPawn(
+        		0, 1, ChessBoard.Color.white, board);
         assertFalse(whitePawn.canMove(0, -1));
     }
 
@@ -47,7 +51,8 @@ public class ChessPieceTest extends TestCase {
         ChessKing newKing = new ChessKing(3, 7, ChessBoard.Color.black, board);
         newKing = board.getBlackKingTracker();
         ChessPawn allyPawn = new ChessPawn(5, 5, ChessBoard.Color.black, board);
-        ChessBishop enemyBishop = new ChessBishop(7, 3, ChessBoard.Color.white, board);
+        ChessBishop enemyBishop = new ChessBishop(
+        		7, 3, ChessBoard.Color.white, board);
         assertFalse(allyPawn.canMove(5, 4));
     }
 

@@ -40,7 +40,8 @@ public class ChessPawnTest extends TestCase {
     public void testValidEnemyPieceMove() {
         ChessStandardBoard board = new ChessStandardBoard(8, 8);
         ChessPawn newPawn = new ChessPawn(2, 2, ChessBoard.Color.white, board);
-        ChessPawn enemyPawn = new ChessPawn(3, 3, ChessBoard.Color.black, board);
+        ChessPawn enemyPawn = new ChessPawn(
+        		3, 3, ChessBoard.Color.black, board);
         assertTrue(newPawn.canMove(3, 3));
     }
 
@@ -68,7 +69,8 @@ public class ChessPawnTest extends TestCase {
     public void testValidFirstPawnEnemyMove() {
         ChessStandardBoard board = new ChessStandardBoard(8, 8);
         ChessPawn newPawn = new ChessPawn(0, 1, ChessBoard.Color.white, board);
-        ChessPawn enemyPawn = new ChessPawn(1, 2, ChessBoard.Color.black, board);
+        ChessPawn enemyPawn = new ChessPawn(
+        		1, 2, ChessBoard.Color.black, board);
         assertTrue(newPawn.canMove(1, 2));
     }
 

@@ -3,7 +3,10 @@ package game.suite;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 
 /**
  * Class for testing the connect 4 board.
