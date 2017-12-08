@@ -21,23 +21,23 @@ public class ConnectFourEngineTest {
 
     @Test
     public void testGetRows() {
-        assertEquals((Integer)10, game.getRows());
+        assertEquals((Integer) 10, game.getRows());
     }
 
     @Test
     public void testGetCols() {
-        assertEquals((Integer)9, game.getCols());
+        assertEquals((Integer) 9, game.getCols());
     }
 
     @Test
     public void testGetCellOwner() throws Exception {
         game.placeChip(1);
-        assertEquals((Integer)1, game.getCellOwner(9, 0));
+        assertEquals((Integer) 1, game.getCellOwner(9, 0));
     }
 
     @Test
     public void testGetTurn() {
-        assertEquals((Integer)1, game.getTurn());
+        assertEquals((Integer) 1, game.getTurn());
     }
 
     @Test
@@ -57,14 +57,14 @@ public class ConnectFourEngineTest {
     @Test
     public void testAdvanceTurnOneToTwo() {
         game.advanceTurn();
-        assertEquals((Integer)2, game.getTurn());
+        assertEquals((Integer) 2, game.getTurn());
     }
 
     @Test
     public void testAdvanceTurnTwoToOne() {
         game.advanceTurn();
         game.advanceTurn();
-        assertEquals((Integer)1, game.getTurn());
+        assertEquals((Integer) 1, game.getTurn());
     }
 
     @Test
@@ -76,8 +76,8 @@ public class ConnectFourEngineTest {
         game.reset();
         ConnectFourBoard expectedboard = new ConnectFourBoard(10, 9);
         assertEquals(expectedboard.toString(), game.toString());
-        assertEquals((Integer)1, game.getTurn());
-        assertEquals((Integer)0, game.getWinner());
+        assertEquals((Integer) 1, game.getTurn());
+        assertEquals((Integer) 0, game.getWinner());
         assertEquals("", game.getWinCase());
     }
 
@@ -88,7 +88,7 @@ public class ConnectFourEngineTest {
         game.placeChip(3);
         game.placeChip(4);
         assertEquals(true, game.checkWin());
-        assertEquals((Integer)1, game.getWinner());
+        assertEquals((Integer) 1, game.getWinner());
         assertEquals("Horizontal Win", game.getWinCase());
     }
 
@@ -98,7 +98,7 @@ public class ConnectFourEngineTest {
         game.placeChip(2);
         game.placeChip(3);
         assertEquals(false, game.checkWin());
-        assertEquals((Integer)0, game.getWinner());
+        assertEquals((Integer) 0, game.getWinner());
         assertEquals("", game.getWinCase());
     }
 
@@ -109,7 +109,7 @@ public class ConnectFourEngineTest {
         game.placeChip(1);
         game.placeChip(1);
         assertEquals(true, game.checkWin());
-        assertEquals((Integer)1, game.getWinner());
+        assertEquals((Integer) 1, game.getWinner());
         assertEquals("Vertical Win", game.getWinCase());
     }
 
@@ -127,7 +127,7 @@ public class ConnectFourEngineTest {
         game.placeChip(3);
         game.placeChip(4);
         assertEquals(true, game.checkWin());
-        assertEquals((Integer)2, game.getWinner());
+        assertEquals((Integer) 2, game.getWinner());
         assertEquals("Diagonal (Up and to the Right) Win", game.getWinCase());
     }
 
@@ -154,7 +154,7 @@ public class ConnectFourEngineTest {
         game.placeChip(4);
         System.out.println(game);
         assertEquals(true, game.checkWin());
-        assertEquals((Integer)2, game.getWinner());
+        assertEquals((Integer) 2, game.getWinner());
         assertEquals("Diagonal (Up and to the Left) Win", game.getWinCase());
     }
 

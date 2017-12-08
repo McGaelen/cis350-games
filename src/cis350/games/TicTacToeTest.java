@@ -14,6 +14,9 @@ import org.junit.Test;
 
 public class TicTacToeTest {
 
+	/**
+	 * test the game constructor.
+	 */
     @Test
     public void testConstructor() {
         TicTacToe game = new TicTacToe();
@@ -26,7 +29,9 @@ public class TicTacToeTest {
         }
     }
 
-    // test isValidMove with occupied space
+    /**
+     * test isValidMove with occupied space.
+     */
     @Test
     public void testIsValidMove() {
         TicTacToe game = new TicTacToe();
@@ -42,7 +47,9 @@ public class TicTacToeTest {
         assertFalse(game.isValidMove(0, 0));
     }
 
-    // test isValidMove with out of bounds moves
+    /**
+     * test isValidMove with out of bounds moves.
+     */
     @Test
     public void testIsValidMove1() {
         TicTacToe game = new TicTacToe();
@@ -50,7 +57,9 @@ public class TicTacToeTest {
         assertFalse(game.isValidMove(100, 0));
     }
 
-    // test isValidMove with all valid moves
+    /**
+     * test isValidMove with all valid moves.
+     */
     @Test
     public void testIsValidMove2() {
         TicTacToe game = new TicTacToe();
@@ -61,7 +70,9 @@ public class TicTacToeTest {
         }
     }
 
-    // test move with occupied space
+    /**
+     * test move with occupied space.
+     */
     @Test
     (expected = IllegalArgumentException.class)
     public void testMove() {
@@ -77,7 +88,9 @@ public class TicTacToeTest {
         game.move(0, 0, "X");
     }
 
-    // test move with out of bounds move
+    /**
+     *  test move with out of bounds move.
+     */
     @Test
     (expected = IllegalArgumentException.class)
     public void testMove2() {
@@ -85,7 +98,9 @@ public class TicTacToeTest {
         game.move(0, -100, "X");
     }
 
-    // test move with out of bounds move
+    /**
+     * test move with out of bounds move.
+     */
     @Test
     (expected = IllegalArgumentException.class)
     public void testMove3() {
@@ -93,7 +108,9 @@ public class TicTacToeTest {
         game.move(0, 100, "X");
     }
 
-    // test move with out of bounds moves
+    /**
+     * test move with out of bounds moves.
+     */
     @Test
     public void testMove4() {
         TicTacToe game = new TicTacToe();
@@ -107,7 +124,9 @@ public class TicTacToeTest {
         }
     }
 
-    // test isWinner with no win state
+    /**
+     * test isWinner with no win state.
+     */
     @Test
     public void testIsWinner() {
         TicTacToe game = new TicTacToe();
@@ -126,7 +145,9 @@ public class TicTacToeTest {
         }
     }
 
-    // test isWinner with all win states using "X"
+    /**
+     * test isWinner with all win states using "X".
+     */
     @Test
     public void testIsWinner2() {
 
@@ -165,7 +186,9 @@ public class TicTacToeTest {
         }
     }
 
-    // test isWinner with all win states using "O"
+    /**
+     * test isWinner with all win states using "O".
+     */
     @Test
     public void testIsWinner3() {
 
@@ -203,7 +226,9 @@ public class TicTacToeTest {
         }
     }
 
-    // test isTie with no tie
+    /**
+     * test isTie with no tie.
+     */
     @Test
     public void testIsTie() {
         TicTacToe game = new TicTacToe();
@@ -213,7 +238,9 @@ public class TicTacToeTest {
         assertFalse(game.isTie());
     }
 
-    // test isTie with tie (full board)
+    /**
+     * test isTie with tie (full board).
+     */
     @Test
     public void testIsTie2() {
         TicTacToe game = new TicTacToe();

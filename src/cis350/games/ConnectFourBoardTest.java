@@ -24,13 +24,13 @@ public class ConnectFourBoardTest {
     @Test
     public void testGetRows() {
         ConnectFourBoard b = new ConnectFourBoard(90, 2);
-        assertEquals((Integer)90, b.getRows());
+        assertEquals((Integer) 90, b.getRows());
     }
 
     @Test
     public void testGetCols() {
         ConnectFourBoard b = new ConnectFourBoard(2, 90);
-        assertEquals((Integer)90, b.getCols());
+        assertEquals((Integer) 90, b.getCols());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -61,7 +61,7 @@ public class ConnectFourBoardTest {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        assertEquals((Integer)1, b.getRow(9).get(0));
+        assertEquals((Integer) 1, b.getRow(9).get(0));
     }
 
     @Test
@@ -139,7 +139,7 @@ public class ConnectFourBoardTest {
 
     @Test
     public void testEqualsUnlikeObjects() {
-        assertEquals(false, board.equals((Integer)1));
+        assertEquals(false, board.equals((Integer) 1));
     }
 
     @Test
