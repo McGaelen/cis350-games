@@ -61,4 +61,5 @@ public enum Achievement {
     /** 5 win streak achievement. */
     CHECKERS_WIN_STREAK_5
     /* ------------------------ */
+    
 }
