@@ -1,6 +1,6 @@
 package cis350.games;
 
-import org.junit.Before;
+import org.junit.Before; 
 import org.junit.Test;
 
 import java.io.File;
@@ -8,33 +8,54 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static junit.framework.Assert.*;
+import static org.junit.Assert.*;
 
+/**
+ * Class to test connect four engine.
+ * @author Gaelen
+ */
 public class ConnectFourEngineTest {
 
-    ConnectFourEngine game;
+	/** game to test. */
+    private ConnectFourEngine game;
 
+    /**
+     * set up game for test.
+     */
     @Before
     public void setUp() {
         game = new ConnectFourEngine(10, 9, 1);
     }
 
+    /**
+     * test getRows.
+     */
     @Test
     public void testGetRows() {
         assertEquals((Integer) 10, game.getRows());
     }
 
+    /**
+     * test getCols.
+     */
     @Test
     public void testGetCols() {
         assertEquals((Integer) 9, game.getCols());
     }
 
+    /**
+     * test getCellOwner.
+     * @throws Exception 
+     */
     @Test
     public void testGetCellOwner() throws Exception {
         game.placeChip(1);
         assertEquals((Integer) 1, game.getCellOwner(9, 0));
     }
 
+    /**
+     * 
+     */
     @Test
     public void testGetTurn() {
         assertEquals((Integer) 1, game.getTurn());
