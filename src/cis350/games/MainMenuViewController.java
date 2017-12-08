@@ -6,35 +6,39 @@ import javafx.scene.Scene;
 import java.io.IOException;
 
 /******************************************************************************
- * Controller class for the main menu
+ * Controller class for the main menu.
  * @author Mathew Charath
  * @version 12/1/2017
  ******************************************************************************/
 public class MainMenuViewController {
 	
     /************************************************************
-     * resets the scene to the main menu
+     * resets the scene to the main menu.
 	 ***********************************************************/
     @FXML
     private void goBack() {
-        Main.getStage().setScene(Main.mainScene);
+        Main.getStage().setScene(Main.getMainScene());
     }
     
     /************************************************************
-     * Launches the connectFour game when the 
+     * Launches the connectFour game when the .
      * connect four button is clicked
      ***********************************************************/
     @FXML
     private void connectFourBtnClick() {
         if (Main.getConnectFourScene() == null) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("connect-four.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass()
+                        .getResource("connect-four.fxml"));
                 Main.setConnectFourScene(new Scene(loader.load()));
                 Main.setConnectFourViewController(loader.getController());
-                Main.getConnectFourViewController().addConnectFourAchievementsObserver(Main.getAchievementsViewController());
+                Main.getConnectFourViewController()
+                .addConnectFourAchievementsObserver(Main
+                        .getAchievementsViewController());
                 Main.getStage().setScene(Main.getConnectFourScene());
             } catch (IOException e) {
-                System.out.println(e.getMessage() + "Couldn't load connect-four.fxml");
+                System.out.println(e.getMessage() 
+                        + "Couldn't load connect-four.fxml");
             }
         } else {
             Main.getStage().setScene(Main.getConnectFourScene());
@@ -42,7 +46,7 @@ public class MainMenuViewController {
     }
 
     /************************************************************
-     * Launches the checkers game when the 
+     * Launches the checkers game when the. 
      * checkers button is clicked
      ***********************************************************/
     @FXML
@@ -66,7 +70,7 @@ public class MainMenuViewController {
     }
 
     /************************************************************
-     * Launches the chess game when the
+     * Launches the chess game when the.
      * chess button is clicked
      ***********************************************************/
     @FXML
@@ -76,7 +80,7 @@ public class MainMenuViewController {
     }
 
     /************************************************************
-     * Launches the tic-tac-toe game when the
+     * Launches the tic-tac-toe game when the.
      * tic-tac-toe button is clicked
      ***********************************************************/
     @FXML
@@ -95,7 +99,7 @@ public class MainMenuViewController {
     }
 
     /************************************************************
-     * Launches the achievements screen when the 
+     * Launches the achievements screen when the .
      * achievements button is clicked 
      ***********************************************************/
     @FXML
@@ -114,7 +118,7 @@ public class MainMenuViewController {
     }
 
     /************************************************************
-     *Exits the application 
+     *Exits the application .
      ***********************************************************/
     @FXML
     private void exit() {

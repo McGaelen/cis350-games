@@ -344,6 +344,6 @@ public class ConnectFourViewController {
      * in order to go "back".
      */
     @FXML private void goBack() {
-        Main.getStage().setScene(Main.mainScene);
+        Main.getStage().setScene(Main.getMainScene());
     }
 }

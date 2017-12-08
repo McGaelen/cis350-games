@@ -52,10 +52,10 @@ public final class Main extends Application {
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        mainScene = new Scene(FXMLLoader.load(getClass()
-                .getResource("MainMenu.fxml")));
+        setMainScene(new Scene(FXMLLoader.load(getClass()
+                .getResource("MainMenu.fxml"))));
         primaryStage.setTitle("Game Suite 2.0");
-        primaryStage.setScene(mainScene);
+        primaryStage.setScene(getMainScene());
         primaryStage.show();
         setStage(primaryStage);
 
@@ -188,5 +188,19 @@ public final class Main extends Application {
     public static void setAchievementsViewController(
             final AchievementsViewController achievementsViewController) {
         Main.achievementsViewController = achievementsViewController;
+    }
+    /**
+     * Gets main scene.
+     * @return mainScene
+     */
+    public static Scene getMainScene() {
+        return mainScene;
+    }
+    /**
+     * Sets main scene.
+     * @param mainScene mainScene
+     */
+    public static void setMainScene(final Scene mainScene) {
+        Main.mainScene = mainScene;
     }
 }
