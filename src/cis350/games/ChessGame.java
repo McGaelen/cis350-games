@@ -128,8 +128,8 @@ public class ChessGame extends Observable {
     static void getGamePlayers() {
         String whiteName =
                 JOptionPane.showInputDialog("Please input White player name");
-        if (whiteName == ""
-                || whiteName == null) {
+        if (whiteName.equals("")
+                || whiteName.equals(null)) {
             whiteName = "Player 1";
         }
         String blackName = JOptionPane.showInputDialog(
