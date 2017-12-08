@@ -125,13 +125,12 @@ public class ChessGame extends Observable {
     static void getGamePlayers() {
         String whiteName =
                 JOptionPane.showInputDialog("Please input White player name");
-        if (whiteName == ""
-                || whiteName == null) {
+        if (whiteName.equals("")) {
             whiteName = "Player 1";
         }
         String blackName = JOptionPane.showInputDialog(
                 "Please input Black player name");
-        if (blackName == "" || blackName == null) {
+        if (blackName.equals("")) {
             blackName = "Player 2";
         }
         whitePlayer = new ChessPlayer(
@@ -385,7 +384,7 @@ public class ChessGame extends Observable {
             this.setChanged();
             this.notifyObservers(Achievement.CHESS_COMPLETE_RANDOM_GAME);
             System.out.println("Completed Random Chess Game!");
-        }
+        } 
         else if(ChessGame.returnGameType() == 1) {
             this.setChanged();
             this.notifyObservers(Achievement.CHESS_COMPLETE_PEASANTS_GAME);
@@ -407,7 +406,7 @@ public class ChessGame extends Observable {
     }
 
     private void checkForFirstWin(int score) {
-        if(score == 1) {
+        if (score == 1) {
             this.setChanged();
             this.notifyObservers(Achievement.CHESS_FIRST_WIN);
         }
