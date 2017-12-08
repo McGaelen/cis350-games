@@ -397,7 +397,7 @@ public class CheckersGame extends Observable {
             blackScore.setText(blackPlayer.getPlayerName()
                     + " Score : " + blackPlayer.getPlayerScore()
             );
-            if(checkForFirstWin(whitePlayer.getPlayerScore())) {
+            if (checkForFirstWin(whitePlayer.getPlayerScore())) {
                 messageBox(whitePlayer.getPlayerName()
                         + ", You earned an achievement for your first win!!!!",
                         "****FIRST WIN ACHIEVEMENT****"
@@ -405,8 +405,7 @@ public class CheckersGame extends Observable {
             }
             if (getPlayerWithStreak() == whitePlayer) {
                 setStreak(getStreak() + 1);
-            }
-            else {
+            } else {
                 setPlayerWithStreak(whitePlayer);
                 setStreak(1);
             }
@@ -414,35 +413,43 @@ public class CheckersGame extends Observable {
         }
     }
 
-    private void checkStreakAchievements(int streakCount) {
+    /**
+     * Check for win streak achievements.
+     * @param streakCount the win streak
+     */
+    private void checkStreakAchievements(final int streakCount) {
         if (streakCount == 3) {
             this.setChanged();
             this.notifyObservers(Achievement.CHECKERS_WIN_STREAK_3);
             messageBox(getPlayerWithStreak().getPlayerName()
-                    + ", You earned an achievement for your 3 game win streak!!!!",
+                    + ", You earned an achievement for your 3 "
+                    + "game win streak!!!!",
                     "****3 GAME WIN STREAK ACHIEVEMENT****"
             );
-        }
-        else if (streakCount == 5) {
+        } else if (streakCount == 5) {
             this.setChanged();
             this.notifyObservers(Achievement.CHECKERS_WIN_STREAK_5);
             messageBox(getPlayerWithStreak().getPlayerName()
-                    + ", You earned an achievement for your 5 game win streak!!!!",
+                    + ", You earned an achievement for your 5 "
+                    + "game win streak!!!!",
                     "****5 GAME WIN STREAK ACHIEVEMENT****"
             );
-        }
-        else {
+        } else {
             return;
         }
     }
 
+    /**
+     * Check for first win achievement.
+     * @param score the player win score
+     * @return true if achievement met
+     */
     private boolean checkForFirstWin(final int score) {
         if (score == 1) {
             this.setChanged();
             this.notifyObservers(Achievement.CHECKERS_FIRST_WIN);
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -478,16 +485,15 @@ public class CheckersGame extends Observable {
             blackScore.setText(blackPlayer.getPlayerName()
                     + " Score : " + blackPlayer.getPlayerScore()
             );
-            if(checkForFirstWin(blackPlayer.getPlayerScore())) {
+            if (checkForFirstWin(blackPlayer.getPlayerScore())) {
                 messageBox(blackPlayer.getPlayerName()
                         + ", You earned an achievement for your first win!!!!",
                         "****FIRST WIN ACHIEVEMENT****"
                 );
             }
-            if(getPlayerWithStreak() == blackPlayer) {
+            if (getPlayerWithStreak() == blackPlayer) {
                 setStreak(getStreak() + 1);
-            }
-            else {
+            } else {
                 setPlayerWithStreak(blackPlayer);
                 setStreak(1);
             }
@@ -551,16 +557,15 @@ public class CheckersGame extends Observable {
                     + " ,You Lost\nPlease Click Restart to Play again",
                     "GAME OVER!!"
             );
-            if(checkForFirstWin(otherPlayer.getPlayerScore())) {
+            if (checkForFirstWin(otherPlayer.getPlayerScore())) {
                 messageBox(otherPlayer.getPlayerName()
                         + ", You earned an achievement for your first win!!!!",
                         "****FIRST WIN ACHIEVEMENT****"
                 );
             }
-            if(getPlayerWithStreak() == otherPlayer) {
+            if (getPlayerWithStreak() == otherPlayer) {
                 setStreak(getStreak() + 1);
-            }
-            else {
+            } else {
                 setPlayerWithStreak(otherPlayer);
                 setStreak(1);
             }
@@ -580,9 +585,11 @@ public class CheckersGame extends Observable {
 
     /**
      * Calls all helper methods to start the game.
-     * @param playerWithStreak
+     * @param streak the player streak
+     * @param playerWithStreak the player with the streak
      */
-    public static void startNewGame(int streak, CheckersPlayer playerWithStreak) {
+    public static void startNewGame(final int streak, 
+    		final CheckersPlayer playerWithStreak) {
         CheckersGame newGame = new CheckersGame();
         newGame.gameInit();
         newGame.setupDisplay();
@@ -604,19 +611,35 @@ public class CheckersGame extends Observable {
         );
     }
 
+    /**
+     * Get the player with a win streak.
+     * @return the player with a win streak
+     */
     public CheckersPlayer getPlayerWithStreak() {
         return playerWithStreak;
     }
 
-    public void setPlayerWithStreak(CheckersPlayer playerWithStreak) {
+    /**
+     * Set the player with the win streak.
+     * @param playerWithStreak the player with the win streak
+     */
+    public void setPlayerWithStreak(final CheckersPlayer playerWithStreak) {
         this.playerWithStreak = playerWithStreak;
     }
 
+    /**
+     * Get the current win streak.
+     * @return the current win streak.
+     */
     public int getStreak() {
         return streak;
     }
 
-    public void setStreak(int streak) {
+    /**
+     * Set the current win streak.
+     * @param streak the current win streak
+     */
+    public void setStreak(final int streak) {
         this.streak = streak;
     }
 
