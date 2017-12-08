@@ -25,23 +25,23 @@ public class AchievementsViewController implements Observer {
     
     /** List view which holds the achievements to be displayed. */
     @FXML
-    ListView<Achievement> list = new ListView<Achievement>();
+    private ListView<Achievement> list = new ListView<Achievement>();
     
     /** JavaFX label that would contain a description of an achievement.*/
     @FXML
-    Label description = new Label();
+    private Label description = new Label();
     
-    /** JavaFX label that would contain the title of the achievement */
+    /** JavaFX label that would contain the title of the achievement. */
     @FXML
-    Label title = new Label();
+    private Label title = new Label();
     
-    /** JavaFX label that would contain the name of the game */
+    /** JavaFX label that would contain the name of the game. */
     @FXML
-    Label game = new Label();
+    private Label game = new Label();
 
-    /*******************************************************************************
-     * Constructor for the AchievementsViewController class
-     *******************************************************************************/
+    /******************************************************************
+     * Constructor for the AchievementsViewController class.
+     ********************************************************************/
     public AchievementsViewController() {
     	//ArrayList that would contain the triggered achievements
         this.achievementsList = new ArrayList<>();
