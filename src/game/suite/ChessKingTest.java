@@ -60,7 +60,8 @@ public class ChessKingTest extends TestCase {
     public void testValidEnemyPieceMove() {
         ChessStandardBoard board = new ChessStandardBoard(8, 8);
         ChessKing newKing = new ChessKing(3, 7, ChessBoard.Color.black, board);
-        ChessPawn enemyPawn = new ChessPawn(2, 6, ChessBoard.Color.white, board);
+        ChessPawn enemyPawn = new ChessPawn(2, 6, 
+        		ChessBoard.Color.white, board);
         assertTrue(newKing.canMove(2, 6));
     }
 
@@ -71,7 +72,8 @@ public class ChessKingTest extends TestCase {
         ChessStandardBoard board = new ChessStandardBoard(8, 8);
         ChessKing newKing = new ChessKing(3, 7, ChessBoard.Color.black, board);
         newKing = board.getBlackKingTracker();
-        ChessPawn enemyPawn = new ChessPawn(5, 5, ChessBoard.Color.white, board);
+        ChessPawn enemyPawn = new ChessPawn(5, 5, 
+        		ChessBoard.Color.white, board);
         assertFalse(newKing.canMove(4, 6));
     }
 
@@ -81,7 +83,8 @@ public class ChessKingTest extends TestCase {
     public void testKingInCheck() {
         ChessStandardBoard board = new ChessStandardBoard(8, 8);
         ChessKing newKing = new ChessKing(3, 7, ChessBoard.Color.black, board);
-        ChessPawn enemyPawn = new ChessPawn(4, 6, ChessBoard.Color.white, board);
+        ChessPawn enemyPawn = new ChessPawn(
+        		4, 6, ChessBoard.Color.white, board);
         assertTrue(newKing.isKingInCheck(newKing));
     }
 

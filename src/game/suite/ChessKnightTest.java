@@ -13,7 +13,8 @@ public class ChessKnightTest extends TestCase {
      */
     public void testValidVerticalKnightMove() {
         ChessStandardBoard board = new ChessStandardBoard(8, 8);
-        ChessKnight newKnight = new ChessKnight(1, 0, ChessBoard.Color.white, board);
+        ChessKnight newKnight = new ChessKnight(
+        		1, 0, ChessBoard.Color.white, board);
         assertTrue(newKnight.canMove(2, 2));
     }
 
@@ -22,7 +23,8 @@ public class ChessKnightTest extends TestCase {
      */
     public void testValidHorizontalKnightMove() {
         ChessStandardBoard board = new ChessStandardBoard(8, 8);
-        ChessKnight newKnight = new ChessKnight(1, 0, ChessBoard.Color.white, board);
+        ChessKnight newKnight = new ChessKnight(
+        		1, 0, ChessBoard.Color.white, board);
         assertTrue(newKnight.canMove(3, 1));
     }
 
@@ -31,7 +33,8 @@ public class ChessKnightTest extends TestCase {
      */
     public void testInvalidKnightMove() {
         ChessStandardBoard board = new ChessStandardBoard(8, 8);
-        ChessKnight newKnight = new ChessKnight(6, 2, ChessBoard.Color.white, board);
+        ChessKnight newKnight = new ChessKnight(
+        		6, 2, ChessBoard.Color.white, board);
         assertFalse(newKnight.canMove(5, 1));
     }
 
@@ -40,8 +43,10 @@ public class ChessKnightTest extends TestCase {
      */
     public void testBlockingPieceMove() {
         ChessStandardBoard board = new ChessStandardBoard(8, 8);
-        ChessKnight newKnight = new ChessKnight(1, 0, ChessBoard.Color.white, board);
-        ChessPawn blockingPawn = new ChessPawn(1, 1, ChessBoard.Color.white, board);
+        ChessKnight newKnight = new ChessKnight(
+        		1, 0, ChessBoard.Color.white, board);
+        ChessPawn blockingPawn = new ChessPawn(
+        		1, 1, ChessBoard.Color.white, board);
         assertTrue(newKnight.canMove(2, 2));
     }
 
@@ -50,8 +55,10 @@ public class ChessKnightTest extends TestCase {
      */
     public void testInvalidAllyBlockingPieceMove() {
         ChessStandardBoard board = new ChessStandardBoard(8, 8);
-        ChessKnight newKnight = new ChessKnight(1, 0, ChessBoard.Color.white, board);
-        ChessPawn blockingPawn = new ChessPawn(2, 2, ChessBoard.Color.white, board);
+        ChessKnight newKnight = new ChessKnight(
+        		1, 0, ChessBoard.Color.white, board);
+        ChessPawn blockingPawn = new ChessPawn(
+        		2, 2, ChessBoard.Color.white, board);
         assertFalse(newKnight.canMove(2, 2));
     }
 

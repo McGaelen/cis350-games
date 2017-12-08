@@ -446,7 +446,8 @@ public abstract class CheckersPiece {
      */
     public void whitePromote(final int xDest, final int yDest) {
         CheckersKing newWhiteKing =
-                new CheckersKing(xDest, yDest, CheckersBoard.Color.white, currentBoard);
+                new CheckersKing(xDest, yDest, 
+                		CheckersBoard.Color.white, currentBoard);
         currentBoard.getSquaresList()[xDest][yDest].setIsOccupied(true);
         currentBoard.getSquaresList()[xDest][yDest]
                 .setOccupyingPiece(newWhiteKing);
@@ -460,7 +461,8 @@ public abstract class CheckersPiece {
      */
     public void blackPromote(final int xDest, final int yDest) {
         CheckersKing newBlackKing =
-                new CheckersKing(xDest, yDest, CheckersBoard.Color.black, currentBoard);
+                new CheckersKing(xDest, yDest, 
+                		CheckersBoard.Color.black, currentBoard);
         currentBoard.getSquaresList()[xDest][yDest].setIsOccupied(true);
         currentBoard.getSquaresList()[xDest][yDest]
                 .setOccupyingPiece(newBlackKing);

@@ -20,7 +20,8 @@ public class ChessBishop extends ChessPiece {
      * @param board current game board
      ******************************************************************/
     public ChessBishop(final int initX, final int initY,
-                       final ChessBoard.Color color, final ChessStandardBoard board) {
+                       final ChessBoard.Color color, 
+                       final ChessStandardBoard board) {
         super(initX, initY, color, board);
         this.setNameOfPiece("bishop");
     }
