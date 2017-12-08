@@ -70,9 +70,8 @@ public class ChessRook extends ChessPiece {
             return true;
         } else if (xDisplacement == 0 && yDisplacement != 0) { // Horizontal
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
 }

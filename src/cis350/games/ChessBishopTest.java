@@ -31,6 +31,7 @@ public class ChessBishopTest extends TestCase {
     public void testValidBlockingPieceMove() {
         ChessStandardBoard board = new ChessStandardBoard(8, 8);
         ChessBishop testBishop = new ChessBishop(1, 0, Color.white, board);
+        ChessPawn blockingPawn = new ChessPawn(2, 1, Color.white, board);
         assertTrue(testBishop.canMove(0, 1));
     }
 
@@ -40,6 +41,7 @@ public class ChessBishopTest extends TestCase {
     public void testInvalidBlockingPieceMove() {
         ChessStandardBoard board = new ChessStandardBoard(8, 8);
         ChessBishop testBishop = new ChessBishop(1, 0, Color.white, board);
+        ChessPawn blockingPawn = new ChessPawn(2, 1, Color.white, board);
         assertFalse(testBishop.canMove(3, 2));
     }
 }

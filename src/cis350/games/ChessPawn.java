@@ -85,16 +85,14 @@ public class ChessPawn extends ChessPiece {
                     && (xDisplacement == 0
                     || Math.abs(xDisplacement) == 1)) {
                 return true;
-            } else {
-                return false;
             }
+            return false;
         } else { // Black capture or move downwards.
             if (yDisplacement == -1
                     && (xDisplacement == 0 || Math.abs(xDisplacement) == 1)) {
                 return true;
-            } else {
-                return false;
             }
+            return false;
         }
     }
 
@@ -114,18 +112,16 @@ public class ChessPawn extends ChessPiece {
                 return true;
             } else if (yDisplacement == 1 && Math.abs(xDisplacement) == 1) {
                 return true;
-            } else {
-                return false;
             }
+            return false;
         } else {
             if ((yDisplacement == -1 || yDisplacement == -2)
                     && (xDisplacement == 0)) {
                 return true;
             } else if (yDisplacement == -1 && Math.abs(xDisplacement) == 1) {
                 return true;
-            } else {
-                return false;
             }
+            return false;
         }
     }
 }

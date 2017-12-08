@@ -45,15 +45,13 @@ public class CheckersKing extends CheckersPiece {
             if (Math.abs(yDisplacement) == 2) {
                 if (squareToCheck2.getIsOccupied()) {
                     return false;
-                } else {
-                    return true;
                 }
+                return true;
             } else if (Math.abs(yDisplacement) == 1) {
                 if (squareToCheck.getIsOccupied()) {
                     return false;
-                } else {
-                    return true;
                 }
+                return true;
             }
         } else {
             return false;
@@ -75,8 +73,7 @@ public class CheckersKing extends CheckersPiece {
         } else if (Math.abs(xDisplacement) == 1
                 && Math.abs(yDisplacement) == 1) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 }

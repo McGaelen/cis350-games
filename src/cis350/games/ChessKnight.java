@@ -35,9 +35,8 @@ public class ChessKnight extends ChessPiece {
         // No need to check for obstacles since knight can hop over pieces
         if (isValidKnightMove(xDisplacement, yDisplacement)) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**
@@ -53,9 +52,8 @@ public class ChessKnight extends ChessPiece {
         } else if (Math.abs(xDisplacement)
                 == 1 && Math.abs(yDisplacement) == 2) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
 }

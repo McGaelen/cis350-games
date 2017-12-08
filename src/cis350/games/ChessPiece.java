@@ -299,9 +299,8 @@ public abstract class ChessPiece {
             final Color colorToCheck, final ChessPiece occupyingPiece) {
         if (colorToCheck.equals(occupyingPiece.color)) {
             return false;
-        } else {
-            return true;
         }
+        return true;
     }
 
     /**

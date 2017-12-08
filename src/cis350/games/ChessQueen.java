@@ -72,9 +72,8 @@ public class ChessQueen extends ChessPiece {
         return true;
       } else if (xDisplacement == 0 && yDisplacement != 0) {
         return true;
-      } else {
-        return false;
       }
+      return false;
     }
   }
 
