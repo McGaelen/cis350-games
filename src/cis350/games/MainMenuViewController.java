@@ -6,43 +6,47 @@ import javafx.scene.Scene;
 import java.io.IOException;
 
 /******************************************************************************
- * Controller class for the main menu
+ * Controller class for the main menu.
  * @author Mathew Charath
  * @version 12/1/2017
  ******************************************************************************/
 public class MainMenuViewController {
 	
     /************************************************************
-     * resets the scene to the main menu
+     * resets the scene to the main menu.
 	 ***********************************************************/
     @FXML
     private void goBack() {
-        Main.stage.setScene(Main.mainScene);
+        Main.getStage().setScene(Main.getMainScene());
     }
     
     /************************************************************
-     * Launches the connectFour game when the 
+     * Launches the connectFour game when the .
      * connect four button is clicked
      ***********************************************************/
     @FXML
     private void connectFourBtnClick() {
-        if (Main.connectFourScene == null) {
+        if (Main.getConnectFourScene() == null) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("connect-four.fxml"));
-                Main.connectFourScene = new Scene(loader.load());
-                Main.connectFourViewController = loader.getController();
-                Main.connectFourViewController.addConnectFourAchievementsObserver(Main.achievementsViewController);
-                Main.stage.setScene(Main.connectFourScene);
+                FXMLLoader loader = new FXMLLoader(getClass()
+                        .getResource("connect-four.fxml"));
+                Main.setConnectFourScene(new Scene(loader.load()));
+                Main.setConnectFourViewController(loader.getController());
+                Main.getConnectFourViewController()
+                .addConnectFourAchievementsObserver(Main
+                        .getAchievementsViewController());
+                Main.getStage().setScene(Main.getConnectFourScene());
             } catch (IOException e) {
-                System.out.println(e.getMessage() + "Couldn't load connect-four.fxml");
+                System.out.println(e.getMessage() 
+                        + "Couldn't load connect-four.fxml");
             }
         } else {
-            Main.stage.setScene(Main.connectFourScene);
+            Main.getStage().setScene(Main.getConnectFourScene());
         }
     }
 
     /************************************************************
-     * Launches the checkers game when the 
+     * Launches the checkers game when the. 
      * checkers button is clicked
      ***********************************************************/
     @FXML
@@ -66,7 +70,7 @@ public class MainMenuViewController {
     }
 
     /************************************************************
-     * Launches the chess game when the
+     * Launches the chess game when the.
      * chess button is clicked
      ***********************************************************/
     @FXML
@@ -76,7 +80,7 @@ public class MainMenuViewController {
     }
 
     /************************************************************
-     * Launches the tic-tac-toe game when the
+     * Launches the tic-tac-toe game when the.
      * tic-tac-toe button is clicked
      ***********************************************************/
     @FXML
@@ -84,38 +88,37 @@ public class MainMenuViewController {
   
     // create and add observer
     TicTacToeObservable observer = new TicTacToeObservable();
-    observer.addTicTacToeObserver(Main.achievementsViewController);
+    observer.addTicTacToeObserver(Main.getAchievementsViewController());
     
     // add GUI to the scene and the scene to the stage
     Scene scene = new Scene(observer.getGui(), 440, 460);
-    Main.stage.setScene(scene);
-    Main.stage.sizeToScene();
-    Main.stage.setResizable(false);
-    Main.stage.setTitle("Tic Tac Toe");
+    Main.getStage().setScene(scene);
+    Main.getStage().sizeToScene();
+    Main.getStage().setResizable(false);
+    Main.getStage().setTitle("Tic Tac Toe");
     }
 
     /************************************************************
-     * Launches the achievements screen when the 
+     * Launches the achievements screen when the .
      * achievements button is clicked 
      ***********************************************************/
     @FXML
     private void achievementsButtonClick() {
-        if (Main.achievementsLaunchScene == null) {
+        if (Main.getAchievementsLaunchScene() == null) {
             try {
-                Main.achievementsLaunchScene
-                = new Scene(FXMLLoader.load(
-                        getClass().getResource("achievementsLaunch.fxml")));
-                Main.stage.setScene(Main.achievementsLaunchScene);
+                Main.setAchievementsLaunchScene(new Scene(FXMLLoader.load(
+                        getClass().getResource("achievementsLaunch.fxml"))));
+                Main.getStage().setScene(Main.getAchievementsLaunchScene());
             } catch (IOException e) {
                 System.out.println("Couldn't load achievementsLaunch.fxml");
             }
         } else {
-            Main.stage.setScene(Main.achievementsLaunchScene);
+            Main.getStage().setScene(Main.getAchievementsLaunchScene());
         }
     }
 
     /************************************************************
-     *Exits the application 
+     *Exits the application .
      ***********************************************************/
     @FXML
     private void exit() {
