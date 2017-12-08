@@ -1,5 +1,10 @@
 package cis350.games;
 
+/***********************************************************************
+ * Enums for achievement in each game.
+ * @author Gaelen
+ * @version 12/7/17
+ **********************************************************************/
 public enum Achievement {
     /* Connect Four Achievements */
 	
