@@ -102,6 +102,9 @@ public class ChessGame extends Observable {
     */
     private Stack<ChessMoveCommand> commandStack;
     
+    /**
+     * Holds current game type.
+     */
     private static int currGameType = -1;
 
 
@@ -155,8 +158,11 @@ public class ChessGame extends Observable {
         return response;
     }
 
-
-     private static void setGameType(int response) {
+    /**
+     * Sets the game type.
+     * @param response response
+     */
+     private static void setGameType(final int response) {
         currGameType = response;        
     }
 
@@ -379,33 +385,49 @@ public class ChessGame extends Observable {
         }
     }
     
+    /**
+     * Checks if achievement is earned for game type.
+     */
     private void checkForGameTypeAchievement() {
-        if(ChessGame.returnGameType() == 0) {
+        if (ChessGame.returnGameType() == 0) {
             this.setChanged();
             this.notifyObservers(Achievement.CHESS_COMPLETE_RANDOM_GAME);
             System.out.println("Completed Random Chess Game!");
+<<<<<<< HEAD
         } 
         else if(ChessGame.returnGameType() == 1) {
+=======
+        } else if (ChessGame.returnGameType() == 1) {
+>>>>>>> ee54dd150cd1ba435f8c6be5dbfcbcfba699e9e2
             this.setChanged();
             this.notifyObservers(Achievement.CHESS_COMPLETE_PEASANTS_GAME);
             System.out.println("Completed peasants chess game!");
-        }
-        else if(ChessGame.returnGameType() == 2) {
+        } else if (ChessGame.returnGameType() == 2) {
             this.setChanged();
             this.notifyObservers(Achievement.CHESS_COMPLETE_LEGALS_GAME);
             System.out.println("Completed legals chess game!");
-        }
-        else {
+        } else {
             return;
         }
         
     }
-
+    /**
+     * Returns game type.
+     * @return gameType
+     */
     private static int returnGameType() {
         return currGameType;
     }
+<<<<<<< HEAD
 
     private void checkForFirstWin(int score) {
+=======
+    /**
+     * Checks for first win.
+     * @param score score of player
+     */
+    private void checkForFirstWin(final int score) {
+>>>>>>> ee54dd150cd1ba435f8c6be5dbfcbcfba699e9e2
         if (score == 1) {
             this.setChanged();
             this.notifyObservers(Achievement.CHESS_FIRST_WIN);
