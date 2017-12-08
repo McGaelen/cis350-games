@@ -14,20 +14,20 @@ import javafx.scene.input.MouseEvent;
 /***********************************************************************
  * controller class for the achievementsLaunch.fxml file
  * gives information such as the achievements, name, game and descriptions to 
- * achievementsLaunch to display them in the GUI
+ * achievementsLaunch to display them in the GUI.
  * @author Mathew Charath
  * @version 12/1/2017
  **********************************************************************/
 public class AchievementsViewController implements Observer {
 
-	/** ArrayList that holds the triggered achievements */
+	/** ArrayList that holds the triggered achievements. */
     private ArrayList<Achievement> achievementsList;
     
-    /** List view which holds the achievements to be displayed */
+    /** List view which holds the achievements to be displayed. */
     @FXML
     ListView<Achievement> list = new ListView<Achievement>();
     
-    /** JavaFX label that would contain a description of an achievement*/
+    /** JavaFX label that would contain a description of an achievement.*/
     @FXML
     Label description = new Label();
     
@@ -49,41 +49,43 @@ public class AchievementsViewController implements Observer {
         list.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("clicked on " + list.getSelectionModel().getSelectedItem());
+            public void handle(final MouseEvent event) {
+                System.out.println("clicked on " 
+            + list.getSelectionModel().getSelectedItem());
             }
         });
     }
 
-    /******************************************************************************
-     * Displays the name,game and description of a selected achievement 
-     * @param MouseEvent arg0 Instance of a mouse click event
-     ******************************************************************************/
+    /*******************************************************************
+     * Displays the name,game and description of a selected achievement. 
+     * @param arg0 Instance of a mouse click event.
+     ******************************************************************/
     @FXML 
-    public void handleMouseClick(MouseEvent arg0) {
-    	switch(list.getSelectionModel().getSelectedItem()) {
+    public void handleMouseClick(final MouseEvent arg0) {
+    	switch (list.getSelectionModel().getSelectedItem()) {
     	case C4_DIAGONAL_WIN:
     		title.setText("DIAGONAL WIN");
     		game.setText("Game: Connect Four");
-    		description.setText("Win a game of Connect Four with a diagonal win");
+    		description.setText("Win a game of Connect Four "
+    				+ "with a diagonal win");
     		break;
     	case C4_WIN_UNDER_MOVES_COUNT:
     		title.setText("WIN IN UNDER 5 MOVES");
     		game.setText("Game: CONNECT FOUR");
-    		description.setText("Win a game of Connect Four in under 5 moves");
-    		//System.out.println("Win a game of Connect Four in under 5 moves");
+    		description.setText("Win a game of Connect Four in "
+    				+ "under 5 moves");
     		break;
     	case TTT_TIE:
     		title.setText("IT'S A TIE!");
-    		game. setText("Game: TIC-TAC-TOE");
+    		game.setText("Game: TIC-TAC-TOE");
     		description.setText("Tie in a game of Tic Tac Toe");
     		//System.out.println("Tie in a game of Tic Tac Toe");
     		break;
 		case C4_FULL_BOARD:
 			title.setText("FULL BOARD");
 			game.setText("Game: CONNECT FOUR");
-			description.setText("Use the entire board in Connect Four");
-			//System.out.println("Use the entire board in Connect Four");
+			description.setText("Use the entire board "
+					+ "in Connect Four");
 			break;
 		case TTT_WIN_THREE:
 			title.setText("TRIPLE WIN");
@@ -94,7 +96,8 @@ public class AchievementsViewController implements Observer {
 		case TTT_WIN_FULL_BOARD:
 			title.setText("FULL BOARD WIN");
 			game.setText("Game: TIC-TAC-TOE");
-			description.setText("Win a in which all spaces are occupied");
+			description.setText("Win a in which all "
+					+ "spaces are occupied");
 			break;
 		case CHESS_FIRST_WIN:
 			title.setText("FIRST WIN");
@@ -136,24 +139,25 @@ public class AchievementsViewController implements Observer {
     	}
     }
     
-    /*****************************************************************************
+    /*******************************************************************
      * Update method of the observer class pattern that notifies when an
-     * achievement has been triggered
+     * achievement has been triggered.
      * @param o observable object
      * @param arg an Object instance
-     *****************************************************************************/
-    public void update(Observable o, Object arg) {
+     ******************************************************************/
+    public void update(final Observable o, final Object arg) {
         //System.out.println("update() called");
         Achievement a;
         if (arg instanceof Achievement) {
-            a = (Achievement)arg;
+            a = (Achievement) arg;
 
             if (!this.achievementsList.contains(a)) {
                 this.achievementsList.add(a);
             }
         }
         //System.out.println(this.achievementsList);
-        ObservableList<Achievement> achievements = FXCollections.observableArrayList(achievementsList);
+        ObservableList<Achievement> achievements = FXCollections.
+        		observableArrayList(achievementsList);
         list.setItems(achievements);
     }
     
@@ -165,9 +169,9 @@ public class AchievementsViewController implements Observer {
         Main.stage.setScene(Main.mainScene);
     }
     
-    /****************************************************************************
-     * Exits the application
-     ****************************************************************************/
+    /*******************************************************************
+     * Exits the application.
+     ******************************************************************/
     @FXML private void exit() {
     	System.exit(0);
     }
