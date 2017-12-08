@@ -591,6 +591,7 @@ public class CheckersGame extends Observable {
     public static void startNewGame(final int streak, 
     		final CheckersPlayer playerWithStreak) {
         CheckersGame newGame = new CheckersGame();
+        newGame.addObserver(Main.getAchievementsViewController());
         newGame.gameInit();
         newGame.setupDisplay();
         newGame.setStreak(streak);
