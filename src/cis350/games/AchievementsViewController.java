@@ -62,6 +62,11 @@ public class AchievementsViewController implements Observer {
     @FXML 
     public void handleMouseClick(MouseEvent arg0) {
     	switch(list.getSelectionModel().getSelectedItem()) {
+    	case C4_DIAGONAL_WIN:
+    		title.setText("DIAGONAL WIN");
+    		game.setText("Game: Connect Four");
+    		description.setText("Win a game of Connect Four with a diagonal win");
+    		break;
     	case C4_WIN_UNDER_MOVES_COUNT:
     		title.setText("WIN IN UNDER 5 MOVES");
     		game.setText("Game: CONNECT FOUR");
@@ -85,6 +90,46 @@ public class AchievementsViewController implements Observer {
 			game.setText("Game: TIC-TAC-TOE");
 			description.setText("Win 3 games of tic tac toe??");
 			//System.out.println("Win 3 games of tic tac toe??");
+			break;
+		case TTT_WIN_FULL_BOARD:
+			title.setText("FULL BOARD WIN");
+			game.setText("Game: TIC-TAC-TOE");
+			description.setText("Win a in which all spaces are occupied");
+			break;
+		case CHESS_FIRST_WIN:
+			title.setText("FIRST WIN");
+			game.setText("Game: CHESS");
+			description.setText("Win a game of chess");
+			break;
+		case CHESS_COMPLETE_RANDOM_GAME:
+			title.setText("COMPLETE A GAME OF CHESS");
+			game.setText("Game: CHESS");
+			description.setText("Complete a game of chess");
+			break;
+		case CHESS_COMPLETE_LEGALS_GAME:
+			title.setText("COMPLETE A GAME OF LEGALS");
+			game.setText("Game: CHESS");
+			description.setText("Complete a game of Legals");
+			break;
+		case CHESS_COMPLETE_PEASANTS_GAME:
+			title.setText("COMPLETE A GAME OF PEASANTS");
+			game.setText("Game: CHESS");
+			description.setText("Complete a game of Peasants");
+			break;
+		case CHECKERS_FIRST_WIN:
+			title.setText("FIRST WIN");
+			game.setText("Game: CHECKERS");
+			description.setText("Win a game of checkers");
+			break;
+		case CHECKERS_WIN_STREAK_3:
+			title.setText("3 GAME WIN STREAK");
+			game.setText("Game: CHECKERS");
+			description.setText("Win 3 games of checkers in a row");
+			break;
+		case CHECKERS_WIN_STREAK_5:
+			title.setText("5 GAME WIN STREAK");
+			game.setText("Game: CHECKERS");
+			description.setText("Win 5 games of checkers in a row");
 			break;
 		default:
 			break;
