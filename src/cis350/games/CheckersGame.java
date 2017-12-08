@@ -448,7 +448,6 @@ public class CheckersGame extends Observable {
         if (score == 1) {
             this.setChanged();
             this.notifyObservers(Achievement.CHECKERS_FIRST_WIN);
-            System.out.println("GOT IT");
             return true;
         } else {
             return false;
