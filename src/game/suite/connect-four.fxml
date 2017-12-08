@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="connectFourRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.suite.ConnectFourViewController">
+    <children>
+        <ToolBar fx:id="toolBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="39.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0">
+            <items>
+                <Button fx:id="newGameButton" mnemonicParsing="false" onAction="#newGame" text="New Game" />
+                <Button fx:id="loadGameButton" mnemonicParsing="false" onAction="#loadGame" text="Load Game" />
+                <Button fx:id="saveGameButton" mnemonicParsing="false" onAction="#saveGame" text="Save Game" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <Button fx:id="exitButton" mnemonicParsing="false" onAction="#goBack" text="Main Menu" />
+            </items>
+        </ToolBar>
+        <Pane layoutY="39.0" prefHeight="562.0" prefWidth="600.0">
+            <padding>
+                <Insets top="20.0" />
+            </padding>
+         <children>
+            <GridPane fx:id="boardGrid" hgap="20" layoutX="14.0" layoutY="14.0" vgap="10" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+
+            </GridPane>
+            <!--<Label fx:id="feedbackLabel" layoutX="14.0" text="" />-->
+         </children>
+        </Pane>
+
+
+
+
+        <!--The following code will be added in a future commit-->
+      <!--<MenuBar prefHeight="39.0" prefWidth="600.0">-->
+        <!--<menus>-->
+          <!--<Menu mnemonicParsing="false" text="File">-->
+            <!--<items>-->
+              <!--<MenuItem mnemonicParsing="false" text="Close" />-->
+            <!--</items>-->
+          <!--</Menu>-->
+          <!--<Menu mnemonicParsing="false" text="Edit">-->
+            <!--<items>-->
+              <!--<MenuItem mnemonicParsing="false" text="Delete" />-->
+            <!--</items>-->
+          <!--</Menu>-->
+          <!--<Menu mnemonicParsing="false" text="Help">-->
+            <!--<items>-->
+              <!--<MenuItem mnemonicParsing="false" text="About" />-->
+            <!--</items>-->
+          <!--</Menu>-->
+        <!--</menus>-->
+      <!--</MenuBar>-->
+
+
+      <!--<TextField layoutX="148.0" layoutY="231.0" prefWidth="150.0" promptText="Player 1">-->
+         <!--<font>-->
+            <!--<Font size="20.0" />-->
+         <!--</font>-->
+      <!--</TextField>-->
+      <!--<TextField layoutX="328.0" layoutY="231.0" prefWidth="150.0" promptText="Player 2">-->
+         <!--<font>-->
+            <!--<Font size="20.0" />-->
+         <!--</font>-->
+      <!--</TextField>-->
+      <!--<ImageView fitHeight="76.0" fitWidth="150.0" layoutX="148.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true">-->
+         <!--<image>-->
+            <!--<Image url="@resources/red-checker-piece-clip-art.png" />-->
+         <!--</image>-->
+      <!--</ImageView>-->
+      <!--<ImageView fitHeight="74.0" fitWidth="150.0" layoutX="328.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true">-->
+         <!--<image>-->
+            <!--<Image url="@resources/black-checker-piece-clip-art.png" />-->
+         <!--</image>-->
+      <!--</ImageView>-->
+      <!--<Button layoutX="279.0" layoutY="304.0" mnemonicParsing="false" onAction="#connectFourStart" text="Start" />-->
+      <!--<Label layoutX="213.0" layoutY="56.0" prefHeight="63.0" prefWidth="195.0" text="Connect Four">-->
+         <!--<font>-->
+            <!--<Font size="32.0" />-->
+         <!--</font>-->
+      <!--</Label>-->
+      <!--<Button layoutX="23.0" layoutY="56.0" mnemonicParsing="false" onAction="#goBack" text="Back" />-->
+
+    </children>
+</AnchorPane>
