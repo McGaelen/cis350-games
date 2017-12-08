@@ -580,7 +580,7 @@ public class CheckersGame extends Observable {
 
     /**
      * Calls all helper methods to start the game.
-     * @param playerWithStreak 
+     * @param playerWithStreak
      */
     public static void startNewGame(int streak, CheckersPlayer playerWithStreak) {
         CheckersGame newGame = new CheckersGame();
