@@ -162,7 +162,7 @@ public class AchievementsViewController implements Observer {
      * Returns the GUI back to the main menu.
      ******************************************************************/
     @FXML private void goBack() {
-        Main.stage.setScene(Main.mainScene);
+        Main.getStage().setScene(Main.mainScene);
     }
     
     /****************************************************************************

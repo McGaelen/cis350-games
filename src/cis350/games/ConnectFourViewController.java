@@ -290,14 +290,14 @@ public class ConnectFourViewController {
         File gameFile;
 
         dialog.setTitle("Open Connect Four Game");
-        gameFile = dialog.showOpenDialog(Main.stage);
+        gameFile = dialog.showOpenDialog(Main.getStage());
 
         if (gameFile == null) {
             return;
         }
         try {
             this.game = ConnectFourEngine.load(gameFile);
-            this.game.addObserver(Main.achievementsViewController);
+            this.game.addObserver(Main.getAchievementsViewController());
         } catch (ClassNotFoundException c) {
             new Alert(AlertType.ERROR,
                     "The file was not a valid Connect Four file."
@@ -325,7 +325,7 @@ public class ConnectFourViewController {
         File gameFile;
 
         dialog.setTitle("Save Connect Four Game");
-        gameFile = dialog.showSaveDialog(Main.stage);
+        gameFile = dialog.showSaveDialog(Main.getStage());
 
         if (gameFile == null) {
             return;
@@ -344,6 +344,6 @@ public class ConnectFourViewController {
      * in order to go "back".
      */
     @FXML private void goBack() {
-        Main.stage.setScene(Main.mainScene);
+        Main.getStage().setScene(Main.mainScene);
     }
 }

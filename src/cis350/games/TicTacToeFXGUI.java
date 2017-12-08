@@ -112,7 +112,7 @@ public class TicTacToeFXGUI extends VBox implements EventHandler<ActionEvent> {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
-            	Main.stage.setScene(Main.mainScene);
+            	Main.getStage().setScene(Main.mainScene);
             }
         }
     }
