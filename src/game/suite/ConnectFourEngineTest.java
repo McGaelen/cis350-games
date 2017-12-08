@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 /**
  * Class to test connect four engine.
- * @author Gaelen
+ * @author Gaelen McIntee
  */
 public class ConnectFourEngineTest {
 
@@ -325,30 +325,4 @@ public class ConnectFourEngineTest {
     		game.placeChip(2);
     		assertTrue(game.checkFull());
     }
-    
-//    @Test
-//    public void testCheckTurnAchievementNotWon() {
-//    		
-//    }
-    
-//    @Test
-//    public void testCheckTurnAchievement() throws Exception {
-//    		game.placeChip(1);
-//    		game.advanceTurn();
-//    		game.placeChip(1);
-//    		game.advanceTurn();
-//		game.placeChip(2);
-//		game.advanceTurn();
-//		game.placeChip(2);
-//		game.advanceTurn();
-//		game.placeChip(3);
-//		game.advanceTurn();
-//		game.placeChip(3);
-//		game.advanceTurn();
-//		game.placeChip(4);
-//		game.advanceTurn();
-//		game.placeChip(4);
-//		game.advanceTurn();
-//		
-//    }
 }

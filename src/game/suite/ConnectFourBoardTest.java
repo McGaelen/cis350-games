@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 /**
  * Class for testing the connect 4 board.
- * @author Austin Maley
+ * @author Gaelen McIntee
  *
  */
 public class ConnectFourBoardTest {
