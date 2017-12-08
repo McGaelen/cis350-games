@@ -61,6 +61,10 @@ public class ConnectFourEngineTest {
         assertEquals((Integer) 1, game.getTurn());
     }
 
+    /**
+     * test place chip.
+     * @throws Exception 
+     */
     @Test
     public void testPlaceChip() throws Exception {
         ConnectFourEngine turntest = new ConnectFourEngine(5, 5, 1);
@@ -70,17 +74,27 @@ public class ConnectFourEngineTest {
         assertEquals(expected.toString(), turntest.toString());
     }
 
+    /**
+     * test place invalid chip.
+     * @throws Exception 
+     */
     @Test(expected = Exception.class)
     public void testPlaceInvalidChip() throws Exception {
         game.placeChip(0);
     }
 
+    /**
+     * test advance turn one to two.
+     */
     @Test
     public void testAdvanceTurnOneToTwo() {
         game.advanceTurn();
         assertEquals((Integer) 2, game.getTurn());
     }
 
+    /**
+     * test advance turn two to one.
+     */
     @Test
     public void testAdvanceTurnTwoToOne() {
         game.advanceTurn();
@@ -88,6 +102,10 @@ public class ConnectFourEngineTest {
         assertEquals((Integer) 1, game.getTurn());
     }
 
+    /**
+     * test reset.
+     * @throws Exception 
+     */
     @Test
     public void testReset() throws Exception {
         game.placeChip(1);
@@ -102,6 +120,10 @@ public class ConnectFourEngineTest {
         assertEquals("", game.getWinCase());
     }
 
+    /**
+     * test check horizontal win.
+     * @throws Exception 
+     */
     @Test
     public void testCheckHorizontalWin() throws Exception {
         game.placeChip(1);
@@ -113,6 +135,10 @@ public class ConnectFourEngineTest {
         assertEquals("Horizontal Win", game.getWinCase());
     }
 
+    /**
+     * test check near horizontal win.
+     * @throws Exception 
+     */
     @Test
     public void testCheckNearHorizontalWin() throws Exception {
         game.placeChip(1);
@@ -123,6 +149,10 @@ public class ConnectFourEngineTest {
         assertEquals("", game.getWinCase());
     }
 
+    /**
+     * test check vertical win.
+     * @throws Exception 
+     */
     @Test
     public void testCheckVerticalWin() throws Exception {
         game.placeChip(1);
@@ -134,6 +164,10 @@ public class ConnectFourEngineTest {
         assertEquals("Vertical Win", game.getWinCase());
     }
 
+    /**
+     * test check diagonal up right win.
+     * @throws Exception 
+     */
     @Test
     public void testCheckDiagonalUpRightWin() throws Exception {
         game.placeChip(2);
@@ -152,6 +186,10 @@ public class ConnectFourEngineTest {
         assertEquals("Diagonal (Up and to the Right) Win", game.getWinCase());
     }
 
+    /**
+     * test check win hits column limit.
+     * @throws Exception 
+     */
     @Test
     public void testCheckWinHitsColumnLimit() throws Exception {
             game.placeChip(9);
@@ -160,6 +198,10 @@ public class ConnectFourEngineTest {
             assertEquals(false, game.checkWin());
     }
 
+    /**
+     * test check diagonal up left win.
+     * @throws Exception 
+     */
     @Test
     public void testCheckDiagonalUpLeftWin() throws Exception {
         game.placeChip(1);
@@ -179,6 +221,10 @@ public class ConnectFourEngineTest {
         assertEquals("Diagonal (Up and to the Left) Win", game.getWinCase());
     }
 
+    /**
+     * test check diagonal up left top of board limit.
+     * @throws Exception 
+     */
     @Test
     public void testCheckDiagonalUpLeftTopOfBoardLimit() throws Exception {
         ConnectFourEngine g = new ConnectFourEngine(3, 4, 1);
@@ -196,6 +242,10 @@ public class ConnectFourEngineTest {
         assertEquals(false, g.checkWin());
     }
 
+    /**
+     * test equals.
+     * @throws Exception 
+     */
     @Test
     public void testEquals() throws Exception {
         ConnectFourEngine rowsDiff = new ConnectFourEngine(32, 9, 1);
@@ -219,6 +269,9 @@ public class ConnectFourEngineTest {
         assertFalse(game.equals(equal));
     }
 
+    /**
+     * test hash code.
+     */
     @Test
     public void testHashCode() {
         ConnectFourEngine other = new ConnectFourEngine(10, 9, 1);
@@ -226,6 +279,10 @@ public class ConnectFourEngineTest {
         assertTrue(game.hashCode() == other.hashCode());
     }
 
+    /**
+     * test save.
+     * @throws IOException 
+     */
     @Test
     public void testSave() throws IOException {
         File f = new File("testSaveOut");
@@ -234,6 +291,10 @@ public class ConnectFourEngineTest {
         Files.deleteIfExists(Paths.get("testSaveOut"));
     }
 
+    /**
+     * test load. 
+     * @throws Exception 
+     */
     @Test
     public void testLoad() throws Exception {
         File f = new File("testLoadOut");
@@ -243,11 +304,18 @@ public class ConnectFourEngineTest {
         Files.deleteIfExists(Paths.get("testLoadOut"));
     }
     
+    /**
+     * test check full.
+     */
     @Test
     public void testCheckFull() {
     		assertFalse(game.checkFull());
     }
     
+    /**
+     * test check full true.
+     * @throws Exception 
+     */
     @Test
     public void testCheckFullTrue() throws Exception {
     		game = new ConnectFourEngine(2, 2, 1);
