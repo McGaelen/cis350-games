@@ -53,6 +53,7 @@ public class MainMenuViewController {
     private void checkersButtonClick() {
         CheckersGame.getGamePlayers();
         CheckersGame.startNewGame(0, null);
+        
         /**
         if (Main.checkersLaunchScene == null) {
             try {

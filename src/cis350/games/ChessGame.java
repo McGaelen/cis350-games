@@ -515,6 +515,7 @@ public class ChessGame extends Observable {
     */
     public static void startNewGame() {
         ChessGame newGame = new ChessGame();
+        newGame.addObserver(Main.getAchievementsViewController());
         newGame.gameInit(getGameType());
         newGame.setupDisplay();
         newGame.gameStart();

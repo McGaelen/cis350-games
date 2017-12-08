@@ -448,6 +448,7 @@ public class CheckersGame extends Observable {
         if (score == 1) {
             this.setChanged();
             this.notifyObservers(Achievement.CHECKERS_FIRST_WIN);
+            System.out.println("GOT IT");
             return true;
         } else {
             return false;
@@ -591,6 +592,7 @@ public class CheckersGame extends Observable {
     public static void startNewGame(final int streak, 
     		final CheckersPlayer playerWithStreak) {
         CheckersGame newGame = new CheckersGame();
+        newGame.addObserver(Main.getAchievementsViewController());
         newGame.gameInit();
         newGame.setupDisplay();
         newGame.setStreak(streak);
